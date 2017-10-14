@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +27,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function asset()
+    {
+        if($this->asset_type == 'teacher')
+        {
+            return $this->belongsTo(Teacher::class);
+        }
+        elseif($this->asset_type == 'student')
+        {
+            return $this->belongsTo(Student::class);
+        }
+    }
+
 }
