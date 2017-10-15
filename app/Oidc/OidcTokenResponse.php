@@ -29,6 +29,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
             ->setAudience($this->accessToken->getClient()->getIdentifier())
             ->setExpiration($this->accessToken->getExpiryDateTime()->getTimestamp())
             ->setIssuedAt(time())
+            ->set('blaat', 'boeheee')
             ->sign(new Sha256(), 'testing')
             ->getToken();
 
