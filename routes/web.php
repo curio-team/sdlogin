@@ -15,3 +15,4 @@ Route::redirect('/', '/me', 301);
 Route::get('/me', 'DashboardController@show')->name('home');
 
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

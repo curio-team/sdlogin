@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -29,16 +32,17 @@ class User extends Authenticatable
     ];
 
 
-    public function asset()
+    public function groups()
     {
-        if($this->asset_type == 'teacher')
-        {
-            return $this->belongsTo(Teacher::class);
-        }
-        elseif($this->asset_type == 'student')
-        {
-            return $this->belongsTo(Student::class);
-        }
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_start', '<', Carbon::now())
+            ->whereDate('date_end', '>=', Carbon::now());
     }
+
+    public function groupHistory()
+    {
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_end', '<', Carbon::now());
+    }    
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,11 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        return view('home');
+        $user = Auth::user();
+        $name = explode(' ', $user->name);
+
+        return view('home')
+            ->with('user', Auth::user())
+            ->with('firstname', $name[0]);
     }
 }

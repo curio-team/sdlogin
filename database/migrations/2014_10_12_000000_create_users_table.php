@@ -18,8 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->string('asset_type');
-            $table->integer('asset_id');
+            $table->string('type');
             $table->rememberToken();
             $table->timestamps();
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,16 +12,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('teachers')->insert([
-        ]);
-
         DB::table('users')->insert([
             'id' => 'br10',
             'name' => 'Bart Roos',
             'email' => 'test@amo.com',
             'password' => bcrypt('test34'),
-            'asset_type' => 'teacher',
-            'asset_id' => 1
+            'type' => 'teacher',
+        ]);
+
+        DB::table('groups')->insert([
+            'name' => 'docenten',
+            'type' => 'group',
+            'date_start' => '2017-08-01',
+            'date_end' => '9999-12-12'
+        ]);
+
+        DB::table('group_user')->insert([
+            'group_id' => 1,
+            'user_id' => 'br10'
         ]);
     }
 }
