@@ -15,6 +15,20 @@ use League\OAuth2\Server\AuthorizationServer as PassportAuthorizationServer;
 class AuthorizationServer extends PassportAuthorizationServer
 {
 
+    private $encryptionKey;
+
+     public function __construct(
+        ClientRepositoryInterface $clientRepository,
+        AccessTokenRepositoryInterface $accessTokenRepository,
+        ScopeRepositoryInterface $scopeRepository,
+        $privateKey,
+        $encryptionKey,
+        ResponseTypeInterface $responseType = null
+    ) {
+        $this->encryptionKey = $encryptionKey;
+        parent::__construct();
+    }
+
     /**
      * Get the token type that grants will return in the HTTP response.
      *
@@ -27,7 +41,7 @@ class AuthorizationServer extends PassportAuthorizationServer
         }
 
         $this->responseType->setPrivateKey($this->privateKey);
-        //$this->responseType->setEncryptionKey($this->encryptionKey);
+        $this->responseType->setEncryptionKey($this->encryptionKey);
 
         return $this->responseType;
     }
