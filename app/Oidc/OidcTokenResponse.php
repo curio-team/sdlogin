@@ -18,6 +18,8 @@ use Psr\Http\Message\ResponseInterface;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
+use Lcobucci\JWT\Signer\Key;
+
 
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
@@ -32,7 +34,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
             ->set('blaat', 'boeheee')
             ->sign(new Sha256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()))
             ->getToken();
-            
+
         return array('id_token' => (string) $builder);
     }
 
