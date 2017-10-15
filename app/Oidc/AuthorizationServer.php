@@ -18,15 +18,15 @@ class AuthorizationServer extends PassportAuthorizationServer
     private $encryptionKey;
 
      public function __construct(
-        ClientRepositoryInterface $clientRepository,
-        AccessTokenRepositoryInterface $accessTokenRepository,
-        ScopeRepositoryInterface $scopeRepository,
+        \Laravel\Passport\Bridge\ClientRepositoryInterface $clientRepository,
+        \Laravel\Passport\Bridge\AccessTokenRepositoryInterface $accessTokenRepository,
+        \Laravel\Passport\Bridge\ScopeRepositoryInterface $scopeRepository,
         $privateKey,
         $encryptionKey,
         ResponseTypeInterface $responseType = null
     ) {
         $this->encryptionKey = $encryptionKey;
-        parent::__construct();
+        parent::__construct($clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $encryptionKey, $responseType);
     }
 
     /**
