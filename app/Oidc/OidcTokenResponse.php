@@ -16,10 +16,23 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use Psr\Http\Message\ResponseInterface;
 
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
     protected function getExtraParams(AccessTokenEntityInterface $accessToken)
     {
-        return array('blaat'        => 'blub');
+        
+        $builder = (new Builder())
+            ->setIssuer('https://login.amo.rocks/')
+            ->setAudience($this->accessToken->getClient()->getIdentifier())
+            ->setExpiration($this->accessToken->getExpiryDateTime()->getTimestamp())
+            ->setIssuedAt(time())
+            ->sign(new Sha256(), 'testing')
+            ->getToken();
+
+        return array('id_token' => $builder);
     }
+
 }
