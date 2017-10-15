@@ -168,7 +168,7 @@ return [
          * Package Service Providers...
          */
 
-        Laravel\Passport\PassportServiceProvider::class,
+        App\Oidc\OidcServiceProvider::class,
 
         /*
          * Application Service Providers...
