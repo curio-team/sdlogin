@@ -26,11 +26,11 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
         
         $builder = (new Builder())
             ->setIssuer('https://login.amo.rocks/')
-            ->setAudience($this->accessToken->getClient()->getIdentifier())
-            ->setExpiration($this->accessToken->getExpiryDateTime()->getTimestamp())
+            ->setAudience($accessToken->getClient()->getIdentifier())
+            ->setExpiration($accessToken->getExpiryDateTime()->getTimestamp())
             ->setIssuedAt(time())
             ->set('blaat', 'boeheee')
-            ->sign(new Sha256(), 'testing')
+            //->sign(new Sha256(), 'testing')
             ->getToken();
 
         return array('id_token' => $builder);
