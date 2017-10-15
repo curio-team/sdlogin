@@ -29,8 +29,8 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
             ->setAudience($accessToken->getClient()->getIdentifier())
             ->setExpiration($accessToken->getExpiryDateTime()->getTimestamp())
             ->setIssuedAt(time())
-            ->set('blaat', $_POST['client_secret'])
-            ->sign(new Sha256(), 'testing')
+            ->set('blaat', 'hoi')
+            ->sign(new Sha256(), $_POST['client_secret'])
             ->getToken();
 
         return array('id_token' => (string) $builder);
