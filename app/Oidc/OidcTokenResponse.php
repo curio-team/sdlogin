@@ -17,7 +17,7 @@ use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use Psr\Http\Message\ResponseInterface;
 
 use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Rsa\Sha256;
 
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
@@ -30,11 +30,9 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
             ->setExpiration($accessToken->getExpiryDateTime()->getTimestamp())
             ->setIssuedAt(time())
             ->set('blaat', 'boeheee')
-            //->sign(new Sha256(), 'testing')
+            ->sign(new Sha256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()))
             ->getToken();
-
-        file_put_contents('token.txt', $builder);
-
+            
         return array('id_token' => (string) $builder);
     }
 
