@@ -3,7 +3,6 @@ namespace App\Oidc;
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Passport\Bridge\ClientRepository;
 use Laravel\Passport\Bridge\ScopeRepository;
-use League\OAuth2\Server\AuthorizationServer;
 
 class OidcServiceProvider extends PassportServiceProvider
 {

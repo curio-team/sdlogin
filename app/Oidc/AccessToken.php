@@ -24,7 +24,7 @@ class AccessToken extends PassportAccessToken
                 'iss' => url('')
             ]
         );
-        
+
         $user = $this->getUser();
 
         $builder = (new Builder())
@@ -47,7 +47,9 @@ class AccessToken extends PassportAccessToken
         }
 
         // sign and return the token
-        return $builder->sign(new Sha256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()))->getToken();
+        return $builder
+            ->sign(new Sha256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()))
+            ->getToken();
     }
 
 
