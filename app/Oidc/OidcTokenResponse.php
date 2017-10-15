@@ -16,7 +16,7 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class OidcTokenResponse extends League\OAuth2\Server\ResponseTypes\AbstractResponseType
+class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\AbstractResponseType
 {
 
     public function generateHttpResponse(ResponseInterface $response)
