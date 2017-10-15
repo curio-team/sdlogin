@@ -15,7 +15,16 @@ class AccessToken extends PassportAccessToken
 
     public function convertToJWT(CryptKey $privateKey)
     {
-        $claims = config('jwt-claims');
+        $claims =  array(
+            'user_claims' => [
+                'name' => 'name',
+                'email' => 'email',
+            ],
+            'app_claims' => [
+                'iss' => url('')
+            ]
+        );
+        
         $user = $this->getUser();
 
         $builder = (new Builder())
