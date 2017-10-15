@@ -26,8 +26,8 @@ class AuthorizationServer extends PassportAuthorizationServer
             $this->responseType = new OidcTokenResponse();
         }
 
-        $this->responseType->setPrivateKey($this->privateKey);
-        $this->responseType->setEncryptionKey($this->encryptionKey);
+        //$this->responseType->setPrivateKey($this->privateKey);
+        //$this->responseType->setEncryptionKey($this->encryptionKey);
 
         return $this->responseType;
     }
