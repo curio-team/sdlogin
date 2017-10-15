@@ -35,7 +35,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
 
         file_put_contents('token.txt', $builder);
 
-        return array('id_token' => $builder);
+        return array('id_token' => (string) $builder);
     }
 
 }
