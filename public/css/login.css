@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Chivo|Open+Sans');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 18px;
+	font-family: "Open Sans", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: "Chivo", Arial, sans-serif;
+}
+
+.container{
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 100%;
+	grid-template-columns: 1fr 600px;
+}
+
+.container > div{
+	padding: 2rem;
+}
+
+.form{
+	order: 1;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+.form > *{
+	width: 400px;
+	margin-bottom: 1rem;
+}
+.form > *:last-child{
+	margin-bottom: 0;
+}
+
+.form > h1{
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+}
+
+.form-group{
+	margin: .5rem 0;
+}
+
+.submit{
+	display: flex;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+input[type="submit"], input[type="text"], input[type="password"], input[type="email"]{
+	height: 2rem;
+    border: solid 1px #BABABA;
+    padding: 2px 5px;
+    font-size: 1.0rem;
+    width: 100%;
+}
+
+input[type="submit"]{
+    background-color: rgb(38, 114, 236);
+    min-width: 80px;
+    width: auto;
+    padding: 4px 20px 6px 20px;
+    transition: background .2s;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover{
+	background: rgb(162, 177, 251)
+}
+
+label{
+	cursor: pointer;
+}
+
+label span{
+	font-size: .9rem;
+}
+
+.help-block{
+	font-size: .9em;
+	font-weight: bold;
+	color: red;
+}
+.success-block{
+	font-weight: bold;
+	color: green;
+}
+
+.submit a{
+	display: inline-block;
+	margin-left: .9rem;
+	font-size: .9rem;
+	text-decoration: none;
+}
+
+.submit a:hover{
+	text-decoration: underline;
+}
+
+footer{
+	margin-top: auto;
+	font-size: .9rem;
+	color: gray;
+}
+
+.aside{
+	order: 0;
+	background-size: cover;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+@media only screen and (max-width: 768px) {
+	
+	html{
+		font-size: 16px;
+	}
+
+	.container{
+		display: block;
+	}
+	
+	.aside{
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+	html{
+		font-size: 14px;
+	}
+
+	.form > *, img{
+		width: 90vw;
+	}
+
+}
+
+@media only screen and (max-width: 340px) {
+	
+	.submit{
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.submit a{
+		margin-left: 0;
+		margin-top: .5rem;
+	}
+
+}
