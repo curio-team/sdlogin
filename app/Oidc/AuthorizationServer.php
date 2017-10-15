@@ -27,7 +27,7 @@ class AuthorizationServer extends PassportAuthorizationServer
         }
 
         $this->responseType->setPrivateKey($this->privateKey);
-        //$this->responseType->setEncryptionKey($this->encryptionKey);
+        this->responseType->setEncryptionKey(app('encrypter')->getKey());
 
         return $this->responseType;
     }
