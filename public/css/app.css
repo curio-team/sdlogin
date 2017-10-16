@@ -78,3 +78,13 @@ body{
 .my-group p{
 	margin-bottom: .3em;
 }
+
+@supports not (display:  grid){
+	.grid-container{
+		display: block;
+	}
+
+	.grid-container > *{
+		margin: 2em 0;
+	}
+}

@@ -163,3 +163,9 @@ footer{
 	}
 
 }
+
+@supports not (display:  grid){
+	.aside{
+		display: none;
+	}
+}
