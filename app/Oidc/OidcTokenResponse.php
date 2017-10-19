@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Illuminate\Support\Facades\Auth;
 
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
@@ -16,7 +17,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
     {
         
         //building the id_token:
-
+        $user = Auth::user();
         $user->groups = $user->groups->toJson();
         $user = $user->toJson();
 
