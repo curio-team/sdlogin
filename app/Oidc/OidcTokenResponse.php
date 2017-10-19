@@ -15,12 +15,18 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
     protected function getExtraParams(AccessTokenEntityInterface $accessToken)
     {
         
+        //building the id_token:
+
+        $user->groups = $user->groups->toJson();
+        $user = $user->toJson();
+
+
         $builder = (new Builder())
             ->setIssuer('https://login.amo.rocks/')
             ->setAudience($accessToken->getClient()->getIdentifier())
             ->setExpiration($accessToken->getExpiryDateTime()->getTimestamp())
             ->setIssuedAt(time())
-            ->set('blaat', 'hoi')
+            ->set('user', $user)
             ->sign(new Sha256(), $_POST['client_secret'])
             ->getToken();
 
