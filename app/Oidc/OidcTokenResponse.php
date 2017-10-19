@@ -17,7 +17,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
     {
         
         //building the id_token:
-        $user = Auth::user();
+        $user = User::find($accessToken->getUserIdentifier());
         $user->groups = $user->groups->toJson();
         $user = $user->toJson();
 
