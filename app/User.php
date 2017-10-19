@@ -36,13 +36,25 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class)
             ->whereDate('date_start', '<', Carbon::now())
-            ->whereDate('date_end', '>=', Carbon::now());
+            ->whereDate('date_end', '>=', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
+    }
+
+    public function groupsWithFuture()
+    {
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_end', '>=', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
     }
 
     public function groupHistory()
     {
         return $this->belongsToMany(Group::class)
-            ->whereDate('date_end', '<', Carbon::now());
+            ->whereDate('date_end', '<', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
     }    
 
 }

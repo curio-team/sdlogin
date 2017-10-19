@@ -16,6 +16,14 @@ body{
 	margin-top: 2em;
 }
 
+.spaced-container > *{
+	margin: 1em 0;
+}
+
+button{
+	cursor: pointer;
+}
+
 .grid-container{
 	display: grid;
 	grid-template-rows: 1fr 1fr;
@@ -77,6 +85,11 @@ body{
 
 .my-group p{
 	margin-bottom: .3em;
+}
+
+legend{
+	font-size: 1em;
+	font-weight: bold;
 }
 
 @supports not (display:  grid){
