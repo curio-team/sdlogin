@@ -10,6 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
