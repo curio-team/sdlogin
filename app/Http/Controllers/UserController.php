@@ -94,7 +94,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
+        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
 
         $user_groups = $user->groupsWithFuture();
         return view('users.edit')
