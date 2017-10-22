@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Apps</a>
+                    <a class="nav-link" href="/clients">Apps</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Groepen</a>

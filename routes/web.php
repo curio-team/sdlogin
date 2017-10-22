@@ -20,5 +20,12 @@ Route::post('/users', 'UserController@store');
 Route::get('/users/{user}/edit', 'UserController@edit');
 Route::patch('/users/{user}', 'UserController@update');
 
+Route::get('/clients', 'MyClientController@index');
+Route::post('/clients', 'MyClientController@store');
+Route::get('/clients/create', 'MyClientController@create');
+Route::get('/clients/{client}', 'MyClientController@show');
+Route::get('/clients/{client}/delete', 'MyClientController@delete');
+Route::delete('/clients/{client}', 'MyClientController@destroy');
+
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
