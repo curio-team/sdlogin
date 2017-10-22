@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 
 class AuthServiceProvider extends ServiceProvider
@@ -33,9 +34,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Passport::routes(function ($router) {
-            $router->forAuthorization();
             $router->forAccessTokens();
         });
+        Route::group(['middleware' => ['web', 'auth']], function () {
+            Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
+        });
+        
         Passport::tokensExpireIn(Carbon::now()->addMinutes(10));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
     }
