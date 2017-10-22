@@ -18,15 +18,6 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    public function secret()
-    {
-        if (Gate::denies('admin')) {
-            return redirect('/me');
-        }
-
-        return 'yes!';
-    }
-
     /**
      * Show the application dashboard.
      *

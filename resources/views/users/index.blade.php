@@ -26,7 +26,12 @@
 						<td>{{ $user->id }}</td>
 						<td>{{ $user->name }}</td>
 						<td>{{ $user->groups->first()->name }}, ...</td>
-						<td><a href="/users/{{ $user->id }}/edit">bewerken</a></td>
+						<td>
+							<div class="btn-group">
+								<a class="btn btn-primary" href="/users/{{ $user->id }}/edit"><i class="fa fa-pencil"></i></a>
+								<a class="btn btn-danger" href="/users/{{ $user->id }}/delete"><i class="fa fa-trash"></i></a>
+							</div>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>

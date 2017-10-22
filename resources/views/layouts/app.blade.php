@@ -39,6 +39,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/me">Dashboard</a>
+                        <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">Profiel</a>
                         <a class="dropdown-item" href="/logout">Uitloggen</a>
                     </div>
                 </li>
