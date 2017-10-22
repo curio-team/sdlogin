@@ -29,7 +29,7 @@
 		    </div>
 		@endif
 
-		<form action="/users/" method="POST">
+		<form action="/users" method="POST">
 			{{ csrf_field() }}
 
 			<div class="form-group row">

@@ -25,7 +25,13 @@
 						<td></td>
 						<td>{{ $user->id }}</td>
 						<td>{{ $user->name }}</td>
-						<td>{{ $user->groups->first()->name }}, ...</td>
+						<td>
+							@if($user->groups->count())
+								{{ $user->groups->first()->name }}, ...
+							@else
+								(geen)
+							@endif
+						</td>
 						<td>
 							<div class="btn-group">
 								<a class="btn btn-primary" href="/users/{{ $user->id }}/edit"><i class="fa fa-pencil"></i></a>
