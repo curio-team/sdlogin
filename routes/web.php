@@ -21,6 +21,8 @@ Route::get('/users/{user}/edit', 'UserController@edit');
 Route::get('/users/{user}/profile', 'UserController@profile');
 Route::patch('/users/{user}/profile', 'UserController@profile_update');
 Route::patch('/users/{user}', 'UserController@update');
+Route::get('/users/{user}/delete', 'UserController@delete');
+Route::delete('/users/{user}', 'UserController@destroy');
 
 Route::get('/clients', 'MyClientController@index');
 Route::post('/clients', 'MyClientController@store');

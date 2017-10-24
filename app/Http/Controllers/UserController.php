@@ -76,17 +76,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -165,14 +154,22 @@ class UserController extends Controller
         return redirect('/users');
     }
 
+    public function delete(User $user)
+    {
+        return view('users.delete')
+            ->with('user', $user);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         if (Gate::denies('admin')) { return redirect('/me'); }
+        $user->delete();
+        return redirect('/users');
     }
 }
