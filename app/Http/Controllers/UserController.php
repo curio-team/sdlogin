@@ -94,7 +94,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
+        if (Gate::denies('admin')) { return redirect('/me'); }
 
         $user_groups = $user->groupsWithFuture();
         return view('users.edit')
@@ -105,6 +105,33 @@ class UserController extends Controller
             ->with('user', $user);
     }
 
+    public function profile(User $user)
+    {
+        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
+
+        return view('users.profile')
+            ->with('user_groups', $user->groupsWithFuture()->get()) 
+            ->with('user_groups_history', $user->groupHistory()->get())
+            ->with('user', $user);
+    }
+
+    public function profile_update(Request $request, User $user)
+    {
+        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
+
+        $request->validate([
+            'password' => 'nullable|confirmed'
+        ]);
+
+        if($request->password != null)
+        {
+            $user->password = bcrypt($request->password);
+            $user->save();
+            $request->session()->flash('notice', 'Je wachtwoord is opgeslagen.');
+        }
+
+        return redirect('/users/' . $user->id . '/profile');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -126,8 +153,9 @@ class UserController extends Controller
             $user->save();
         }
 
-        $groups = array_merge($request->groups, $user->groupHistory->pluck('id')->toArray());
-        $user->groups()->sync($groups);
+        $groups = request('groups', array());
+        $groupsTotal = array_merge($groups, $user->groupHistory->pluck('id')->toArray());
+        $user->groups()->sync($groupsTotal);
 
         return redirect('/users');
     }

@@ -18,6 +18,8 @@ Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
 Route::post('/users', 'UserController@store');
 Route::get('/users/{user}/edit', 'UserController@edit');
+Route::get('/users/{user}/profile', 'UserController@profile');
+Route::patch('/users/{user}/profile', 'UserController@profile_update');
 Route::patch('/users/{user}', 'UserController@update');
 
 Route::get('/clients', 'MyClientController@index');

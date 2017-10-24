@@ -31,7 +31,7 @@
             </div>
             <div class="my-group">
                 <p class="title">Wachtwoord</p>
-                <p class="content"><a href="/users/{{ $user->id }}/edit">aanpassen</a></p>
+                <p class="content"><a href="/users/{{ $user->id }}/profile">aanpassen</a></p>
             </div>
             <div class="my-group">
                 <p class="title">Volledige naam</p>

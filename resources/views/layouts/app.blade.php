@@ -24,22 +24,24 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/clients">Apps</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Groepen</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users">Gebruikers</a>
-                </li>
+                @if(Gate::allows('admin'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clients">Apps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Groepen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Gebruikers</a>
+                    </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/me">Dashboard</a>
-                        <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">Profiel</a>
+                        <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/profile">Profiel</a>
                         <a class="dropdown-item" href="/logout">Uitloggen</a>
                     </div>
                 </li>
