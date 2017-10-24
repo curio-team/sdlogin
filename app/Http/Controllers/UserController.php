@@ -166,10 +166,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request)
     {
         if (Gate::denies('admin')) { return redirect('/me'); }
-        $user->delete();
+        
+        if(!is_array($request->delete))
+        {
+            return redirect()->back();
+        }
+
+        foreach($request->delete as $id)
+        {
+            $user = User::find($id);
+            $user->delete();
+        }
+
         return redirect('/users');
     }
 }

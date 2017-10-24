@@ -16,7 +16,7 @@ body{
 	margin-top: 2em;
 }
 
-.spaced-container > *{
+.spaced-container > *, .spaced-container > form > *{
 	margin: 1em 0;
 }
 

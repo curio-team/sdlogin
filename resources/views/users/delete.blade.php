@@ -8,9 +8,10 @@
 
 		<h5>Je gaat <strong>{{ $user->id }}</strong> ({{ $user->name }}) verwijderen.</h5>
 		
-		<form action="/users/{{ $user->id }}" method="POST">
+		<form action="/users" method="POST">
 			{{ method_field('DELETE') }}
 			{{ csrf_field() }}
+			<input type="hidden" name="delete[]" value="{{ $user->id }}">
 
 			<button type="submit" class="btn btn-danger">
 				<i class="fa fa-trash"></i> Ga door met verwijderen
