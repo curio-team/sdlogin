@@ -92,6 +92,43 @@ legend{
 	font-weight: bold;
 }
 
+.my-table{
+	table-layout: fixed;
+}
+
+.my-table td{
+	overflow: hidden;
+}
+
+.my-table th.th5p
+{
+	width: 5%;
+}
+.my-table th.th10p
+{
+	width: 10%;
+}
+.my-table th.th15p
+{
+	width: 15%;
+}
+.my-table th.th20p
+{
+	width: 20%;
+}
+.my-table th.th25p
+{
+	width: 25%;
+}
+.my-table th.th30p
+{
+	width: 30%;
+}
+.my-table th.th35p
+{
+	width: 35%;
+}
+
 @supports not (display:  grid){
 	.grid-container{
 		display: block;

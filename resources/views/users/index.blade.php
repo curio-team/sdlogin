@@ -9,14 +9,14 @@
 			<a class="btn btn-success" href="/users/create"><i class="fa fa-plus"></i> Nieuw</a>
 		</div>
 
-		<table class="table table-striped table-hover">
+		<table class="table my-table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>.</th>
-					<th>ID</th>
-					<th>Naam</th>
-					<th>Groepen</th>
-					<th>Acties</th>
+					<th class="th5p">.</th>
+					<th class="th15p">ID</th>
+					<th class="th35p">Naam</th>
+					<th class="th30p">Groepen</th>
+					<th class="th15p">Acties</th>
 				</tr>
 			</thead>
 			<tbody>

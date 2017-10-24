@@ -6,14 +6,14 @@
 		
 		<a class="btn btn-success" href="/clients/create"><i class="fa fa-plus"></i> Nieuw</a>
 
-		<table class="table table-striped table-hover">
+		<table class="table my-table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Naam</th>
-					<th>URL</th>
-					<th>Eigenaar</th>
-					<th>Acties</th>
+					<th class="th5p">ID</th>
+					<th class="th15p">Naam</th>
+					<th class="th45p">URL</th>
+					<th class="th20p">Eigenaar</th>
+					<th class="th15p">Acties</th>
 				</tr>
 			</thead>
 			<tbody>

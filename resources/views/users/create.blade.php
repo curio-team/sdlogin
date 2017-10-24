@@ -36,27 +36,31 @@
 		    	<label for="type" class="col-sm-3 col-form-label">Type *</label>
 		     	<div class="col-sm-6">
 		        	<select class="form-control" id="type" name="type">
-		        		<option value="student">Student</option>
-		        		<option value="teacher">Docent</option>
+		        		<option value="student" <?php echo old('type') == 'student' ? 'selected' : ''; ?>>
+		        			Student
+		        		</option>
+		        		<option value="teacher" <?php echo old('type') == 'teacher' ? 'selected' : ''; ?>>
+		        			Docent
+		        		</option>
 		        	</select>
 		      	</div>
 		    </div>
 		    <div class="form-group row">
 		    	<label for="id" class="col-sm-3 col-form-label">D-nummer / afkorting *	</label>
 		     	<div class="col-sm-6">
-		        	<input type="text" class="form-control" id="id" name="id" placeholder="D123456 / ab01">
+		        	<input type="text" class="form-control" id="id" name="id" placeholder="D123456 / ab01" value="{{ old('id') }}">
 		      	</div>
 		    </div>
 		    <div class="form-group row">
 		    	<label for="name" class="col-sm-3 col-form-label">Naam *</label>
 		     	<div class="col-sm-6">
-		        	<input type="text" class="form-control" id="name" name="name">
+		        	<input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
 		      	</div>
 		    </div>
 		    <div class="form-group row">
 		    	<label for="email" class="col-sm-3 col-form-label">E-mail</label>
 		     	<div class="col-sm-6">
-		        	<input type="email" class="form-control" id="email" name="email" placeholder="(leeg laten om automatisch in te vullen)">
+		        	<input type="email" class="form-control" id="email" name="email" placeholder="(leeg laten om automatisch in te vullen)" value="{{ old('email') }}">
 		      	</div>
 		    </div>
 		    <div class="form-group row">
