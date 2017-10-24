@@ -119,13 +119,18 @@ class UserController extends Controller
     {
         if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
 
+        if(!password_verify($request->password, $user->getPassword()))
+        {
+             return redirect()->back()->withErrors(['msg' => 'Je huidige wachtwoord is niet correct.']);
+        }
+
         $request->validate([
-            'password' => 'nullable|confirmed'
+            'password_new' => 'nullable|confirmed'
         ]);
 
         if($request->password != null)
         {
-            $user->password = bcrypt($request->password);
+            $user->password = bcrypt($request->password_new);
             $user->save();
             $request->session()->flash('notice', 'Je wachtwoord is opgeslagen.');
         }

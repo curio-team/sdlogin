@@ -45,15 +45,21 @@
 		    <fieldset>
 		    	<legend>Wachtwoord aanpassen</legend>
 		    	<div class="form-group row">
-			    	<label for="password" class="col-sm-3 col-form-label">Wachtwoord</label>
+			    	<label for="password" class="col-sm-3 col-form-label">Huidige wachtwoord</label>
 			     	<div class="col-sm-6">
 			        	<input type="password" class="form-control" id="password" name="password">
 			      	</div>
 			    </div>
-			    <div class="form-group row">
-			    	<label for="password_confirmation" class="col-sm-3 col-form-label">Wachtwoord bevestigen</label>
+		    	<div class="form-group row">
+			    	<label for="password_new" class="col-sm-3 col-form-label">Nieuw wachtwoord</label>
 			     	<div class="col-sm-6">
-			        	<input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+			        	<input type="password" class="form-control" id="password_new" name="password_new">
+			      	</div>
+			    </div>
+			    <div class="form-group row">
+			    	<label for="password_new_confirmation" class="col-sm-3 col-form-label">Wachtwoord bevestigen</label>
+			     	<div class="col-sm-6">
+			        	<input type="password" class="form-control" id="password_new_confirmation" name="password_new_confirmation">
 			      	</div>
 			    </div>
 		    </fieldset>

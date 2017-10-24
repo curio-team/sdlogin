@@ -55,6 +55,11 @@ class User extends Authenticatable
             ->whereDate('date_end', '<', Carbon::now())
             ->orderBy('type')
             ->orderBy('date_start');
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }    
 
 }
