@@ -14,6 +14,9 @@
 Route::redirect('/', '/me', 301);
 Route::get('/me', 'DashboardController@show')->name('home');
 
+Route::post('/users/import', 'ImportController@upload');
+Route::get('/users/import', 'ImportController@show');
+
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
 Route::post('/users', 'UserController@store');

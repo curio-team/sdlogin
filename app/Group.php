@@ -25,6 +25,14 @@ class Group extends Model
 		return Group::get(false, true, true, $grouped);
 	}
 
+	public static function findOnlyCurrent($name)
+	{
+		return Group::where('date_start', '<=', Carbon::now())
+					->where('date_end', '>=', Carbon::now())
+					->where('name', $name)
+					->first();
+	}
+
 	private static function get($withHistory = false, $withFuture = false, $futureNames = true, $grouped = false)
 	{
 		if($withHistory && $withFuture)
@@ -91,5 +99,4 @@ class Group extends Model
 
 		return $groups;
 	}
-
 }
