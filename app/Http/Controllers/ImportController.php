@@ -73,7 +73,7 @@ class ImportController extends Controller
             }
 
         });
-        //return;
+        
         return redirect('/users')->with('notice', 'Import successful: ' . $this->imports . ' added, ' . $this->duplicates . ' duplicates were found.');
     }
 

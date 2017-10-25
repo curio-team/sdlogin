@@ -17,7 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         return view('users.index')
             ->with('users', User::all());
     }
@@ -29,8 +28,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-
         return view('users.create')
             ->with('groups', Group::getWithFuture(true));
     }
@@ -43,8 +40,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-
         $request->validate([
             'type' => 'required|in:teacher,student',
             'id' => 'required|alpha_num',
@@ -83,8 +78,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-
         $user_groups = $user->groupsWithFuture();
         return view('users.edit')
             ->with('groups', Group::getWithFuture(true))
@@ -96,7 +89,7 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
-        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
+        if (Gate::denies('edit-self', $user)) { return redirect('/me'); }
 
         return view('users.profile')
             ->with('user_groups', $user->groupsWithFuture()->get()) 
@@ -106,7 +99,7 @@ class UserController extends Controller
 
     public function profile_update(Request $request, User $user)
     {
-        if (Gate::denies('admin') && Gate::denies('edit-self', $user)) { return redirect('/me'); }
+        if (Gate::denies('edit-self', $user)) { return redirect('/me'); }
 
         if(!password_verify($request->password, $user->getPassword()))
         {
@@ -135,8 +128,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-
         $request->validate([
             'password' => 'nullable|confirmed'
         ]);
@@ -167,9 +158,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-        
+    {        
         if(!is_array($request->delete))
         {
             return redirect()->back();

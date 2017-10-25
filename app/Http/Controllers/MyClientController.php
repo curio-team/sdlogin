@@ -30,7 +30,6 @@ class MyClientController extends Controller
      */
     public function index(Request $request)
     {   
-        if (Gate::denies('admin')) { return redirect('/me'); }
 
         $clients = Client::where('revoked', 0)->get();
         return view('clients.index')
@@ -44,7 +43,6 @@ class MyClientController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         return view('clients.create')
             ->with('user', Auth::user());
     }
@@ -57,8 +55,6 @@ class MyClientController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
-
         $this->validate(request(), [
             'name' => 'required|string',
             'redirect' => 'required|url'
@@ -76,7 +72,6 @@ class MyClientController extends Controller
      */
     public function show($id)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         $client = $this->clients->find($id)->makeVisible('secret');
         return view('clients.show')
             ->with('client', $client);
@@ -84,7 +79,6 @@ class MyClientController extends Controller
 
     public function delete($id)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         $client = $this->clients->find($id);
         return view('clients.delete')
             ->with('client', $client);
@@ -98,7 +92,6 @@ class MyClientController extends Controller
      */
     public function destroy($id)
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         $client = $this->clients->find($id);
         $client->delete();
 

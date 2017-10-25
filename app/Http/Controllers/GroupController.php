@@ -14,7 +14,6 @@ class GroupController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
         $groups = Group::orderBy('date_end', 'desc')->get();
         return view('groups.index')
             ->with('groups', $groups);
@@ -27,7 +26,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('admin')) { return redirect('/me'); }
+        return view('groups.create');
     }
 
     /**
@@ -38,18 +37,21 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string',
+            'type' => 'required|in:class,group',
+            'date_start' => 'required|date_format:Y-m-d|before:date_end',
+            'date_end' => 'required|date_format:Y-m-d'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Group $group)
-    {
-        //
+        $group = new Group;
+        $group->name = $request->name;
+        $group->type = $request->type;
+        $group->date_start = $request->date_start;
+        $group->date_end = $request->date_end;
+        $group->save();
+
+        return redirect('/groups');
     }
 
     /**
@@ -60,7 +62,8 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return view('groups.edit')
+            ->with('group', $group);
     }
 
     /**
@@ -72,7 +75,26 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'type' => 'required|in:class,group',
+            'date_start' => 'required|date_format:Y-m-d|before:date_end',
+            'date_end' => 'required|date_format:Y-m-d'
+        ]);
+
+        $group->name = $request->name;
+        $group->type = $request->type;
+        $group->date_start = $request->date_start;
+        $group->date_end = $request->date_end;
+        $group->save();
+
+        return redirect('/groups');
+    }
+
+    public function delete(Group $group)
+    {
+        return view('groups.delete')
+            ->with('group', $group);
     }
 
     /**
@@ -81,8 +103,20 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy(Request $request)
     {
-        //
+        if(!is_array($request->delete))
+        {
+            return redirect()->back();
+        }
+
+        foreach($request->delete as $id)
+        {
+            $group = Group::find($id);
+            echo $group->id;
+            $group->delete();
+        }
+
+        return redirect('/groups');
     }
 }
