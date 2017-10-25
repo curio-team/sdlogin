@@ -25,6 +25,13 @@ class Group extends Model
 		return Group::get(false, true, true, $grouped);
 	}
 
+	public static function getAll()
+	{
+		return Group::where('type', 'class')
+				->orderBy('date_start')
+				->get();
+	}
+
 	public static function findOnlyCurrent($name)
 	{
 		return Group::where('date_start', '<=', Carbon::now())

@@ -129,6 +129,10 @@ legend{
 	width: 35%;
 }
 
+tr.historical{
+	color: gray;
+}
+
 @supports not (display:  grid){
 	.grid-container{
 		display: block;

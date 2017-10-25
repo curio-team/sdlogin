@@ -29,7 +29,7 @@
                         <a class="nav-link" href="/clients">Apps</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Groepen</a>
+                        <a class="nav-link" href="/groups">Groepen</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/users">Gebruikers</a>

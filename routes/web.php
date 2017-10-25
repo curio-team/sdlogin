@@ -14,9 +14,18 @@
 Route::redirect('/', '/me', 301);
 Route::get('/me', 'DashboardController@show')->name('home');
 
+Route::get('/clients', 'MyClientController@index');
+Route::post('/clients', 'MyClientController@store');
+Route::get('/clients/create', 'MyClientController@create');
+Route::get('/clients/{client}', 'MyClientController@show');
+Route::get('/clients/{client}/delete', 'MyClientController@delete');
+Route::delete('/clients/{client}', 'MyClientController@destroy');
+
+Route::get('/groups', 'GroupController@index');
+Route::get('/groups/create', 'GroupController@create');
+
 Route::post('/users/import', 'ImportController@upload');
 Route::get('/users/import', 'ImportController@show');
-
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
 Route::post('/users', 'UserController@store');
@@ -26,13 +35,6 @@ Route::patch('/users/{user}/profile', 'UserController@profile_update');
 Route::patch('/users/{user}', 'UserController@update');
 Route::get('/users/{user}/delete', 'UserController@delete');
 Route::delete('/users', 'UserController@destroy');
-
-Route::get('/clients', 'MyClientController@index');
-Route::post('/clients', 'MyClientController@store');
-Route::get('/clients/create', 'MyClientController@create');
-Route::get('/clients/{client}', 'MyClientController@show');
-Route::get('/clients/{client}/delete', 'MyClientController@delete');
-Route::delete('/clients/{client}', 'MyClientController@destroy');
 
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

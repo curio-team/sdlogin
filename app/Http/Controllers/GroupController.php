@@ -10,11 +10,14 @@ class GroupController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\all
      */
     public function index()
     {
-        //
+        if (Gate::denies('admin')) { return redirect('/me'); }
+        $groups = Group::orderBy('date_end', 'desc')->get();
+        return view('groups.index')
+            ->with('groups', $groups);
     }
 
     /**
@@ -24,7 +27,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('admin')) { return redirect('/me'); }
     }
 
     /**

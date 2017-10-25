@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Carbon::setToStringFormat('d-m-Y');
+        Carbon::setLocale(config('app.locale'));
     }
 
     /**
