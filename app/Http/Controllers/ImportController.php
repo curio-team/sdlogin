@@ -48,7 +48,7 @@ class ImportController extends Controller
                         $user->name = $this->stripAccents($naam) . "\n";
                         $user->email = $id . '@edu.rocwb.nl';
                         $user->type = 'student';
-                        $user->password = bcrypt('u+J%E^9!hx?p' . $id);
+                        $user->password = bcrypt('welkom');
                         $user->save();
 
                         $group = Group::findOnlyCurrent($result->grep_groepscode);
