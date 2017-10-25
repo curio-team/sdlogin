@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                @if(Gate::allows('admin'))
+                @if(Auth::user()->type == 'teacher')
                     <li class="nav-item">
                         <a class="nav-link" href="/clients">Apps</a>
                     </li>
