@@ -15,10 +15,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $users = User::with('groups')->paginate(request('n', 10));
         return view('users.index')
-            ->with('users', User::with('groups')->get());
+            ->with('users', $users);
     }
 
     /**
