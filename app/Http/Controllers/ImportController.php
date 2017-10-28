@@ -7,10 +7,12 @@ use App\Http\Requests\UploadCsvRequest;
 use Excel;
 use App\User;
 use App\Group;
+use Carbon\Carbon;
 
 class ImportController extends Controller
 {
     public $duplicates = 0;
+    public $updated = 0;
     public $imports = 0;
 
     public function show()
@@ -23,6 +25,12 @@ class ImportController extends Controller
         $file = $request->file('csv');
 
         Excel::load($file, function($reader)  {
+
+            $working_date = Carbon::now();
+            if(request('fake_date'))
+            {
+                $working_date = new Carbon(request('fake_date'));
+            }
 
             $results = $reader->select(['userid', 'loginid', 'achternaam', 'tussen', 'voornaam', 'grep_groepscode', 'afdeling', 'logincode'])->get();
 
@@ -51,7 +59,7 @@ class ImportController extends Controller
                         $user->password = bcrypt('KzpuiuRsqJ%d' . $id);
                         $user->save();
 
-                        $group = Group::findOnlyCurrent($result->grep_groepscode);
+                        $group = Group::findOnlyCurrent($result->grep_groepscode, $working_date);
                         if($group != null)
                         {
                             $user->groups()->attach($group);
@@ -61,10 +69,14 @@ class ImportController extends Controller
                     }
                     else
                     {
-                        $group = Group::findOnlyCurrent($result->grep_groepscode);
+                        $group = Group::findOnlyCurrent($result->grep_groepscode, $working_date);
                         if($group != null)
                         {
-                            $user->groups()->attach($group);
+                            $result = $user->groups()->syncWithoutDetaching($group);
+                            if(count($result['attached']) || count($result['detached']) || count($result['updated']))
+                            {
+                                $this->updated++;
+                            }
                         }
 
                         $this->duplicates++;
@@ -74,7 +86,7 @@ class ImportController extends Controller
 
         });
         
-        return redirect('/users')->with('notice', 'Import successful: ' . $this->imports . ' added, ' . $this->duplicates . ' duplicates were found.');
+        return redirect('/users')->with('notice', 'Import successful: ' . $this->imports . ' added, ' . $this->duplicates . ' duplicates were found, of which ' . $this->updated . ' have been updated');
     }
 
     private function stripAccents($string){

@@ -61,7 +61,7 @@
 								<th class="th5p">&nbsp;</th>
 								<th class="th15p">ID</th>
 								<th class="th35p">Naam</th>
-								<th class="th30p">Groepen</th>
+								<th class="th30p">Groepen (huidig)</th>
 								<th class="th15p">Acties</th>
 							</tr>
 						</thead>
@@ -72,12 +72,11 @@
 									<td>{{ $user->id }}</td>
 									<td>{{ $user->name }}</td>
 									<td>
-										@if($user->groups->count() == 1)
+										@if($user->groups->count() >= 1)
 											{{ $user->groups->first()->name }}
-										@elseif($user->groups->count() == 2)
-											{{ $user->groups->get(0)->name }}, {{ $user->groups->get(1)->name }}
-										@elseif($user->groups->count() > 2)
-										{{ $user->groups->get(0)->name }}, {{ $user->groups->get(1)->name }}, ...
+											@if($user->groups->count() > 1)
+												, ...
+											@endif
 										@else
 											(geen)
 										@endif

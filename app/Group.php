@@ -32,10 +32,15 @@ class Group extends Model
 				->get();
 	}
 
-	public static function findOnlyCurrent($name)
+	public static function findOnlyCurrent($name, $date = false)
 	{
-		return Group::where('date_start', '<=', Carbon::now())
-					->where('date_end', '>=', Carbon::now())
+		if(!$date)
+		{
+			$date = Carbon::now();
+		}
+		
+		return Group::where('date_start', '<=', $date)
+					->where('date_end', '>=', $date)
 					->where('name', $name)
 					->first();
 	}
