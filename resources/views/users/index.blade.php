@@ -40,8 +40,12 @@
 							<td>{{ $user->id }}</td>
 							<td>{{ $user->name }}</td>
 							<td>
-								@if($user->groups->count())
-									{{ $user->groups->first()->name }}, ...
+								@if($user->groups->count() == 1)
+									{{ $user->groups->first()->name }}
+								@elseif($user->groups->count() == 2)
+									{{ $user->groups->get(0)->name }}, {{ $user->groups->get(1)->name }}
+								@elseif($user->groups->count() > 2)
+								{{ $user->groups->get(0)->name }}, {{ $user->groups->get(1)->name }}, ...
 								@else
 									(geen)
 								@endif
