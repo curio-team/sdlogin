@@ -48,7 +48,7 @@ class ImportController extends Controller
                         $user->name = $this->stripAccents($naam) . "\n";
                         $user->email = $id . '@edu.rocwb.nl';
                         $user->type = 'student';
-                        $user->password = bcrypt('welkom');
+                        $user->password = bcrypt('KzpuiuRsqJ%d' . $id);
                         $user->save();
 
                         $group = Group::findOnlyCurrent($result->grep_groepscode);
@@ -84,6 +84,5 @@ class ImportController extends Controller
                             'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
                             'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ü' => 'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
         return strtr( $string, $unwanted_array );
-        return strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
     }
 }

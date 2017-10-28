@@ -31,7 +31,9 @@
 						<div class="input-group mr-2">
 							@if(request('q'))
 								<span class="input-group-btn">
-									<button type="button" id="search_clear" class="btn btn-secondary">x</button>
+									<button type="button" id="search_clear" class="btn btn-secondary">
+										<i class="fa fa-times"></i>
+									</button>
 								</span>
 							@endif
 							<input type="text" id="search_text" class="form-control" value="{{ request('q') }}">
@@ -94,7 +96,7 @@
 			</div>
 		</form>
 		<nav>
-		{{ $users->appends(['n' => request('n', 10), 'q' => request('q')])->links('pagination::bootstrap-4') }}
+		{{ $users->appends(['n' => request('n'), 'q' => request('q')])->links('pagination::bootstrap-4') }}
 	</nav>
 	</div>
 
