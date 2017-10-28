@@ -17,7 +17,21 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::with('groups')->paginate(request('n', 10));
+        $users = User::with('groups');
+        $search = request('q', false);
+
+        if($search)
+        {
+            $users = $users->whereHas('groups', function ($query){
+                $search = request('q');
+                $query->where('name', 'LIKE', "%$search%");
+            });
+
+            $users = $users->orWhere('id', 'LIKE', "%$search%");
+            $users = $users->orWhere('name', 'LIKE', "%$search%");
+        }
+        
+        $users = $users->paginate(request('n', 10));
         return view('users.index')
             ->with('users', $users);
     }

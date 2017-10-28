@@ -27,14 +27,28 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<select class="form-control" id="pagination">
-						<?php $n = request('n', 10); ?>
-						@for($i = 10; $i <= 100; $i += 10)
-							<option value="{{ $i }}" <?php echo $i == $n ? 'selected' : ''; ?>>
-								{{ $i }} items per pagina
-							</option>
-						@endfor
-					</select>
+					<div class="form-inline justify-content-end">
+						<div class="input-group mr-2">
+							@if(request('q'))
+								<span class="input-group-btn">
+									<button type="button" id="search_clear" class="btn btn-secondary">x</button>
+								</span>
+							@endif
+							<input type="text" id="search_text" class="form-control" value="{{ request('q') }}">
+							<span class="input-group-btn">
+								<button type="button" id="search_button" class="btn btn-secondary">Zoeken</button>
+							</span>
+						</div>
+						
+						<select class="form-control" id="pagination">
+							<?php $n = request('n', 10); ?>
+							@for($i = 10; $i <= 100; $i += 10)
+								<option value="{{ $i }}" <?php echo $i == $n ? 'selected' : ''; ?>>
+									{{ $i }}
+								</option>
+							@endfor
+						</select>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -80,7 +94,7 @@
 			</div>
 		</form>
 		<nav>
-		{{ $users->appends(['n' => request('n', 10)])->links('pagination::bootstrap-4') }}
+		{{ $users->appends(['n' => request('n', 10), 'q' => request('q')])->links('pagination::bootstrap-4') }}
 	</nav>
 	</div>
 
