@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Prevent ip access
+    RewriteCond %{HTTP_HOST} 188.166.8.237
+    RewriteRule .* - [F]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
