@@ -48,8 +48,7 @@ class Group extends Model
 	public static function get($withHistory = false, $withCurrent = true, $withFuture = false, $orderBy = array('date_end', 'desc'), $futureNames = false, $grouped = false)
 	{
 		
-		$klassen = Group::where('type', 'class')->orderBy($orderBy[0], $orderBy[1]);
-		$overige = Group::where('type', '!=', 'class')->orderBy($orderBy[0], $orderBy[1]);
+		$groepen = Group::orderBy($orderBy[0], $orderBy[1]);
 		$now = Carbon::now();
 
 		if($withHistory)
@@ -57,14 +56,12 @@ class Group extends Model
 			if(!$withCurrent)
 			{
 				//only history, no current, no future
-				$klassen = $klassen->whereDate('date_end', '<', $now);
-				$overige = $overige->whereDate('date_end', '<', $now);
+				$groepen = $groepen->whereDate('date_end', '<', $now);
 			}
 			elseif($withCurrent && !$withFuture)
 			{
 				//history and current, no future
-				$klassen = $klassen->whereDate('date_start', '<=', $now);
-				$overige = $overige->whereDate('date_start', '<=', $now);
+				$groepen = $groepen->whereDate('date_start', '<=', $now);
 			}
 		}
 		else
@@ -72,57 +69,37 @@ class Group extends Model
 			if($withCurrent && !$withFuture)
 			{
 				//only current, no history or future
-				$klassen = $klassen->whereDate('date_start', '<=', $now);
-				$klassen = $klassen->whereDate('date_end', '>=', $now);
-				
-				$overige = $overige->whereDate('date_start', '<=', $now);
-				$overige = $overige->whereDate('date_end', '>=', $now);
+				$groepen = $groepen->whereDate('date_start', '<=', $now);
+				$groepen = $groepen->whereDate('date_end', '>=', $now);
 			}
 			elseif(!$withCurrent && $withFuture) {
 				//only future, no current or history
-				$klassen = $klassen->whereDate('date_start', '>', $now);
-				$overige = $overige->whereDate('date_start', '>', $now);
+				$groepen = $groepen->whereDate('date_start', '>', $now);
 			}
 			else{
 				//current and future, no history
-				$klassen = $klassen->whereDate('date_end', '>=', $now);
-				$overige = $overige->whereDate('date_end', '>=', $now);
+				$groepen = $groepen->whereDate('date_end', '>=', $now);
 			}
 		}
 
-		$klassen = $klassen->get();
-		$overige = $overige->get();
+		$groepen = $groepen->get();
 
 		if($withFuture && $futureNames)
 		{
-			foreach ($klassen as $k)
+			foreach ($groepen as $g)
 			{
-				if($k->date_start > Carbon::now())
+				if($g->date_start > $now)
 				{
-					$k->name = $k->name . ' (vanaf ' . $k->date_start . ')';
-				}
-			}
-
-			foreach ($overige as $o)
-			{
-				if($o->date_start > Carbon::now())
-				{
-					$o->name = $o->name . ' (vanaf ' . $o->date_start . ')';
+					$g->name = $g->name . ' (vanaf ' . $g->date_start . ')';
 				}
 			}
 		}
 
 		if($grouped)
 		{
-			$groups['klassen'] = $klassen;
-			$groups['overige'] = $overige;
-		}
-		else
-		{
-			$klassen->merge($overige);
-			$groups = $klassen;
+			$groepen = $groepen->groupBy('type');
 		}
 
-		return $groups;
+		return $groepen;
 	}
 }
