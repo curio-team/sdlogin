@@ -36,7 +36,7 @@
 									</button>
 								</span>
 							@endif
-							<input type="text" id="search_text" class="form-control" value="{{ request('q') }}">
+							<input type="text" id="search_text" placeholder="Id, naam, groep" class="form-control" value="{{ request('q') }}">
 							<span class="input-group-btn">
 								<button type="button" id="search_button" class="btn btn-secondary">Zoeken</button>
 							</span>
