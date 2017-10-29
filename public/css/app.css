@@ -53,6 +53,15 @@ button{
 	.grid-container > *{
 		margin: 2em 0;
 	}
+
+	.my-table{
+		display: block;
+		overflow-x: auto;
+	}
+
+	.row > div > *, .row > div > div > *{
+		margin-bottom: 1em;
+	}
 }
 
 .bordered{

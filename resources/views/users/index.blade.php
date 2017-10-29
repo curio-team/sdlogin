@@ -94,9 +94,7 @@
 				</div>
 			</div>
 		</form>
-		<nav>
 		{{ $users->appends(['n' => request('n'), 'q' => request('q')])->links('pagination::bootstrap-4') }}
-	</nav>
 	</div>
 
 @endsection
