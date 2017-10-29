@@ -133,6 +133,10 @@ tr.historical{
 	color: gray;
 }
 
+textarea{
+	font-family: "Courier New", Courier, monospace;
+}
+
 @supports not (display:  grid){
 	.grid-container{
 		display: block;
