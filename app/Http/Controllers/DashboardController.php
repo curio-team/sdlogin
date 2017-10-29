@@ -16,7 +16,8 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        $user = Auth::user()->with('groups', 'groupHistory')->first();
+        $user = Auth::user()->load('groups', 'groupHistory');
+        dd($user);
         $name = explode(' ', $user->name);
 
         return view('home')
