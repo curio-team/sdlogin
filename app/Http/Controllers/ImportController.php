@@ -56,7 +56,7 @@ class ImportController extends Controller
                         $user->name = $this->stripAccents($naam) . "\n";
                         $user->email = $id . '@edu.rocwb.nl';
                         $user->type = 'student';
-                        $user->password = bcrypt('KzpuiuRsqJ%d' . $id);
+                        $user->password = bcrypt(bin2hex(random_bytes(10)));
                         $user->save();
 
                         $group = Group::findOnlyCurrent($result->grep_groepscode, $working_date);
