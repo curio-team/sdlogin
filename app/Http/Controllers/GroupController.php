@@ -12,9 +12,30 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\all
      */
-    public function index()
+    public function index(Request $request)
     {
-        $groups = Group::orderBy('date_end', 'desc')->get();
+        $history = $current = $future = false;
+        switch ($request->f) {
+            case 'all':
+                $history = true;
+                $current = true;
+                $future = true;
+                break;
+
+            case 'history':
+                $history = true;
+                break;
+
+            case 'future':
+                $future = true;
+                break;
+
+            default:
+                $current = true;
+                break;
+        }
+
+        $groups = Group::get($history, $current, $future, array('name', 'asc'));
         return view('groups.index')
             ->with('groups', $groups);
     }

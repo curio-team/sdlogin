@@ -17,12 +17,12 @@ class Group extends Model
 
 	public static function getWithHistory($grouped = false)
 	{
-		return Group::get(true, false, false, $grouped);
+		return Group::get(true, true, false, array('date_end', 'desc'), false, $grouped);
 	}
 
 	public static function getWithFuture($grouped = false)
 	{
-		return Group::get(false, true, true, $grouped);
+		return Group::get(false, true, true, array('date_end', 'desc'), true, $grouped);
 	}
 
 	public static function getAll()
@@ -45,39 +45,53 @@ class Group extends Model
 					->first();
 	}
 
-	private static function get($withHistory = false, $withFuture = false, $futureNames = true, $grouped = false)
+	public static function get($withHistory = false, $withCurrent = true, $withFuture = false, $orderBy = array('date_end', 'desc'), $futureNames = false, $grouped = false)
 	{
-		if($withHistory && $withFuture)
+		
+		$klassen = Group::where('type', 'class')->orderBy($orderBy[0], $orderBy[1]);
+		$overige = Group::where('type', '!=', 'class')->orderBy($orderBy[0], $orderBy[1]);
+		$now = Carbon::now();
+
+		if($withHistory)
 		{
-			$klassen = Group::where('type', 'class')
-				->orderBy('date_start')
-				->get();
-        	$overige = Group::where('type', '!=', 'class')
-        		->orderBy('date_start')
-        		->get();
+			if(!$withCurrent)
+			{
+				//only history, no current, no future
+				$klassen = $klassen->whereDate('date_end', '<', $now);
+				$overige = $overige->whereDate('date_end', '<', $now);
+			}
+			elseif($withCurrent && !$withFuture)
+			{
+				//history and current, no future
+				$klassen = $klassen->whereDate('date_start', '<=', $now);
+				$overige = $overige->whereDate('date_start', '<=', $now);
+			}
 		}
-		elseif($withHistory && !$withFuture)
+		else
 		{
-			$klassen = Group::where('type', 'class')
-				->whereDate('date_start', '<=', Carbon::now())
-				->orderBy('date_start')
-				->get();
-			$overige = Group::where('type', '!=', 'class')
-				->whereDate('date_start', '<=', Carbon::now())
-				->orderBy('date_start')
-				->get();
+			if($withCurrent && !$withFuture)
+			{
+				//only current, no history or future
+				$klassen = $klassen->whereDate('date_start', '<=', $now);
+				$klassen = $klassen->whereDate('date_end', '>=', $now);
+				
+				$overige = $overige->whereDate('date_start', '<=', $now);
+				$overige = $overige->whereDate('date_end', '>=', $now);
+			}
+			elseif(!$withCurrent && $withFuture) {
+				//only future, no current or history
+				$klassen = $klassen->whereDate('date_start', '>', $now);
+				$overige = $overige->whereDate('date_start', '>', $now);
+			}
+			else{
+				//current and future, no history
+				$klassen = $klassen->whereDate('date_end', '>=', $now);
+				$overige = $overige->whereDate('date_end', '>=', $now);
+			}
 		}
-		elseif(!$withHistory && $withFuture)
-		{
-			$klassen = Group::where('type', 'class')
-				->whereDate('date_end', '>=', Carbon::now())
-				->orderBy('date_start')
-				->get();
-			$overige = Group::where('type', '!=', 'class')
-				->whereDate('date_end', '>=', Carbon::now())
-				->orderBy('date_start')
-				->get();
-		}
+
+		$klassen = $klassen->get();
+		$overige = $overige->get();
 
 		if($withFuture && $futureNames)
 		{
