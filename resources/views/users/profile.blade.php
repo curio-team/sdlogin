@@ -17,7 +17,11 @@
 	@endif
 	@if (session('notice'))
 	<div class="alert alert-success">
-		{{ session('notice') }}
+		<ul>
+			@foreach (session('notice') as $msg)
+			<li>{{ $msg }}</li>
+			@endforeach
+		</ul>
 	</div>
 	@endif
 

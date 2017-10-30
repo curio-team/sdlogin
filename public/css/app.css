@@ -31,7 +31,32 @@ button{
 	grid-gap: 3em;
 }
 
-.grid-container .higher{
+.pwd-container{
+	display: grid;
+	grid-template-rows: 1fr auto auto;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-row-gap: 1em;
+}
+#pwd-text{
+	grid-column: 2 / 3;
+}
+#pwd-text > *{
+	text-align: justify;
+}
+#pwd-comic{
+	grid-column: 1 / 4;
+	text-align: center;
+}
+#pwd-logo{
+	grid-column: 2 / 3;
+	text-align: center;
+}
+#pwd-comic img, #pwd-logo img{
+	display: inline-block;
+	max-width: 100%;
+}
+
+.grid-container .higher, .grid-container-pwd .higher{
 	grid-row: span 2;
 }
 
@@ -52,6 +77,10 @@ button{
 
 	.grid-container > *{
 		margin: 2em 0;
+	}
+
+	#pwd-text{
+		grid-column: 1 / 4;
 	}
 
 	.my-table{

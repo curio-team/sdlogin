@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <div class="alert alert-primary">
+        Lees ook onze <a href="/passwords" target="_blank">tips voor een sterk wachtwoord</a>.
+    </div>
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.request') }}">
         {{ csrf_field() }}

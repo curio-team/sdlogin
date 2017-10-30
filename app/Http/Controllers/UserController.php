@@ -10,6 +10,9 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
+
+    use Auth\ChecksPasswords;
+
     /**
      * Display a listing of the resource.
      *
@@ -67,14 +70,20 @@ class UserController extends Controller
         $user->id = $request->id;
         $user->name = $request->name;
         $user->type = $request->type;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
 
+        $user->email = $request->email;
         if($user->email == null)
         {
             $user->email = $user->id . '@' . ($user->type == 'student' ? 'edu.' : '') . 'rocwb.nl';
         }
 
+        $check = $this->check_password($request->password, $user);
+        if(!$check->passes)
+        {
+            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+        }
+        
+        $user->password = bcrypt($request->password);
         $user->save();
 
         if($request->groups != null)
@@ -125,15 +134,24 @@ class UserController extends Controller
             'password_new' => 'nullable|confirmed'
         ]);
 
-        if($request->password != null)
+        $check = $this->check_password($request->password_new, $user);
+        if(!$check->passes)
         {
-            $user->password = bcrypt($request->password_new);
-            $user->save();
-            $request->session()->flash('notice', 'Je wachtwoord is opgeslagen.');
+            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
         }
+
+        $user->password = bcrypt($request->password_new);
+        $user->save();
+        $request->session()->flash('notice', array(
+            'Je wachtwoord is opgeslagen.',
+            'Je hebt een ' . ($check->score == 3 ? 'redelijk' : 'heel') . ' sterk wachtwoord gekozen.',
+            'Het zou ongeveer ' . $check->time . ' duren om dit wachtwoord te kraken!'
+        ));
 
         return redirect('/users/' . $user->id . '/profile');
     }
+
+    
     /**
      * Update the specified resource in storage.
      *
@@ -146,6 +164,12 @@ class UserController extends Controller
         $request->validate([
             'password' => 'nullable|confirmed'
         ]);
+
+        $check = $this->check_password($request->password, $user);
+        if(!$check->passes)
+        {
+            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+        }
 
         if($request->password != null)
         {
