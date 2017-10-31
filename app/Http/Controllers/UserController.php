@@ -80,7 +80,7 @@ class UserController extends Controller
         $check = $this->check_password($request->password, $user);
         if(!$check->passes)
         {
-            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+            return redirect()->back()->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
         }
         
         $user->password = bcrypt($request->password);
@@ -168,7 +168,7 @@ class UserController extends Controller
         $check = $this->check_password($request->password, $user);
         if(!$check->passes)
         {
-            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+            return redirect()->back()->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
         }
 
         if($request->password != null)
