@@ -6,7 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use Carbon\Carbon;
-use App\Notifications;
 
 class User extends Authenticatable
 {
@@ -34,7 +33,7 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new MyResetPasswordNotification($token, $user));
+        $this->notify(new \App\Notifications\MyResetPasswordNotification($token, $user));
     }
 
     public function groups()
