@@ -51,6 +51,7 @@ class MyResetPasswordNotification extends Notification
             ->greeting('Hoi ' . $this->user->name)
             ->line('Je ontvangt deze e-mail omdat je een wachtwoord-reset hebt aangevraagd voor je AMO-login account.')
             ->action('Reset wachtwoord', url(config('app.url').route('password.reset', $this->token, false)))
-            ->line('Als je geen reset hebt aangevraagd, dan hoef je verder niets te doen.');
+            ->line('Als je geen reset hebt aangevraagd, dan hoef je verder niets te doen.')
+            ->salutation(' - Amologin');
     }
 }
