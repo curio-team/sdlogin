@@ -51,7 +51,7 @@ Regards,<br>{{ config('app.name') }}
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-Kun je niet op de link klikken voor "{{ $actionText }}", kopieer en plak dan deze URL in je browser: [{{ $actionUrl }}]({{ $actionUrl }})
+Kun je niet op de link kunt klikken voor "{{ $actionText }}", kopieer en plak dan deze URL in je browser: [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endisset
 @endcomponent
