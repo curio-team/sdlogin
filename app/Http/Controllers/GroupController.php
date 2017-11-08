@@ -134,7 +134,7 @@ class GroupController extends Controller
         foreach($request->delete as $id)
         {
             $group = Group::find($id);
-            echo $group->id;
+            $group->users()->detach();
             $group->delete();
         }
 

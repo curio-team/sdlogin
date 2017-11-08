@@ -205,6 +205,7 @@ class UserController extends Controller
         foreach($request->delete as $id)
         {
             $user = User::find($id);
+            $user->groups()->detach();
             $user->delete();
         }
 
