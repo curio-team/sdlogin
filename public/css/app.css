@@ -26,10 +26,22 @@ button{
 
 .grid-container{
 	display: grid;
-	grid-template-rows: 1fr 1fr;
+	grid-template-rows: auto auto;
 	grid-template-columns: 2fr 3fr;
-	grid-gap: 3em;
+	grid-gap: 1em 3em;
 }
+
+.links-container{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: fit-content;
+}
+
+.links-container > *{
+	margin: 0 .7em 1.4em .7em;
+	padding: 1em .75em;
+}
+
 
 .pwd-container{
 	display: grid;
