@@ -32,6 +32,16 @@
 		        	<small class="form-text text-muted">If you use Amoclient, this should be: http://yoursite/amoclient/callback</small>
 		      	</div>
 		    </div>
+		    <div class="form-group row">
+		    	<label for="for_development" class="col-sm-3 col-form-label">Dev/test-app *</label>
+		     	<div class="col-sm-6">
+		     		<select name="for_development" id="for_development">
+		     			<option value="0">Nee</option>
+		     			<option value="1">Ja</option>
+		     		</select>
+		        	<small class="form-text text-muted">This will hide your app from the student's dashboard</small>
+		      	</div>
+		    </div>
 
 		   <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Opslaan</button>
 		</form>

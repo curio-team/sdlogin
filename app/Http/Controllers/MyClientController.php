@@ -57,7 +57,8 @@ class MyClientController extends Controller
     {
         $this->validate(request(), [
             'name' => 'required|string',
-            'redirect' => 'required|url'
+            'redirect' => 'required|url',
+            'for_development' => 'required|boolean'
         ]);
 
         $client = $this->clientController->store($request);
@@ -75,6 +76,14 @@ class MyClientController extends Controller
         $client = $this->clients->find($id)->makeVisible('secret');
         return view('clients.show')
             ->with('client', $client);
+    }
+
+    public function toggle_dev($id)
+    {
+        $client = $this->clients->find($id);
+        $client->for_development = $client->for_development ? false : true;
+        $client->save();
+        return back();
     }
 
     public function delete($id)

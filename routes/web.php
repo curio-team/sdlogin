@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::group(['middleware' => 'admin'], function() {
 		
 		Route::resource('clients', 'MyClientController', ['except' => ['edit', 'update']]);
+		Route::get('clients/{client}/toggle', 'MyClientController@toggle_dev');
 		
 		Route::get('groups/create/batch', 'BatchGroupController@create');
 		Route::post('groups/batch', 'BatchGroupController@store');
