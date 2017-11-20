@@ -19,7 +19,12 @@ class DashboardController extends Controller
     {
         $user = Auth::user()->load('groups', 'groupHistory');
         $name = explode(' ', $user->name);
-        $apps = $clients = Client::where('revoked', 0)->get();
+        $apps = Client::where('revoked', 0);
+        if($user->type == 'student')
+        {
+            $apps->where('for_development', 0);
+        }
+        $apps = $apps->get();
 
         return view('home')
             ->with('user', $user)
