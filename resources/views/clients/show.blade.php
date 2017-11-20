@@ -28,6 +28,11 @@
 				<td>&nbsp;</td>
 				<td>{{ $client->secret }}</td>
 			</tr>
+			<tr>
+				<th>Dev/test-app:</th>
+				<td>&nbsp;</td>
+				<td><?php echo $client->for_development ? 'Ja' : 'Nee'; ?> <a href="/clients/{{ $client->id }}/toggle">(toggle)</a></td>
+			</tr>
 		</table>
 	</div>
 
