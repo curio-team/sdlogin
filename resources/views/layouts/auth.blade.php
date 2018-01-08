@@ -26,7 +26,7 @@
                 <p>Radius College | Applicatie- en mediaontwikkeling</p>
             </footer>
         </div>
-        <div class="aside" style="background-image: url({{ url('/')  }}/img/backgrounds/bg<?php echo rand(1,12) ?>.jpg)"></div>
+        <div class="aside" style="background-image: url({{ url('/')  }}/img/backgrounds/bg<?php echo rand(1,16) ?>.jpg)"></div>
     </div>
     
 </body>
