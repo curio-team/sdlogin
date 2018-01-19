@@ -41,4 +41,17 @@ class LoginController extends Controller
     {
         return 'id';
     }
+
+    public function credentials(\Illuminate\Http\Request $request)
+    {
+        $id = $request->get('id');
+        $field = filter_var($id, FILTER_VALIDATE_EMAIL) ? 'email' : 'id';
+
+        $credentials = array(
+            $field => $request->get('id'),
+            'password' => $request->get('password')
+        );
+
+        return $credentials;
+    }
 }

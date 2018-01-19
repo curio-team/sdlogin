@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <p>Log-in met je AMO-account. Gebruik je D-nummer of afkorting, <em>niet</em> je e-mailadres:</p>        
+    <p>Log-in met je AMO-account:</p>       
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="form-group">
