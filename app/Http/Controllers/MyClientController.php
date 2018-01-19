@@ -62,6 +62,9 @@ class MyClientController extends Controller
         ]);
 
         $client = $this->clientController->store($request);
+        $client->for_development = $request->for_development;
+        $client->save();
+
         return redirect('/clients/' . $client->id);
     }
 
