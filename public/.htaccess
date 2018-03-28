@@ -8,8 +8,6 @@
     # Prevent ip access and http access
     RewriteCond %{HTTP_HOST} 188.166.8.237
     RewriteRule .* - [F]
-    RewriteCond %{SERVER_PORT} 80 
-    RewriteRule ^(.*)$ https://login.amo.rocks/$1 [R,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
