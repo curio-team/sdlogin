@@ -14,7 +14,7 @@
 Route::group(['domain' => 'testlink.amo.rocks'], function() {
     
     Route::get('/', function() {
-    	return redirect('https://login.amo.rocks/');
+    	return redirect('https://login.amo.rocks/meee');
     })->name('home');
 
     Route::get('/{link}', 'RedirectController@go');
