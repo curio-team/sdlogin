@@ -46,8 +46,9 @@ Route::group(['domain' => 'login.amo.rocks'], function() {
 			Route::delete('/users', 'UserController@destroy');
 			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);
 
-			Route::resource('links', 'LinkController');
-			
+			Route::delete('/links', 'LinkController@destroy');
+			Route::resource('links', 'LinkController', ['except' => ['show', 'edit', 'update', 'destroy']]);
+
 		});
 	});
 

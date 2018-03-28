@@ -41,6 +41,11 @@ class LinkController extends Controller
             'url' => 'required|url'
         ]);
 
+        if($request->short != null && Link::where('short', $request->short)->count())
+        {
+            return back()->withErrors('Korte link moet uniek zijn!');
+        }
+
         $link = new Link();
         $link->short = $request->short ?? $this->getRandomCode();
         $link->url = $request->url;
@@ -64,38 +69,9 @@ class LinkController extends Controller
         return $code;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Link $link)
+    public function delete(Link $link)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Link $link)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Link $link)
-    {
-        //
+        return view('links.delete')->with('link', $link);
     }
 
     /**
@@ -104,8 +80,19 @@ class LinkController extends Controller
      * @param  \App\Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Link $link)
-    {
-        //
+    public function destroy(Request $request)
+    {        
+        if(!is_array($request->delete))
+        {
+            return redirect()->back();
+        }
+
+        foreach($request->delete as $id)
+        {
+            $link = Link::find($id);
+            $link->delete();
+        }
+
+        return redirect('/links');
     }
 }

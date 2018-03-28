@@ -44,11 +44,10 @@
 									<td><input type="checkbox" name="delete[]" value="{{ $link->id }}"></td>
 									<td>{{ $link->short }}</td>
 									<td>{{ $link->url }}</td>
-									<td>{{ $link->created_at }}</td>
+									<td>{{ $link->creator()->name }}, {{ $link->created_at }}</td>
 									<td>
 										<div class="btn-group">
-											<a class="btn btn-primary" href="/links/{{ $link->id }}/edit"><i class="fa fa-pencil"></i></a>
-											<a class="btn btn-danger" href="/links/{{ $link->id }}/delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-danger" href="/links/{{ $link->short }}/delete"><i class="fa fa-trash"></i></a>
 										</div>
 									</td>
 								</tr>

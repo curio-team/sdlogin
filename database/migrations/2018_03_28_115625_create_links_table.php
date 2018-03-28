@@ -15,7 +15,7 @@ class CreateLinksTable extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('short');
+            $table->string('short')->unique();
             $table->string('url');
             $table->boolean('on_frontpage');
             $table->string('creator');
