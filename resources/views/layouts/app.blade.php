@@ -33,6 +33,9 @@
                 <ul class="navbar-nav">
                     @if(Auth::user()->type == 'teacher')
                         <li class="nav-item">
+                            <a class="nav-link" href="/links">Links</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/clients">Apps</a>
                         </li>
                         <li class="nav-item">

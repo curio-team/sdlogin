@@ -17,9 +17,7 @@ Route::group(['domain' => 'testlink.amo.rocks'], function() {
     	return redirect('https://login.amo.rocks/');
     })->name('home');
 
-    Route::get('blaat', function() {
-        return 'blaatblub';
-    });
+    Route::get('/{link}', 'RedirectController@go');
 
 });
 
@@ -47,6 +45,8 @@ Route::group(['domain' => 'login.amo.rocks'], function() {
 			Route::get('/users/import', 'ImportController@show');
 			Route::delete('/users', 'UserController@destroy');
 			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);
+
+			Route::resource('links', 'LinkController');
 			
 		});
 	});
