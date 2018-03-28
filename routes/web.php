@@ -11,6 +11,14 @@
 |
 */
 
+Route::group(['domain' => 'testlink.amo.rocks'], function() {
+    
+    Route::get('blaat', function() {
+        return 'blaatblub';
+    });
+
+})
+
 Route::group(['middleware' => 'auth'], function() {
 	
 	Route::redirect('/', '/me', 301);
