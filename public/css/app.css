@@ -27,13 +27,13 @@ button{
 .grid-container{
 	display: grid;
 	grid-template-rows: auto auto;
-	grid-template-columns: 2fr 3fr;
-	grid-gap: 1em 3em;
+	grid-template-columns: 5fr 4fr;
+	grid-gap: 1em 2.5em;
 }
 
 .links-container{
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(3, 1fr);
 	height: fit-content;
 }
 

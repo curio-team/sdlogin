@@ -3,12 +3,13 @@
 @section('content')
 
     <div class="container grid-container">
-        <div class="image">
-            <img src="{{ asset('img/amologin.png') }}" alt="amo login">
-        </div>
         <div>
             <h2>Hallo {{ $firstname }},</h2>
             <p>Welkom bij <strong>AMO login</strong>. Met je AMO-account kun je inloggen op alle apps van Applicatie- en mediaontwikkeling. Dit account bestaat naast je <strong>ROCWB</strong> account.</p>
+        </div>
+
+        <div class="image">
+            <img src="{{ asset('img/amologin.png') }}" alt="amo login">
         </div>
 
         <div class="links-container">
