@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['domain' => 'testlink.amo.rocks'], function() {
+Route::group(['domain' => 'amo.rocks'], function() {
     
     Route::get('/', function() {
     	return redirect('https://login.amo.rocks/');
