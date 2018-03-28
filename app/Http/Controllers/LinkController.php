@@ -38,7 +38,8 @@ class LinkController extends Controller
     {
         $request->validate([
             'short' => 'nullable|alpha_dash',
-            'url' => 'required|url'
+            'url' => 'required|url',
+            'on_frontpage' => 'required|boolean'
         ]);
 
         if($request->short != null && Link::where('short', $request->short)->count())
@@ -49,7 +50,7 @@ class LinkController extends Controller
         $link = new Link();
         $link->short = $request->short ?? $this->getRandomCode();
         $link->url = $request->url;
-        $link->on_frontpage = false;
+        $link->on_frontpage = $request->on_frontpage;
         $link->creator = Auth::user()->id;
         $link->save();
 

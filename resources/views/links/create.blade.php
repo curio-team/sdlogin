@@ -49,6 +49,15 @@
 			        <small class="form-text text-muted">Laat leeg voor willekeurige link.</small>
 		      	</div>
 		    </div>
+		    <div class="form-group row">
+		    	<label for="on_frontpage" class="col-sm-3 col-form-label">Toon op dashboard:</label>
+		     	<div class="col-sm-6">
+		     		<select name="on_frontpage" id="on_frontpage">
+		     			<option value="0" selected>Nee</option>
+		     			<option value="1">Ja</option>
+		     		</select>
+		      	</div>
+		    </div>
 
 		   <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Opslaan</button>
 		</form>

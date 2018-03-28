@@ -28,7 +28,7 @@
 
 			<div class="row">
 				<div class="col-lg-12">
-					<table id="check-table" class="table my-table table-striped table-hover">
+					<table id="check-table" class="table my-table table-striped table-hover table-nowrap">
 						<thead>
 							<tr>
 								<th class="th5p">&nbsp;</th>
@@ -42,7 +42,7 @@
 							@foreach($links as $link)
 								<tr>
 									<td><input type="checkbox" name="delete[]" value="{{ $link->id }}"></td>
-									<td>{{ $link->short }}</td>
+									<td><a target="_blank" href="http://amo.rocks/{{ $link->short }}">{{ $link->short }}</a></td>
 									<td>{{ $link->url }}</td>
 									<td>{{ $link->creator()->name }}, {{ $link->created_at }}</td>
 									<td>

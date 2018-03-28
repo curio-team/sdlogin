@@ -150,6 +150,10 @@ legend{
 	overflow: hidden;
 }
 
+.my-table.table-nowrap td{
+	white-space: nowrap;
+}
+
 .my-table th.th5p
 {
 	width: 5%;
