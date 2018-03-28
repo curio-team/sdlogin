@@ -16,9 +16,9 @@
                 <?php $url = parse_url($app->redirect); ?>
                 <a target="_blank" class="btn btn-outline-primary" href="{{ $url['scheme'].'://'.$url['host'] }}"><span>{{ $app->name }}</span></a>
             @endforeach
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/rooster"><span>Rooster (ROCWB)</span></a>
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/mail"><span>Schoolmail (ROCWB)</span></a>
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/mysite"><span>Mysite (ROCWB)</span></a>
+            @foreach($links as $link)
+                <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/{{ $link->short }}"><span>{{ ucfirst($link->short) }}</span></a>
+            @endforeach
         </div>
         
             

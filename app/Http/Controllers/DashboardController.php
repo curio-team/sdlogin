@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\User;
 use \Laravel\Passport\Client;
+use App\Link;
 
 class DashboardController extends Controller
 {
@@ -24,11 +25,14 @@ class DashboardController extends Controller
         {
             $apps->where('for_development', 0);
         }
+
         $apps = $apps->get();
+        $links = Link::where('on_frontpage', true)->get();
 
         return view('home')
             ->with('user', $user)
             ->with('firstname', $name[0])
-            ->with('apps', $apps);
+            ->with('apps', $apps)
+            ->with('links', $links);
     }
 }
