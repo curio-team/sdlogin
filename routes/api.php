@@ -18,6 +18,7 @@ Route::group(['domain' => 'api.amo.rocks'], function() {
 	Route::group(['middleware' => 'auth:api'], function() {
 
 		Route::get('/me', 'Api\UserApiController@me');
+		Route::get('/users/{user}', 'Api\UserApiController@user');
 
 	});
 

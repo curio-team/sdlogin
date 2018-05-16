@@ -9,8 +9,19 @@ use App\User;
 
 class UserApiController extends Controller
 {
-    public function me()
+    public function me(Request $request)
     {
-        return User::where('id', Auth::user()->id)->with('groups')->get();
+        return User::where('id', $request->user()->id)->with('groups')->get();
+    }
+
+    public function user(Request $request, User $user)
+    {
+    	if($request->user()->type == 'teacher')
+    	{
+    		$user->load('groups');
+    		return $user;
+    	}
+    	
+    	return false;
     }
 }
