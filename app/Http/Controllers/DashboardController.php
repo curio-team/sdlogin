@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\User;
 use \Laravel\Passport\Client;
+use App\Link;
 
 class DashboardController extends Controller
 {
@@ -19,16 +20,13 @@ class DashboardController extends Controller
     {
         $user = Auth::user()->load('groups', 'groupHistory');
         $name = explode(' ', $user->name);
-        $apps = Client::where('revoked', 0);
-        if($user->type == 'student')
-        {
-            $apps->where('for_development', 0);
-        }
-        $apps = $apps->get();
+        $apps = Client::where('revoked', 0)->where('for_development', 0)->get();
+        $links = Link::where('on_frontpage', true)->get();
 
         return view('home')
             ->with('user', $user)
             ->with('firstname', $name[0])
-            ->with('apps', $apps);
+            ->with('apps', $apps)
+            ->with('links', $links);
     }
 }

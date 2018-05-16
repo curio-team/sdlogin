@@ -3,12 +3,13 @@
 @section('content')
 
     <div class="container grid-container">
-        <div class="image">
-            <img src="{{ asset('img/amologin.png') }}" alt="amo login">
-        </div>
         <div>
             <h2>Hallo {{ $firstname }},</h2>
             <p>Welkom bij <strong>AMO login</strong>. Met je AMO-account kun je inloggen op alle apps van Applicatie- en mediaontwikkeling. Dit account bestaat naast je <strong>ROCWB</strong> account.</p>
+        </div>
+
+        <div class="image">
+            <img src="{{ asset('img/amologin.png') }}" alt="amo login">
         </div>
 
         <div class="links-container">
@@ -16,9 +17,9 @@
                 <?php $url = parse_url($app->redirect); ?>
                 <a target="_blank" class="btn btn-outline-primary" href="{{ $url['scheme'].'://'.$url['host'] }}"><span>{{ $app->name }}</span></a>
             @endforeach
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/rooster"><span>Rooster (ROCWB)</span></a>
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/mail"><span>Schoolmail (ROCWB)</span></a>
-            <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/mysite"><span>Mysite (ROCWB)</span></a>
+            @foreach($links as $link)
+                <a target="_blank" class="btn btn-outline-danger" href="http://amo.rocks/{{ $link->short }}"><span>{{ ucfirst($link->short) }}</span></a>
+            @endforeach
         </div>
         
             
