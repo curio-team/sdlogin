@@ -10,6 +10,6 @@ class UserApiController extends Controller
 {
     public function me()
     {
-        return Auth::user();
+        return Auth::user()->with('groups');
     }
 }
