@@ -11,12 +11,15 @@
 |
 */
 
+Route::group(['domain' => 'api.amo.rocks'], function() {
+    
+    Route::redirect('/', 'https://apitest.amo.rocks/');
+
+});
+
 Route::group(['domain' => 'amo.rocks'], function() {
     
-    Route::get('/', function() {
-    	return redirect('https://login.amo.rocks/');
-    })->name('home');
-
+    Route::redirect('/', 'https://login.amo.rocks/')->name('home');
     Route::get('/{link}', 'RedirectController@go');
 
 });
