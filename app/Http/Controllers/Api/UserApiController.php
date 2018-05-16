@@ -22,6 +22,6 @@ class UserApiController extends Controller
     		return $user;
     	}
     	
-    	return false;
+    	abort(403, 'Only for teachers');
     }
 }
