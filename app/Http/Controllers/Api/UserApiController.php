@@ -11,7 +11,7 @@ class UserApiController extends Controller
 {
     public function me(Request $request)
     {
-        return User::where('id', $request->user()->id)->with('groups')->get();
+        return User::where('id', $request->user()->id)->with('groups')->first();
     }
 
     public function index(Request $request)
