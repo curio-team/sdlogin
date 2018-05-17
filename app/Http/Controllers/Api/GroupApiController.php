@@ -9,6 +9,11 @@ use App\Group;
 
 class GroupApiController extends Controller
 {
+    public function index()
+    {
+        return Group::get();
+    }
+
     public function group(Request $request, Group $group)
     {
     	if($request->user()->type == 'teacher') $group->load('users');
