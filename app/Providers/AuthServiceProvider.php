@@ -33,7 +33,11 @@ class AuthServiceProvider extends ServiceProvider
             return $currentuser->id == $user->id;
         });
 
-        Passport::routes();
+        Passport::routes(function ($router) {
+            $router->forAccessTokens();
+        });
+        Passport::enableImplicitGrant();
+
         Route::group(['middleware' => ['web', 'auth']], function () {
             Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
         });
