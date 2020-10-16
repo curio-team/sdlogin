@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         });
         Passport::enableImplicitGrant();
 
-        Route::group(['middleware' => ['web', 'auth']], function () {
+        Route::group(['domain' => 'login.amo.rocks', 'middleware' => ['web', 'auth']], function () {
             Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
         });
 
