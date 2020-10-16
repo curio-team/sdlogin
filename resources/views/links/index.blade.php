@@ -10,7 +10,7 @@
 
 		@if (session('success'))
 		<div class="alert alert-success">
-			Link <strong><a href="http://amo.rocks/{{ session('success') }}" target="_blank">amo.rocks/{{ session('success') }}</a></strong> gemaakt!
+			Link <strong><a href="http://curio.codes/{{ session('success') }}" target="_blank">curio.codes/{{ session('success') }}</a></strong> gemaakt!
 		</div>
 		@endif
 		
@@ -42,7 +42,7 @@
 							@foreach($links as $link)
 								<tr>
 									<td><input type="checkbox" name="delete[]" value="{{ $link->id }}"></td>
-									<td><a target="_blank" href="http://amo.rocks/{{ $link->short }}">{{ $link->short }}</a></td>
+									<td><a target="_blank" href="http://curio.codes/{{ $link->short }}">{{ $link->short }}</a></td>
 									<td>{{ $link->url }}</td>
 									<td>{{ $link->creator()->name }}, {{ $link->created_at }}</td>
 									<td>

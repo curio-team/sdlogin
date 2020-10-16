@@ -42,7 +42,7 @@
 		     	<div class="col-sm-6">
 		     		<div class="input-group">
 			     		<div class="input-group-addon">
-				        	<div class="input-group-text">http://amo.rocks/</div>
+				        	<div class="input-group-text">http://curio.codes/</div>
 				        </div>
 			        	<input type="text" class="form-control" id="short" name="short" value="{{ old('short') }}">
 			        </div>
