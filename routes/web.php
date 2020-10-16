@@ -64,9 +64,9 @@ $loginRoutes = function() {
 
 };
 
-Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
 Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
-Route::group(['domain' => 'amo.rocks'], $mainRoutes);
+Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
 Route::group(['domain' => 'curio.codes'], $mainRoutes);
-Route::group(['domain' => 'login.amo.rocks'], $loginRoutes);
+Route::group(['domain' => 'amo.rocks'], $mainRoutes);
 Route::group(['domain' => 'login.curio.codes'], $loginRoutes);
+Route::group(['domain' => 'login.amo.rocks'], $loginRoutes);
