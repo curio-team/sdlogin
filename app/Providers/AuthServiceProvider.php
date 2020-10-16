@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes(function ($router) {
             $router->forAccessTokens();
         });
-        Passport::enableImplicitGrant();
+        //Passport::enableImplicitGrant();
 
         Route::group(['domain' => 'login.amo.rocks', 'middleware' => ['web', 'auth']], function () {
             Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
