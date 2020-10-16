@@ -11,20 +11,16 @@
 |
 */
 
-Route::group(['domain' => 'api.amo.rocks'], function() {
-    
+$apiRoutes = function() {
     Route::redirect('/', 'https://apitest.amo.rocks/');
+};
 
-});
-
-Route::group(['domain' => 'amo.rocks'], function() {
-    
-    Route::redirect('/', 'https://login.amo.rocks/')->name('home');
+$mainRoutes = function() {
+    Route::redirect('/', 'https://login.curio.codes/')->name('home');
     Route::get('/{link}', 'RedirectController@go');
+};
 
-});
-
-Route::group(['domain' => 'login.amo.rocks'], function() {
+$loginRoutes = function() {
 
 	Route::group(['middleware' => 'auth'], function() {
 		
@@ -66,4 +62,11 @@ Route::group(['domain' => 'login.amo.rocks'], function() {
 	Route::get('password/reset/{token}', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	Route::post('password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset');
 
-});
+};
+
+Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
+Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
+Route::group(['domain' => 'amo.rocks'], $mainRoutes);
+Route::group(['domain' => 'curio.codes'], $mainRoutes);
+Route::group(['domain' => 'login.amo.rocks'], $loginRoutes);
+Route::group(['domain' => 'login.curio.codes'], $loginRoutes);
