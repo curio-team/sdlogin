@@ -17,6 +17,7 @@ class CreateLinksTable extends Migration
             $table->increments('id');
             $table->string('short')->unique();
             $table->string('url', 10000);
+            $table->string('title')->nullable();
             $table->boolean('on_frontpage');
             $table->string('creator');
             $table->timestamps();

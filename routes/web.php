@@ -46,7 +46,7 @@ Route::group(['domain' => 'login.curio.codes'], function() {
 			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);
 
 			Route::delete('/links', 'LinkController@destroy');
-			Route::resource('links', 'LinkController', ['except' => ['show', 'edit', 'update', 'destroy']]);
+			Route::resource('links', 'LinkController', ['except' => ['show', 'destroy']]);
 
 		});
 	});

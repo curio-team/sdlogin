@@ -28,7 +28,7 @@
                     @endforeach
                     @foreach($links as $link)
                         <a target="_blank" class="btn btn-brand" href="http://curio.codes/{{ $link->short }}">
-                            {{ ucfirst($link->short) }}
+                            {{ $link->title ?? ucfirst($link->short) }}
                             <i class="fa fa-fw fa-external-link"></i>
                         </a>
                     @endforeach

@@ -39,7 +39,7 @@ class LinkController extends Controller
         $request->validate([
             'short' => 'nullable|alpha_dash',
             'url' => 'required|url',
-            'on_frontpage' => 'required|boolean'
+            'title' => 'nullable'
         ]);
 
         if($request->short != null && Link::where('short', $request->short)->count())
@@ -50,8 +50,10 @@ class LinkController extends Controller
         $link = new Link();
         $link->short = $request->short ?? $this->getRandomCode();
         $link->url = $request->url;
-        $link->on_frontpage = $request->on_frontpage;
+        $link->on_frontpage = $request->has('on_frontpage');
+        $link->title = $request->title;
         $link->creator = Auth::user()->id;
+        
         $link->save();
 
         return redirect('/links')->with('success', $link->short);
@@ -68,6 +70,24 @@ class LinkController extends Controller
         }
 
         return $code;
+    }
+
+    public function edit(Link $link)
+    {
+        return view('links.edit')->with('link', $link);
+    }
+
+    public function update(Request $request, Link $link)
+    {
+        $request->validate([
+            'title' => 'nullable'
+        ]);
+
+        $link->on_frontpage = $request->has('on_frontpage');
+        $link->title = $request->title;        
+        $link->save();
+
+        return redirect('/links')->with('updated', $link->short);
     }
 
     public function delete(Link $link)

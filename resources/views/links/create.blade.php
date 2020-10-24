@@ -1,17 +1,5 @@
 @extends('layouts.app')
 
-@push('styles')
-	<link rel="stylesheet" href="/chosen/chosen.min.css">
-	<link rel="stylesheet" href="/chosen/bootstrap-chosen.css">
-@endpush
-
-@push('scripts')
-	<script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
-	<script type="text/javascript">
-		jQuery("#type").chosen();
-	</script>
-@endpush
-
 @section('content')
 	
 	<div class="container spaced-container">
@@ -51,11 +39,16 @@
 		    </div>
 		    <div class="form-group row">
 		    	<label for="on_frontpage" class="col-sm-3 col-form-label">Toon op dashboard:</label>
-		     	<div class="col-sm-6">
-		     		<select name="on_frontpage" id="on_frontpage">
-		     			<option value="0" selected>Nee</option>
-		     			<option value="1">Ja</option>
-		     		</select>
+		     	<div class="col-sm-6 d-flex align-items-center">
+		     		<div class="input-group">
+		     			<div class="input-group-addon">
+		     				<input type="checkbox" name="on_frontpage" id="on_frontpage" value="1">
+		     			</div>
+	     				<div class="input-group-addon">
+		     				<div class="input-group-text">met als titel:</div>
+		     			</div>
+		     			<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+		     		</div>
 		      	</div>
 		    </div>
 

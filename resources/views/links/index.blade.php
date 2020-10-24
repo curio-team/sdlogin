@@ -13,6 +13,11 @@
 			Link <strong><a href="http://curio.codes/{{ session('success') }}" target="_blank">curio.codes/{{ session('success') }}</a></strong> gemaakt!
 		</div>
 		@endif
+		@if (session('updated'))
+		<div class="alert alert-success">
+			Link <strong><a href="http://curio.codes/{{ session('updated') }}" target="_blank">curio.codes/{{ session('updated') }}</a></strong> aangepast!
+		</div>
+		@endif
 		
 		<form action="/links" method="POST">
 			{{ method_field('DELETE') }}
@@ -47,6 +52,7 @@
 									<td>{{ $link->creator()->name }}, {{ $link->created_at }}</td>
 									<td>
 										<div class="btn-group">
+											<a class="btn btn-primary" href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
 											<a class="btn btn-danger" href="/links/{{ $link->short }}/delete"><i class="fa fa-trash"></i></a>
 										</div>
 									</td>

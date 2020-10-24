@@ -7,7 +7,7 @@
 		<h3>Weet je het zeker?</h3>
 
 		<h5>Je gaat deze link verwijderen:</h5>
-		<p>amo.rocks/{{ $link->short }} <strong>=&gt;</strong> {{ $link->url }}</p>
+		<p>curio.codes/{{ $link->short }} <strong><i class="fa fa-long-arrow-right"></i></strong> {{ $link->url }}</p>
 		
 		<form action="/links" method="POST">
 			{{ method_field('DELETE') }}
