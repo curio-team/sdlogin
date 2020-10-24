@@ -45,6 +45,15 @@
                     <small class="form-text text-muted">Voeg gebruikers toe aan groepen die op bovenstaande datum actief zijn</small>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="csv" class="col-sm-3 col-form-label">Zoek gebruiker op</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                    <input type="radio" name="find_user" value="i" id="find_user_i" checked>
+                    <label class="m-0 pl-2 pr-3" for="find_user_i">i123456</label>
+                    <input type="radio" name="find_user" value="D" id="find_user_D">
+                    <label class="m-0 pl-2 text-muted" for="find_user_D">D123456 (legacy)</label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Uploaden</button>
         </form>
     </div>

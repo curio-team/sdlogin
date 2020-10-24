@@ -28,7 +28,6 @@ class ImportEolController extends Controller
 
     public function upload(Request $request)
     {
-        
         $request->validate([
             'file' => 'required|file|mimes:xls,xlsx'
         ]);
@@ -57,7 +56,7 @@ class ImportEolController extends Controller
                 }
 
                 $id = $row[CODE];
-                $user = User::find("i" . $id);
+                $user = User::find($find_user . $id);
                 if($user == null)
                 {
                     //Fix name
