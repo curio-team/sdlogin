@@ -20,7 +20,7 @@ $mainRoutes = function() {
     Route::get('/{link}', 'RedirectController@go');
 };
 
-$loginRoutes = function() {
+Route::group(['domain' => 'login.curio.codes'], function() {
 
 	Route::group(['middleware' => 'auth'], function() {
 		
@@ -62,11 +62,9 @@ $loginRoutes = function() {
 	Route::get('password/reset/{token}', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	Route::post('password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset');
 
-};
+});
 
 Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
 Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
 Route::group(['domain' => 'curio.codes'], $mainRoutes);
 Route::group(['domain' => 'amo.rocks'], $mainRoutes);
-Route::group(['domain' => 'login.curio.codes'], $loginRoutes);
-Route::group(['domain' => 'login.amo.rocks'], $loginRoutes);
