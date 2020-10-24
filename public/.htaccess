@@ -6,7 +6,7 @@
     RewriteEngine On
 
     # Rewrite to new url
-    RewriteCond %{SERVER_NAME} =login.amo.rocks
+    RewriteCond %{HTTP_HOST} ^login.amo.rocks
     RewriteCond %{REQUEST_URI} !^oauth
     RewriteRule ^ https://login.curio.codes%{REQUEST_URI}
 
