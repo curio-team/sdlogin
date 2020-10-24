@@ -25,11 +25,11 @@
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-brand-light">
-        <div class="container mt-0">
-            <a class="navbar-brand color-brand" href="{{ url('me') }}">curio.codes</a>
+        <div class="container mt-0 flex-column flex-md-row">
+            <a class="navbar-brand color-brand mr-0" href="{{ url('me') }}">curio.codes</a>
             @auth
                 <div class="justify-content-end">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav flex-column flex-md-row align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" href="/me">Dashboard</a>
                         </li>
