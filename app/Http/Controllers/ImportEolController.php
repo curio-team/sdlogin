@@ -56,7 +56,7 @@ class ImportEolController extends Controller
                 }
 
                 $id = $row[CODE];
-                $user = User::find($find_user . $id);
+                $user = User::find($request->find_user . $id);
                 if($user == null)
                 {
                     //Fix name
