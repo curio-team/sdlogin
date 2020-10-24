@@ -22,7 +22,8 @@
 				<div class="col-lg-6">
 					<div class="btn-group">
 						<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Verwijderen</button>
-						<a class="btn btn-primary" href="/users/import"><i class="fa fa-upload"></i> Importeren</a>
+						<a class="btn btn-primary" href="/users/import/eol"><i class="fa fa-upload"></i> Import EOL</a>
+						<a class="btn btn-secondary" href="/users/import"><i class="fa fa-upload"></i> Import Edictis</a>
 						<a class="btn btn-success" href="/users/create"><i class="fa fa-plus"></i> Nieuw</a>
 					</div>
 				</div>

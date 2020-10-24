@@ -1,11 +1,11 @@
 @extends('layouts.auth')
 
 @section('content')
-    <p>Log-in met je i-account:</p>       
+    <p>Log-in met je i-account (of D-nummer voor cohorten voor 2020):</p>       
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="form-group">
-            <input placeholder="D123456" name="id" value="{{ old('id') }}" type="text">
+            <input placeholder="i123456" name="id" value="{{ old('id') }}" type="text">
             @if ($errors->has('id'))
                 <p class="help-block">{{ $errors->first('id') }}</p>
             @endif

@@ -40,8 +40,11 @@ Route::group(['domain' => 'login.curio.codes'], function() {
 			Route::delete('/groups', 'GroupController@destroy');
 			Route::resource('groups', 'GroupController', ['except' => ['show', 'destroy']]);
 
-			Route::post('/users/import', 'ImportController@upload');
 			Route::get('/users/import', 'ImportController@show');
+			Route::post('/users/import', 'ImportController@upload');
+			Route::get('/users/import/eol', 'ImportEolController@show');
+			Route::post('/users/import/eol', 'ImportEolController@upload');
+
 			Route::delete('/users', 'UserController@destroy');
 			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);
 
