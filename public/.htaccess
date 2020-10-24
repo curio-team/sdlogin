@@ -8,7 +8,6 @@
     # Rewrite to new url
     RewriteCond %{HTTP_HOST} ^login.amo.rocks
     RewriteCond %{REQUEST_METHOD} !POST
-    #RewriteCond %{REQUEST_URI} !^/oauth
     RewriteRule ^ https://login.curio.codes%{REQUEST_URI} [L,NE,NC]
 
     # Prevent ip access and http access
