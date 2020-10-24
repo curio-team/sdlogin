@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="csv" class="col-sm-3 col-form-label">Zoek gebruiker op</label>
+                <label for="csv" class="col-sm-3 col-form-label">Zoek gebruikers volgens</label>
                 <div class="col-sm-6 d-flex align-items-center">
                     <input type="radio" name="find_user" value="i" id="find_user_i" checked>
                     <label class="m-0 pl-2 pr-3" for="find_user_i">i123456</label>
