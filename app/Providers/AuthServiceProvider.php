@@ -41,6 +41,9 @@ class AuthServiceProvider extends ServiceProvider
         Route::group(['domain' => 'login.amo.rocks', 'middleware' => ['web', 'auth']], function () {
             Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
         });
+        Route::group(['domain' => 'login.curio.codes', 'middleware' => ['web', 'auth']], function () {
+            Route::get('/oauth/authorize', '\App\Oidc\OidcAuthController@authorize');
+        });
 
         Passport::tokensExpireIn(Carbon::now()->addMinutes(10));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
