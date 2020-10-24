@@ -110,6 +110,10 @@ button{
     background-color: #ebf2f0;
 }
 
+.table-hover tbody tr:hover {
+    background-color: #d6e3df;
+}
+
 .pwd-container{
 	display: grid;
 	grid-template-rows: 1fr auto auto;
