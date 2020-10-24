@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <p>Log-in met je AMO-account:</p>       
+    <p>Log-in met je i-account:</p>       
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="form-group">

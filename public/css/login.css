@@ -26,6 +26,10 @@ h1, h2, h3, h4, h5, h6{
 	padding: 2rem;
 }
 
+img{
+	max-width: 200px;
+}
+
 .form{
 	order: 1;
 	display: flex;
@@ -66,18 +70,23 @@ input[type="submit"], input[type="text"], input[type="password"], input[type="em
 }
 
 input[type="submit"]{
-    background-color: rgb(38, 114, 236);
+    background: #d6e3df;
     min-width: 80px;
     width: auto;
     padding: 4px 20px 6px 20px;
-    transition: background .2s;
-    color: rgb(255, 255, 255);
+    transition: all .15s ease-in-out;
+    color: #004c35;
     cursor: pointer;
     border: none;
 }
 
 input[type="submit"]:hover{
-	background: rgb(162, 177, 251)
+	background: #004c35;
+	color: white;
+}
+
+form a{
+	color: #004c35;
 }
 
 label{
@@ -112,7 +121,8 @@ label span{
 footer{
 	margin-top: auto;
 	font-size: .9rem;
-	color: gray;
+	color: #80a79b;
+	text-align: center;
 }
 
 .aside{
@@ -131,9 +141,12 @@ footer{
 }
 
 .alert-primary {
-    color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
+    color: #d6e3df;
+    background-color: #004c35;    
+}
+
+.alert-primary a{
+	color: #d6e3df;
 }
 
 @media only screen and (max-width: 768px) {

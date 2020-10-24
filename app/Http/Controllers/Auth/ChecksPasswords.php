@@ -22,7 +22,7 @@ trait ChecksPasswords
         $strength['time_display'] = $seconds->diffForHumans(null, true);
         
         $return = array(
-            "passes" => ($strength['score'] < 3) ? false : true,
+            "passes" => ($strength['score'] < 2) ? false : true,
             "score" => $strength['score'],
             "time" => $strength['time_display'],
         );

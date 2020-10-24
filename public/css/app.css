@@ -1,15 +1,69 @@
-@import url('https://fonts.googleapis.com/css?family=Chivo|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@font-face {
+    font-family: 'Franklin';
+    src: url('../fonts/FranklinGothic-MedCnd.woff2') format('woff2'),
+        url('../fonts/FranklinGothic-MedCnd.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
 body{
 	font-family: "Open Sans", Arial, sans-serif;
 }
 
-.navbar-brand{
-	font-family: "Chivo", Arial, sans-serif;
+.container{
+	padding: 0;
 }
 
-.navbar-dark .navbar-nav .nav-link{
+.bg-brand-light{
+	background-color: #d6e3df;
+}
+
+.navbar{
+	border-top: 3px solid #004c35;
+}
+
+.color-brand, .navbar-dark .navbar-nav .nav-link{
+	color: #004c35 !important;
+}
+
+.border-brand{
+	border-color: #004c35;
+}
+
+.btn-brand{
+	border-color: #004c35;
+	color: #004c35;
+	overflow: hidden;
+}
+
+.btn-brand:hover{
+	background-color: #004c35;
 	color: white;
+}
+
+.btn-brand i.fa{
+	position: absolute;
+	right: 10px;
+    transition: none;
+    background-color: #004c35;
+    top: calc(50% - 8px);
+    opacity: 0;
+}
+
+.btn-brand:hover i.fa{
+	opacity: 1;
+	transition: all .10s ease-in-out;
+	transition-delay: .05s;
+}
+
+.navbar-brand{
+	font-family: "Franklin", Arial, sans-serif;
+	font-weight: 500;
+	font-size: 26px;
+	padding: 0;
 }
 
 .container{
@@ -17,7 +71,8 @@ body{
 }
 
 .spaced-container > *, .spaced-container > form > *{
-	margin: 1em 0;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 button{
@@ -31,6 +86,10 @@ button{
 	grid-gap: 1em 2.5em;
 }
 
+.links-container a{
+	position: relative;
+}
+
 .links-container{
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -38,10 +97,18 @@ button{
 }
 
 .links-container > *{
-	margin: 0 .7em 1.4em .7em;
+	margin-bottom: 1.4em;
 	padding: 1em .75em;
 }
 
+.links-container > *:nth-child(3n+2){
+	margin-left: .7em;
+	margin-right: .7em;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ebf2f0;
+}
 
 .pwd-container{
 	display: grid;
