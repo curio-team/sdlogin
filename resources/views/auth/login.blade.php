@@ -23,7 +23,7 @@
         </div>
         <div class="form-group submit">
             <input type="submit" value="Inloggen">
-            <a href="{{ route('password.request') }}">Wachtwoord vergeten?</a>
+            <a href="{{ route('password.request') }}">Reset wachtwoord &gt;</a>
         </div>
     </form>
 @endsection

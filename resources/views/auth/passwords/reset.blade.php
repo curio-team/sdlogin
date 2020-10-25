@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="alert alert-primary">
-        Lees ook onze <a href="/passwords" target="_blank">tips voor een sterk wachtwoord</a>.
+        Lees ook onze <a href="/passwords" target="_blank">richtlijnen</a> voor een sterk wachtwoord.
     </div>
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.request') }}">
