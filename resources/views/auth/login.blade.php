@@ -8,7 +8,7 @@
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="form-group">
-            <input placeholder="i123456" name="id" value="{{ old('id') }}" type="text">
+            <input placeholder="i123456" name="id" value="{{ old('id') }}" type="text" autofocus>
             @if ($errors->has('id'))
                 <p class="help-block">{{ $errors->first('id') }}</p>
             @endif
