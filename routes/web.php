@@ -44,6 +44,9 @@ Route::group(['domain' => 'login.curio.codes'], function() {
 			Route::post('/users/import', 'ImportController@upload');
 			Route::get('/users/import/eol', 'ImportEolController@show');
 			Route::post('/users/import/eol', 'ImportEolController@upload');
+			
+			Route::get('/users/cleanup', 'UserCleanupController@show');
+			Route::post('/users/cleanup', 'UserCleanupController@clean');
 
 			Route::delete('/users', 'UserController@destroy');
 			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);

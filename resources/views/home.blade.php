@@ -23,7 +23,7 @@
                         <?php $url = parse_url($app->redirect); ?>
                         <a target="_blank" class="btn btn-brand" href="{{ $url['scheme'].'://'.$url['host'] }}">
                             {{ $app->name }}
-                            <i class="fa fa-fw fa-window-maximize"></i>
+                            <i class="fa fa-fw fa-cube"></i>
                         </a>
                     @endforeach
                     @foreach($links as $link)
