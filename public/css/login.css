@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5, h6{
 	font-family: "Chivo", Arial, sans-serif;
 }
 
+.text-muted{
+	font-size: 0.9em;
+    color: #80a79b;
+}
+
 .container{
 	height: 100vh;
 	display: grid;

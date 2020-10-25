@@ -1,7 +1,10 @@
 @extends('layouts.auth')
 
 @section('content')
-    <p>Log-in met je i-account (of D-nummer voor cohorten voor 2020):</p>       
+    <p>
+        Log-in met je i-account:
+        <br/><span class="text-muted">Gestart voor 2020? Gebruik je D-nummer</span>
+    </p>
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="form-group">
