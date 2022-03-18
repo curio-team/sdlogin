@@ -46,6 +46,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/users">Gebruikers</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/grouplogin">Groepsaccounts</a>
+                            </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/users/{{ Auth::user()->id }}/profile">Profiel</a>

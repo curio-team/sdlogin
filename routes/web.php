@@ -54,6 +54,10 @@ Route::group(['domain' => 'login.curio.codes'], function() {
 			Route::delete('/links', 'LinkController@destroy');
 			Route::resource('links', 'LinkController', ['except' => ['show', 'destroy']]);
 
+			Route::get('grouplogin', 'GroupLoginController@index');
+			Route::get('grouplogin/{group}', 'GroupLoginController@show');
+			Route::post('grouplogin/{group}', 'GroupLoginController@do');
+
 		});
 	});
 
