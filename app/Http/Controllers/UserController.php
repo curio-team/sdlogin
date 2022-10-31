@@ -74,13 +74,13 @@ class UserController extends Controller
         $user->email = $request->email;
         if($user->email == null)
         {
-            $user->email = $user->id . '@' . ($user->type == 'student' ? 'edu.' : '') . 'rocwb.nl';
+            $user->email = $user->id . '@' . ($user->type == 'student' ? 'edu.' : '') . 'curio.nl';
         }
 
         $check = $this->check_password($request->password, $user);
         if(!$check->passes)
         {
-            return redirect()->back()->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+            return redirect()->route('users.create')->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
         }
         
         $user->password = bcrypt($request->password);
@@ -127,7 +127,7 @@ class UserController extends Controller
 
         if(!password_verify($request->password, $user->getPassword()))
         {
-             return redirect()->back()->withErrors(['msg' => 'Je huidige wachtwoord is niet correct.']);
+             return redirect()->route('users.profile', $user)->withErrors(['msg' => 'Je huidige wachtwoord is niet correct.']);
         }
 
         $request->validate([
@@ -137,7 +137,7 @@ class UserController extends Controller
         $check = $this->check_password($request->password_new, $user);
         if(!$check->passes)
         {
-            return redirect()->back()->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+            return redirect()->route('users.profile', $user)->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
         }
 
         $user->password = bcrypt($request->password_new);

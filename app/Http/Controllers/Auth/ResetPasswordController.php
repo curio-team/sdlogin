@@ -45,7 +45,7 @@ class ResetPasswordController extends Controller
         $check = $this->check_password($request->password);
         if(!$check->passes)
         {
-            return redirect()->back()->withErrors(['password' => 'Je nieuwe wachtwoord is niet sterk genoeg!']);
+            return redirect()->route('password.request')->withErrors(['password' => 'Je nieuwe wachtwoord is niet sterk genoeg!']);
         }
         return $this->parentreset($request);
     }

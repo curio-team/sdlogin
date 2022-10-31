@@ -27,7 +27,7 @@ Route::group(['domain' => 'login.curio.codes'], function() {
 		Route::redirect('/', '/me', 301);
 		Route::redirect('/home', '/me', 301);
 		Route::get('/me', 'DashboardController@show')->name('home');
-		Route::get('/users/{user}/profile', 'UserController@profile');
+		Route::get('/users/{user}/profile', 'UserController@profile')->name('users.profile');
 		Route::patch('/users/{user}/profile', 'UserController@profile_update');
 
 		Route::group(['middleware' => 'admin'], function() {
