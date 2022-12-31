@@ -49,7 +49,7 @@
 									<td><input type="checkbox" name="delete[]" value="{{ $link->id }}"></td>
 									<td><a target="_blank" href="http://curio.codes/{{ $link->short }}">{{ $link->short }}</a></td>
 									<td>{{ $link->url }}</td>
-									<td>{{ $link->creator()->name }}, {{ $link->created_at }}</td>
+									<td>{{ optional($link->creator())->name }}, {{ $link->created_at }}</td>
 									<td>
 										<div class="btn-group">
 											<a class="btn btn-primary" href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
