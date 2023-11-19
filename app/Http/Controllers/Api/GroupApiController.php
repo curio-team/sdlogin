@@ -17,7 +17,8 @@ class GroupApiController extends Controller
     public function group(Request $request, Group $group)
     {
     	if($request->user()->type == 'teacher') $group->load('users');
-    	return $group;
+        else $group['users'] = collect($group->users()->get()->map(function ($u) { return (object) ['id' => $u['id']]; }));
+        return $group;
     }
 
     public function find(Request $request, $name)
