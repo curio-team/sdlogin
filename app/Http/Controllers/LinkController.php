@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Link;
+use App\Models\Link;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -42,8 +42,7 @@ class LinkController extends Controller
             'title' => 'nullable'
         ]);
 
-        if($request->short != null && Link::where('short', $request->short)->count())
-        {
+        if($request->short != null && Link::where('short', $request->short)->count()) {
             return back()->withErrors('Korte link moet uniek zijn!');
         }
 
@@ -53,7 +52,7 @@ class LinkController extends Controller
         $link->on_frontpage = $request->has('on_frontpage');
         $link->title = $request->title;
         $link->creator = Auth::user()->id;
-        
+
         $link->save();
 
         return redirect('/links')->with('success', $link->short);
@@ -64,8 +63,7 @@ class LinkController extends Controller
         $base = '0123456789abcdefghijklmnopqrstuvwxyz';
         $code = substr(str_shuffle($base), 0, $length);
 
-        while(Link::where('short', $code)->count())
-        {
+        while(Link::where('short', $code)->count()) {
             $code = substr(str_shuffle($base), 0, $length);
         }
 
@@ -84,7 +82,7 @@ class LinkController extends Controller
         ]);
 
         $link->on_frontpage = $request->has('on_frontpage');
-        $link->title = $request->title;        
+        $link->title = $request->title;
         $link->save();
 
         return redirect('/links')->with('updated', $link->short);
@@ -98,18 +96,16 @@ class LinkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Link  $link
+     * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {        
-        if(!is_array($request->delete))
-        {
+    {
+        if(!is_array($request->delete)) {
             return redirect()->back();
         }
 
-        foreach($request->delete as $id)
-        {
+        foreach($request->delete as $id) {
             $link = Link::find($id);
             $link->delete();
         }

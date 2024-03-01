@@ -2,37 +2,25 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
+     * Register any application services.
      */
-    public function boot()
+    public function register(): void
     {
-        Schema::defaultStringLength(191);
-        Carbon::setToStringFormat('d-m-Y');
-        Carbon::setLocale(config('app.locale'));
-
-        $registrar = new \App\Routing\ResourceRegistrar($this->app['router']);
-        $this->app->bind('Illuminate\Routing\ResourceRegistrar', function () use ($registrar) {
-            return $registrar;
-        });
+        Passport::ignoreMigrations();
     }
 
     /**
-     * Register any application services.
-     *
-     * @return void
+     * Bootstrap any application services.
      */
-    public function register()
+    public function boot(): void
     {
-        Passport::ignoreMigrations();
+        Carbon::setLocale(config('app.locale'));
     }
 }

@@ -20,7 +20,7 @@
             {{ session('notice') }}
         </div>
         @endif
-        
+
         <p><strong>Let op:</strong></p>
         <ul>
             <li>Download een klassenlijst uit EOL onder Informatie &gt; Klassenlijst, klik op het icoon onder <em>XLS</em>.</li>
@@ -29,7 +29,7 @@
             <li>Als een gebruiker al bestaat wordt hij aan de genoemde klas toegevoegd. Historische klassen worden niet verwijderd, actieve klassen wel.</li>
         </ul>
 
-        <form action="/users/import/eol" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('users.import_eol_upload') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row">
@@ -48,9 +48,9 @@
             <div class="form-group row">
                 <label for="csv" class="col-sm-3 col-form-label">Zoek gebruikers volgens</label>
                 <div class="col-sm-6 d-flex align-items-center">
-                    <input type="radio" name="find_user" value="i" id="find_user_i" checked>
+                    <input type="radio" name="find_user_prefix" value="i" id="find_user_i" checked>
                     <label class="m-0 pl-2 pr-3" for="find_user_i">i123456</label>
-                    <input type="radio" name="find_user" value="D" id="find_user_D">
+                    <input type="radio" name="find_user_prefix" value="D" id="find_user_D">
                     <label class="m-0 pl-2 text-muted" for="find_user_D">D123456 (legacy)</label>
                 </div>
             </div>

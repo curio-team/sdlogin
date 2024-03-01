@@ -1,39 +1,41 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 // This API works under two domain api.curio.code and (legacy) api.amo.rocks
 
-$apiRoutes = function() {
-	
-	Route::group(['middleware' => 'auth:api'], function() {
+$apiRoutes = function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        /**
+         * Users API
+         */
 
-	
-	//////////////// USERS API ////////////////
-	// All responses (except index) will include the user's full history of groups
+        // All responses (except index) will include the user's full history of groups
 
-		//Return current user		
-		Route::get('/me', 'Api\UserApiController@me');
+        //Return current user
+        Route::get('/me', [App\Http\Controllers\Api\UserApiController::class, 'me']);
 
-		//Return all users (index), teachers only
-		Route::get('/users', 'Api\UserApiController@index');
+        //Return all users (index), teachers only
+        Route::get('/users', [App\Http\Controllers\Api\UserApiController::class, 'index']);
 
-		//Find a user by id(ab01 / D123456), teachers only			
-		Route::get('/users/{user}', 'Api\UserApiController@user');
+        //Find a user by id(ab01 / D123456), teachers only
+        Route::get('/users/{user}', [App\Http\Controllers\Api\UserApiController::class, 'user']);
 
-	
-	//////////////// GROUPS API ///////////////
-	// All responses (except index) will include the group's members (only for teachers)
+        /**
+         * Groups API
+         */
 
-	  	//Return all currently active groups (index)
-		Route::get('/groups', 'Api\GroupApiController@index');
+        // All responses (except index) will include the group's members (only for teachers)
 
-	  	//Find group by name (eg.: RIO4-AMO1A). Returns only currently active groups!
-		Route::get('/groups/find/{name}', 'Api\GroupApiController@find');
+        //Return all currently active groups (index)
+        Route::get('/groups', [App\Http\Controllers\Api\GroupApiController::class, 'index']);
 
-		//Find group by id
-		Route::get('/groups/{group}', 'Api\GroupApiController@group');
+        //Find group by name (eg.: RIO4-AMO1A). Returns only currently active groups!
+        Route::get('/groups/find/{name}', [App\Http\Controllers\Api\GroupApiController::class, 'find']);
 
-	});
-
+        //Find group by id
+        Route::get('/groups/{group}', [App\Http\Controllers\Api\GroupApiController::class, 'group']);
+    });
 };
 
 Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);

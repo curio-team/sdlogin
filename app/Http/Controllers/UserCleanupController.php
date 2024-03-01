@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\User;
-use App\Group;
+use App\Models\User;
 
 class UserCleanupController extends Controller
 {
@@ -25,13 +24,11 @@ class UserCleanupController extends Controller
 
     public function clean(Request $request)
     {
-        if(!is_array($request->delete))
-        {
+        if(!is_array($request->delete)) {
             return redirect()->back();
         }
 
-        foreach($request->delete as $id)
-        {
+        foreach($request->delete as $id) {
             $user = optional(User::find($id));
             $user->groups()->detach();
             $user->delete();

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Oidc;
+
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Passport\Bridge\ClientRepository;
 use Laravel\Passport\Bridge\AccessTokenRepository;
@@ -15,7 +16,6 @@ use Laravel\Passport\Bridge\ScopeRepository;
 
 class OidcServiceProvider extends PassportServiceProvider
 {
-
     /**
      * Make the authorization service instance.
      *

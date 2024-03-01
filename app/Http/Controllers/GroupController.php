@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -21,21 +21,18 @@ class GroupController extends Controller
                 $current = true;
                 $future = true;
                 break;
-
             case 'history':
                 $history = true;
                 break;
-
             case 'future':
                 $future = true;
                 break;
-
             default:
                 $current = true;
                 break;
         }
 
-        $groups = Group::get($history, $current, $future, array('name', 'asc'));
+        $groups = Group::get($history, $current, $future, ['name', 'asc']);
         return view('groups.index')
             ->with('groups', $groups);
     }
@@ -65,7 +62,7 @@ class GroupController extends Controller
             'date_end' => 'required|date_format:Y-m-d'
         ]);
 
-        $group = new Group;
+        $group = new Group();
         $group->name = $request->name;
         $group->type = $request->type;
         $group->date_start = $request->date_start;
@@ -78,7 +75,7 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Group  $group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
     public function edit(Group $group)
@@ -91,7 +88,7 @@ class GroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Group  $group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Group $group)
@@ -121,18 +118,16 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Group  $group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        if(!is_array($request->delete))
-        {
+        if(!is_array($request->delete)) {
             return redirect()->back();
         }
 
-        foreach($request->delete as $id)
-        {
+        foreach($request->delete as $id) {
             $group = Group::find($id);
             $group->users()->detach();
             $group->delete();
