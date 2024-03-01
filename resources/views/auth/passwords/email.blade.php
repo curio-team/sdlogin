@@ -6,10 +6,10 @@
             {{ session('status') }}
         </p>
     @endif
-    
+
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.email') }}">
-        {{ csrf_field() }}
+        @csrf
 
         <div class="form-group">
             <input placeholder="D123456@edu.rocwb.nl" type="email" name="email" value="{{ old('email') }}">

@@ -26,8 +26,8 @@
 	@endif
 
 	<form action="/users/{{ $user->id }}/profile" method="POST">
-		{{ method_field('PATCH') }}
-		{{ csrf_field() }}
+		@method('PATCH')
+		@csrf
 
 		<div class="form-group row">
 			<div class="col-sm-3">Type</div>
@@ -88,7 +88,7 @@
 					</table>
 				</div>
 			</div>
-		</fieldset>			
+		</fieldset>
 
 		<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Opslaan</button>
 	</form>

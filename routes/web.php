@@ -44,7 +44,8 @@ Route::group($domainGroup, function () {
 
         Route::group(['middleware' => 'admin'], function () {
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
-            Route::get('clients/{client}/toggle', [ClientController::class, 'toggle_dev']);
+            Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
+            Route::get('clients/{client}/toggle', [ClientController::class, 'toggle_dev'])->name('clients.toggle_dev');
 
             Route::get('groups/create/batch', [BatchGroupController::class, 'create']);
             Route::post('groups/batch', [BatchGroupController::class, 'store']);

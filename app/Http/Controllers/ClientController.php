@@ -65,7 +65,7 @@ class ClientController extends Controller
         $client->for_development = $request->for_development;
         $client->save();
 
-        return redirect('/clients/' . $client->id);
+        return redirect()->route('clients.show', $client);
     }
 
     /**

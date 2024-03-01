@@ -169,6 +169,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Laravel\Passport\PassportServiceProvider::class,
+        App\Oidc\OidcServiceProvider::class,
     ])->toArray(),
 
     /*

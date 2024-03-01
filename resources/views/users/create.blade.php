@@ -14,9 +14,9 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Nieuwe gebruiker</h5>
 
 		@if ($errors->any())
@@ -30,7 +30,7 @@
 		@endif
 
 		<form action="/users" method="POST">
-			{{ csrf_field() }}
+			@csrf
 
 			<div class="form-group row">
 		    	<label for="type" class="col-sm-3 col-form-label">Type *</label>

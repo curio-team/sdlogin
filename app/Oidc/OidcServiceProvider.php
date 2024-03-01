@@ -7,13 +7,10 @@ use Laravel\Passport\Bridge\ClientRepository;
 use Laravel\Passport\Bridge\AccessTokenRepository;
 use Laravel\Passport\Bridge\ScopeRepository;
 
-/*
-*
-*   Extending Laravel Passport to support OpenID Connect.
-*   We alter the standard token response to include an id_token.
-*
-*/
-
+/**
+ * Extending Laravel Passport to support OpenID Connect.
+ * We alter the standard token response to include an id_token.
+ */
 class OidcServiceProvider extends PassportServiceProvider
 {
     /**
@@ -23,11 +20,11 @@ class OidcServiceProvider extends PassportServiceProvider
      */
     public function makeAuthorizationServer()
     {
-        return new AuthorizationServer(                     //App\Oidc\AuthorizationServer
+        return new AuthorizationServer(
             $this->app->make(ClientRepository::class),
             $this->app->make(AccessTokenRepository::class),
             $this->app->make(ScopeRepository::class),
-            $this->makeCryptKey('oauth-private.key'),
+            $this->makeCryptKey('private'),
             app('encrypter')->getKey()
         );
     }

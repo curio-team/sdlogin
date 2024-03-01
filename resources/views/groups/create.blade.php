@@ -13,9 +13,9 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Nieuwe groep</h5>
 
 		@if ($errors->any())
@@ -29,7 +29,7 @@
 		@endif
 
 		<form action="/groups" method="POST">
-			{{ csrf_field() }}
+			@csrf
 
 			<div class="form-group row">
 		    	<label for="name" class="col-sm-3 col-form-label">Naam *</label>

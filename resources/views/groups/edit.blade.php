@@ -13,9 +13,9 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Groep aanpassen</h5>
 
 		@if ($errors->any())
@@ -29,8 +29,8 @@
 		@endif
 
 		<form action="/groups/{{ $group->id }}" method="POST">
-			{{ method_field('PATCH') }}
-			{{ csrf_field() }}
+			@method('PATCH')
+			@csrf
 
 			<div class="form-group row">
 		    	<label for="name" class="col-sm-3 col-form-label">Naam *</label>

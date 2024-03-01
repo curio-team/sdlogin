@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
 
 		@if (session('notice'))
@@ -13,9 +13,9 @@
 			{{ session('notice') }}
 		</div>
 		@endif
-		
+
 		<form action="/users/cleanup" method="POST">
-			{{ csrf_field() }}
+			@csrf
 			<div class="row">
 				<div class="col-lg-12 d-flex align-items-center">
 					<div class="btn-group">

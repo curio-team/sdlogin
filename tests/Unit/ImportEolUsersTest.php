@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Imports\EolUsersImport;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Maatwebsite\Excel\Facades\Excel;
 use Tests\TestCase;

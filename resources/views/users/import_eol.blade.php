@@ -30,7 +30,7 @@
         </ul>
 
         <form action="{{ route('users.import_eol_upload') }}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
+            @csrf
 
             <div class="form-group row">
                 <label for="csv" class="col-sm-3 col-form-label">Upload Excel *</label>

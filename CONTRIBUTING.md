@@ -75,3 +75,19 @@
     ```
 
 12. Create a pull request
+
+## ✨ Testing a client application
+
+The client application must use the latest version of [sdclient](https://github.com/curio-team/sdclient). Afterwards add this to the `.env` of the client application:
+
+```env
+SD_DEV_URL=http://localhost:8080
+```
+
+Start this sdlogin project with:
+    
+```bash
+php artisan serve --port=8080
+```
+
+The client application can now login to the local sdlogin server.

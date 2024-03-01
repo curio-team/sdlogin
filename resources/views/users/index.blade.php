@@ -16,8 +16,8 @@
 		@endif
 
 		<form action="/users" method="POST">
-			{{ method_field('DELETE') }}
-			{{ csrf_field() }}
+			@method('DELETE')
+			@csrf
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="btn-group">
