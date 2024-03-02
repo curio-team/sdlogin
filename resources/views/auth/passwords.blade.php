@@ -12,10 +12,10 @@
             <p>Lees ook dit stripje als je wachtwoord-veiligheid interessant vindt:</p>
         </div>
         <div id="pwd-comic">
-            <img src="{{ asset('img/comic.png') }}" alt="comic">
+            <img src="{{ Vite::asset('resources/img/comic.png') }}" alt="comic">
             <p><small class="text-muted">Comic by <a href="https://xkcd.com/936/" target="_blank">xkcd.com</a>.</small></p>
         </div>
     </div>
-            
-    
+
+
 @endsection

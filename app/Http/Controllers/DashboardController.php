@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use App\User;
-use \Laravel\Passport\Client;
-use App\Link;
+use Laravel\Passport\Client;
+use App\Models\Link;
 
 class DashboardController extends Controller
 {

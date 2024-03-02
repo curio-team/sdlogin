@@ -5,25 +5,16 @@
 
     RewriteEngine On
 
-    # Rewrite to new url
-    RewriteCond %{HTTP_HOST} ^login.amo.rocks
-    RewriteCond %{REQUEST_METHOD} !POST
-    RewriteRule ^ https://login.curio.codes%{REQUEST_URI} [L,NE,NC]
-
-    # Prevent ip access and http access
-    RewriteCond %{HTTP_HOST} 188.166.8.237
-    RewriteRule .* - [F]
-
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-    
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Handle Front Controller...
+    # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]

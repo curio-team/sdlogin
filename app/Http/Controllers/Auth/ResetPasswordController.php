@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
@@ -43,8 +42,7 @@ class ResetPasswordController extends Controller
     public function reset(Request $request)
     {
         $check = $this->check_password($request->password);
-        if(!$check->passes)
-        {
+        if(!$check->passes) {
             return redirect()->route('password.request')->withErrors(['password' => 'Je nieuwe wachtwoord is niet sterk genoeg!']);
         }
         return $this->parentreset($request);

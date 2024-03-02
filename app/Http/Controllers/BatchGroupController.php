@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class BatchGroupController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +25,6 @@ class BatchGroupController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'date_start' => 'required|date_format:Y-m-d|before:date_end',
             'date_end' => 'required|date_format:Y-m-d'
@@ -37,7 +35,7 @@ class BatchGroupController extends Controller
         $end = $request->date_end;
 
         foreach ($names as $name) {
-            $group = new Group;
+            $group = new Group();
             $group->name = $name;
             $group->type = 'class';
             $group->date_start = $start;

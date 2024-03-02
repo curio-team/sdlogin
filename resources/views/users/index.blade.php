@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
 
 		@if (session('notice'))
@@ -14,18 +14,18 @@
 			{{ session('notice') }}
 		</div>
 		@endif
-		
+
 		<form action="/users" method="POST">
-			{{ method_field('DELETE') }}
-			{{ csrf_field() }}
+			@method('DELETE')
+			@csrf
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="btn-group">
 						<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Verwijderen</button>
-						<a class="btn btn-success" href="/users/create"><i class="fa fa-plus"></i> Nieuw</a>
-						<a class="btn btn-primary" href="/users/import/eol"><i class="fa fa-upload"></i> Import EOL</a>
-						<a class="btn btn-secondary" href="/users/import"><i class="fa fa-upload"></i> Import Edictis</a>
-						<a class="btn btn-warning" href="/users/cleanup"><i class="fa fa-eraser"></i> Opruimen</a>
+						<a class="btn btn-success" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
+						<a class="btn btn-primary" href="{{ route('users.import_eol') }}"><i class="fa fa-upload"></i> Import EOL</a>
+						<a class="btn btn-secondary" href="{{ route('users.import') }}"><i class="fa fa-upload"></i> Import Edictis</a>
+						<a class="btn btn-warning" href="{{ route('users.cleanup') }}"><i class="fa fa-eraser"></i> Opruimen</a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -43,7 +43,7 @@
 								<button type="button" id="search_button" class="btn btn-secondary">Zoeken</button>
 							</span>
 						</div>
-						
+
 						<select class="form-control" id="pagination">
 							<?php $n = request('n', 10); ?>
 							@for($i = 10; $i <= 100; $i += 10)

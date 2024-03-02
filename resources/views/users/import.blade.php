@@ -14,7 +14,7 @@
                 </ul>
             </div>
         @endif
-        
+
         <p><strong>Let op:</strong></p>
         <ul>
             <li>Zet eerst de klassen klaar voor dit schooljaar (naam volgens RIO4-AMO1A).</li>
@@ -28,7 +28,7 @@
         </ul>
 
         <form action="/users/import" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
+            @csrf
 
             <div class="form-group row">
                 <label for="csv" class="col-sm-3 col-form-label">Upload CSV *</label>

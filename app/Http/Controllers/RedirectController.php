@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Link;
+use App\Models\Link;
 
 class RedirectController extends Controller
 {
     public function go(Link $link)
     {
-		return redirect($link->url);
+        return redirect($link->url);
     }
 }

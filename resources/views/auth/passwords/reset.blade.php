@@ -7,7 +7,7 @@
     </div>
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.request') }}">
-        {{ csrf_field() }}
+        @csrf
 
         <input type="hidden" name="token" value="{{ $token }}">
 

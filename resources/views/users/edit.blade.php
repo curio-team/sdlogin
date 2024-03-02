@@ -14,9 +14,9 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Gebruiker aanpassen</h5>
 
 		@if ($errors->any())
@@ -30,8 +30,8 @@
 		@endif
 
 		<form action="/users/{{ $user->id }}" method="POST">
-			{{ method_field('PATCH') }}
-			{{ csrf_field() }}
+			@method('PATCH')
+			@csrf
 
 			<div class="form-group row">
 		    	<div class="col-sm-3">Type</div>
@@ -49,7 +49,7 @@
 		    	<div class="col-sm-3">E-mail</div>
 		     	<div class="col-sm-6">{{ $user->email }}</div>
 		    </div>
-		    
+
 		    <fieldset>
 		    	<legend>Wachtwoord aanpassen</legend>
 		    	<div class="form-group row">
@@ -114,7 +114,7 @@
 			     		</table>
 			     	</div>
 			    </div>
-		    </fieldset>			
+		    </fieldset>
 
 		   <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Opslaan</button>
 		</form>

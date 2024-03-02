@@ -6,7 +6,7 @@
         <br/><span class="text-muted">Gestart voor 2020? Gebruik je D-nummer</span>
     </p>
     <form method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
+        @csrf
         <div class="form-group">
             <input placeholder="i123456" name="id" value="{{ old('id') }}" type="text" autofocus>
             @if ($errors->has('id'))

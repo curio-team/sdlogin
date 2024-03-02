@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
 
 		@if (session('success'))
@@ -18,10 +18,10 @@
 			Link <strong><a href="http://curio.codes/{{ session('updated') }}" target="_blank">curio.codes/{{ session('updated') }}</a></strong> aangepast!
 		</div>
 		@endif
-		
+
 		<form action="/links" method="POST">
-			{{ method_field('DELETE') }}
-			{{ csrf_field() }}
+			@method('DELETE')
+			@csrf
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="btn-group">

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<a class="btn btn-primary" href="/clients"><i class="fa fa-chevron-left"></i> Terug</a>
 
 		<h5>{{ $client->name }}</h5>
@@ -31,7 +31,7 @@
 			<tr>
 				<th>Dev/test-app:</th>
 				<td>&nbsp;</td>
-				<td><?php echo $client->for_development ? 'Ja' : 'Nee'; ?> <a href="/clients/{{ $client->id }}/toggle">(toggle)</a></td>
+				<td><?php echo $client->for_development ? 'Ja' : 'Nee'; ?> <a href="{{ route('clients.toggle_dev', $client) }}">(toggle)</a></td>
 			</tr>
 		</table>
 	</div>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="btn-group">
-					<a class="btn btn-success" href="/clients/create"><i class="fa fa-plus"></i> Nieuw</a>
+					<a class="btn btn-success" href="{{ route('clients.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
 				</div>
 			</div>
 		</div>
@@ -33,8 +33,8 @@
 								<td>{{ $client->user_id }}</td>
 								<td>
 									<div class="btn-group">
-										<a class="btn btn-secondary" href="/clients/{{ $client->id }}"><i class="fa fa-eye"></i></a>
-										<a class="btn btn-danger" href="/clients/{{ $client->id }}/delete"><i class="fa fa-trash"></i></a>
+										<a class="btn btn-secondary" href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
+										<a class="btn btn-danger" href="{{ route('clients.delete', $client) }}"><i class="fa fa-trash"></i></a>
 									</div>
 								</td>
 							</tr>

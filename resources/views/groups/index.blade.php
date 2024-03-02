@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-	
+
 	<div class="container spaced-container">
 
 		@if (session('notice'))
@@ -14,10 +14,10 @@
 			{{ session('notice') }}
 		</div>
 		@endif
-		
+
 		<form action="/groups" method="POST">
-			{{ method_field('DELETE') }}
-			{{ csrf_field() }}
+			@method('DELETE')
+			@csrf
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="btn-group">
@@ -61,7 +61,7 @@
 									<td>
 										<div class="btn-group">
 											<a class="btn btn-primary" href="/groups/{{ $group->id }}/edit"><i class="fa fa-pencil"></i></a>
-											<a class="btn btn-danger" href="/groups/{{ $group->id }}/delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-danger" href="{{ route('groups.delete', $group) }}"><i class="fa fa-trash"></i></a>
 										</div>
 									</td>
 								</tr>

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Link aanpassen</h5>
 
 		@if ($errors->any())
@@ -17,9 +17,9 @@
 		@endif
 
 		<form action="/links/{{ $link->short }}" method="POST">
-			{{ method_field('PATCH') }}
-			{{ csrf_field() }}
-			
+			@method('PATCH')
+			@csrf
+
 			<div class="form-group row">
 		     	<div class="col-sm-12">
 		        	<p style="font-size: 1.1rem;">curio.codes/{{ $link->short }} <strong><i class="fa fa-long-arrow-right"></i></strong> {{ $link->url }}</p>

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Nieuwe link</h5>
 
 		@if ($errors->any())
@@ -17,8 +17,8 @@
 		@endif
 
 		<form action="/links" method="POST">
-			{{ csrf_field() }}
-			
+			@csrf
+
 			<div class="form-group row">
 		    	<label for="type" class="col-sm-3 col-form-label">Lang *:</label>
 		     	<div class="col-sm-6">

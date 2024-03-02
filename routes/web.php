@@ -1,77 +1,88 @@
 <?php
 
+use App\Http\Controllers\BatchGroupController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ImportEolController;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
-$apiRoutes = function() {
+$apiRoutes = function () {
     Route::redirect('/', 'https://apitest.amo.rocks/');
 };
 
-$mainRoutes = function() {
+$mainRoutes = function () {
     Route::redirect('/', 'https://login.curio.codes/')->name('home');
-    Route::get('/{link}', 'RedirectController@go');
+    Route::get('/{link}', [RedirectController::class, 'go']);
 };
 
-Route::group(['domain' => 'login.curio.codes'], function() {
+$domainGroup = env('APP_ENV') == 'local' ? [] : ['domain' => 'login.curio.codes'];
 
-	Route::group(['middleware' => 'auth'], function() {
-		
-		Route::redirect('/', '/me', 301);
-		Route::redirect('/home', '/me', 301);
-		Route::get('/me', 'DashboardController@show')->name('home');
-		Route::get('/users/{user}/profile', 'UserController@profile')->name('users.profile');
-		Route::patch('/users/{user}/profile', 'UserController@profile_update');
+Route::group($domainGroup, function () {
+    Route::group(['middleware' => 'auth'], function () {
+        Route::redirect('/', '/me', 301);
+        Route::redirect('/home', '/me', 301);
+        Route::get('/me', [DashboardController::class, 'show'])->name('home');
 
-		Route::group(['middleware' => 'admin'], function() {
-			
-			Route::resource('clients', 'MyClientController', ['except' => ['edit', 'update']]);
-			Route::get('clients/{client}/toggle', 'MyClientController@toggle_dev');
-			
-			Route::get('groups/create/batch', 'BatchGroupController@create');
-			Route::post('groups/batch', 'BatchGroupController@store');
-			Route::delete('/groups', 'GroupController@destroy');
-			Route::resource('groups', 'GroupController', ['except' => ['show', 'destroy']]);
+        Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
+        Route::patch('/users/{user}/profile', [UserController::class, 'profile_update']);
 
-			Route::get('/users/import', 'ImportController@show');
-			Route::post('/users/import', 'ImportController@upload');
-			Route::get('/users/import/eol', 'ImportEolController@show');
-			Route::post('/users/import/eol', 'ImportEolController@upload');
-			
-			Route::get('/users/cleanup', 'UserCleanupController@show');
-			Route::post('/users/cleanup', 'UserCleanupController@clean');
+        Route::group(['middleware' => 'admin'], function () {
+            Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
+            Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
+            Route::get('clients/{client}/toggle', [ClientController::class, 'toggle_dev'])->name('clients.toggle_dev');
 
-			Route::delete('/users', 'UserController@destroy');
-			Route::resource('users', 'UserController', ['except' => ['show', 'destroy']]);
+            Route::get('groups/create/batch', [BatchGroupController::class, 'create']);
+            Route::post('groups/batch', [BatchGroupController::class, 'store']);
+            Route::get('groups/{group}/delete', [GroupController::class, 'delete'])->name('groups.delete');
+            Route::resource('groups', GroupController::class, ['except' => ['show']]);
 
-			Route::delete('/links', 'LinkController@destroy');
-			Route::resource('links', 'LinkController', ['except' => ['show', 'destroy']]);
+            Route::get('/users/import', [ImportController::class, 'show'])->name('users.import');
+            Route::post('/users/import', [ImportController::class, 'upload'])->name('users.import_upload');
+            Route::get('/users/import/eol', [ImportEolController::class, 'show'])->name('users.import_eol');
+            Route::post('/users/import/eol', [ImportEolController::class, 'upload'])->name('users.import_eol_upload');
 
-			Route::get('grouplogin', 'GroupLoginController@index');
-			Route::get('grouplogin/{group}', 'GroupLoginController@show');
-			Route::post('grouplogin/{group}', 'GroupLoginController@do');
+            Route::get('/users/cleanup', [UserController::class, 'cleanup'])->name('users.cleanup');
+            Route::post('/users/cleanup', [UserController::class, 'clean'])->name('users.cleanup_do');
 
-		});
-	});
+            Route::delete('/users', [UserController::class, 'destroy']);
 
-	Route::view('passwords', 'auth.passwords');
-	Route::get('login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-	Route::post('login', '\App\Http\Controllers\Auth\LoginController@login');
-	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+            Route::resource('users', UserController::class, ['except' => ['show', 'destroy']]);
 
-	// Password Reset Routes...
-	Route::get('password/reset', '\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-	Route::post('password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-	Route::get('password/reset/{token}', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-	Route::post('password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset');
+            Route::delete('/links', [LinkController::class, 'destroy']);
+            Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);
 
+            Route::get('grouplogin', [GroupController::class, 'index']);
+            Route::get('grouplogin/{group}', [GroupController::class, 'show']);
+            Route::post('grouplogin/{group}', [GroupController::class, 'do']);
+        });
+    });
+
+    Route::view('passwords', 'auth.passwords');
+    Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+    Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+    // Password Reset Routes...
+    Route::get('password/reset', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('password/email', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('password/reset/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/reset', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'reset']);
 });
 
 Route::group(['domain' => 'api.curio.codes'], $apiRoutes);

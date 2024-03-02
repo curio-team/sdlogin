@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Nieuwe app</h5>
 
 		@if ($errors->any())
@@ -17,7 +17,7 @@
 		@endif
 
 		<form action="/clients" method="POST">
-			{{ csrf_field() }}
+			@csrf
 
 			<div class="form-group row">
 		    	<label for="name" class="col-sm-3 col-form-label">App naam *</label>
@@ -29,7 +29,7 @@
 		    	<label for="redirect" class="col-sm-3 col-form-label">Redirect URL *</label>
 		     	<div class="col-sm-6">
 		        	<input type="text" class="form-control" id="redirect" name="redirect" value="{{ old('redirect') }}">
-		        	<small class="form-text text-muted">If you use Amoclient, this should be: http://yoursite/amoclient/callback</small>
+		        	<small class="form-text text-muted">If you use SD-client, this should be: http://yoursite/sdclient/callback</small>
 		      	</div>
 		    </div>
 		    <div class="form-group row">

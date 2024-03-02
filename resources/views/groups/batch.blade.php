@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	
+
 	<div class="container spaced-container">
-		
+
 		<h5>Nieuwe klassen</h5>
 
 		@if ($errors->any())
@@ -17,7 +17,7 @@
 		@endif
 
 		<form action="/groups/batch" method="POST">
-			{{ csrf_field() }}
+			@csrf
 
 		    <div class="form-group row">
 		    	<label class="col-sm-3 col-form-label">Type *</label>
