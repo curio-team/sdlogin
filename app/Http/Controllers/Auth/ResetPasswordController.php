@@ -18,7 +18,7 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ChecksPasswords, ResetsPasswords{
+    use ChecksPasswords, ResetsPasswords {
         reset as protected parentreset;
     }
 
@@ -41,10 +41,14 @@ class ResetPasswordController extends Controller
 
     public function reset(Request $request)
     {
-        $check = $this->check_password($request->password);
-        if(!$check->passes) {
-            return redirect()->route('password.request')->withErrors(['password' => 'Je nieuwe wachtwoord is niet sterk genoeg!']);
+        $check = $this->checkPassword($request->password);
+
+        if (!$check->passes) {
+            return redirect()
+                ->back()
+                ->withErrors($check->feedback);
         }
+
         return $this->parentreset($request);
     }
 }

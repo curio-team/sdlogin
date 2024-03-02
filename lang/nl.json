@@ -12,5 +12,25 @@
   "Please click the button below to verify your email address.": "Klik op onderstaande knop om je e-mailadres te bevestigen.",
   "If you did not create an account, no further action is required.": "Als je geen account hebt aangemaakt, dan hoef je niets te doen.",
   "(and :count more error)": "(en :count andere fout)",
-  "(and :count more errors)": "(en :count andere fouten)"
+  "(and :count more errors)": "(en :count andere fouten)",
+
+  "Use a few words, avoid common phrases": "Gebruik een paar woorden, vermijd veelgebruikte zinnen",
+  "No need for symbols, digits, or uppercase letters": "Symbolen, cijfers of hoofdletters zijn niet nodig",
+  "Add another word or two. Uncommon words are better.": "Voeg nog een woord of twee toe. Ongebruikelijke woorden zijn beter.",
+  "This is similar to a commonly used password": "Dit lijkt op een veelgebruikt wachtwoord",
+  "Recent years are easy to guess": "Recentelijke jaartallen zijn makkelijk te raden",
+  "Avoid recent years": "Vermijd recentelijke jaartallen",
+  "Avoid years that are associated with you": "Vermijd jaartallen die met jou geassocieerd zijn",
+  "Reversed words aren't much harder to guess": "Omgekeerde woorden zijn niet veel moeilijker te raden",
+  "Repeats like \"aaa\" are easy to guess": "Herhalingen zoals \"aaa\" zijn makkelijk te raden",
+  "Repeats like \"abcabcabc\" are only slightly harder to guess than \"abc\"": "Herhalingen zoals \"abcabcabc\" zijn slechts iets moeilijker te raden dan \"abc\"",
+  "Avoid repeated words and characters": "Vermijd herhaalde woorden en tekens",
+  "Straight rows of keys are easy to guess": "Rechte rijen van toetsen zijn makkelijk te raden",
+  "Short keyboard patterns are easy to guess": "Korte toetsenbordpatronen zijn makkelijk te raden",
+  "Use a longer keyboard pattern with more turns": "Gebruik een langer toetsenbordpatroon met meer bochten",
+  "Sequences like abc or 6543 are easy to guess": "Sequenties zoals abc of 6543 zijn makkelijk te raden",
+  "Avoid sequences": "Vermijd sequenties",
+  "Predictable substitutions like '@' instead of 'a' don't help very much": "Voorspelbare vervangingen zoals '@' in plaats van 'a' helpen niet veel",
+  "Dates are often easy to guess": "Datums zijn vaak makkelijk te raden",
+  "Avoid dates and years that are associated with you": "Vermijd datums en jaartallen die met jou geassocieerd zijn"
 }

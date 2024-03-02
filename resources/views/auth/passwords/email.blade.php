@@ -7,6 +7,12 @@
         </p>
     @endif
 
+	<div class="alert alert-danger">
+        <strong>Let op!</strong>
+		<div>Vanwege beperkingen in de mailserver van Curio is het hoogstwaarschijnlijk dat je de 'wachtwoord vergeten'-mail niet ontvangt. Dit is omdat er 'curio' in de afzender voorkomt en Curio 'phishing'-aanvallen wil voorkomen.</div>
+        <strong>Vraag daarom je docent om je wachtwoord voor je te resetten.</strong>
+	</div>
+
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.email') }}">
         @csrf

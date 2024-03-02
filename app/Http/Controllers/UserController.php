@@ -21,7 +21,7 @@ class UserController extends Controller
         $users = User::with('groups');
         $search = request('q', false);
 
-        if($search) {
+        if ($search) {
             $users = $users->whereHas('groups', function ($query) {
                 $search = request('q');
                 $query->where('name', 'LIKE', "%$search%");
@@ -60,7 +60,7 @@ class UserController extends Controller
             'id' => 'required|alpha_num',
             'name' => 'required|string',
             'email' => 'nullable|email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed|string',
         ]);
 
         $user = new User();
@@ -69,19 +69,23 @@ class UserController extends Controller
         $user->type = $request->type;
 
         $user->email = $request->email;
-        if($user->email == null) {
+        if ($user->email == null) {
             $user->email = $user->id . '@' . ($user->type == 'student' ? 'edu.' : '') . 'curio.nl';
         }
 
-        $check = $this->check_password($request->password, $user);
-        if(!$check->passes) {
-            return redirect()->route('users.create')->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+        $check = $this->checkPassword($request->password, $user);
+
+        if (!$check->passes) {
+            return redirect()
+                ->route('users.create')
+                ->withInput($request->input())
+                ->withErrors($check->feedback);
         }
 
         $user->password = bcrypt($request->password);
         $user->save();
 
-        if($request->groups != null) {
+        if ($request->groups != null) {
             $user->groups()->attach($request->groups);
         }
 
@@ -117,32 +121,42 @@ class UserController extends Controller
             ->with('user', $user);
     }
 
-    public function profile_update(Request $request, User $user)
+    public function profileUpdate(Request $request, User $user)
     {
         if (Gate::denies('edit-self', $user)) {
             return redirect('/me');
         }
 
-        if(!password_verify($request->password, $user->getPassword())) {
-            return redirect()->route('users.profile', $user)->withErrors(['msg' => 'Je huidige wachtwoord is niet correct.']);
+        if (!password_verify($request->password, $user->getPassword())) {
+            return redirect()
+                ->route('users.profile', $user)
+                ->withErrors(['Je huidige wachtwoord is niet correct.']);
         }
 
         $request->validate([
             'password_new' => 'nullable|confirmed'
         ]);
 
-        $check = $this->check_password($request->password_new, $user);
-        if(!$check->passes) {
-            return redirect()->route('users.profile', $user)->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+        if ($request->password_new == null) {
+            return redirect()
+                ->route('users.profile', $user)
+                ->withErrors(['Je nieuwe wachtwoord is niet ingevuld.']);
+        }
+
+        $check = $this->checkPassword($request->password_new, $user);
+
+        if (!$check->passes) {
+            return redirect()
+                ->route('users.profile', $user)
+                ->withErrors($check->feedback);
         }
 
         $user->password = bcrypt($request->password_new);
         $user->save();
-        $request->session()->flash('notice', array(
+        $request->session()->flash('notice', [
             'Je wachtwoord is opgeslagen.',
-            'Je hebt een ' . ($check->score == 3 ? 'redelijk' : 'heel') . ' sterk wachtwoord gekozen.',
-            'Het zou ongeveer ' . $check->time . ' duren om dit wachtwoord te kraken!'
-        ));
+            'Voor jouw informatie, je hebt een wachtwoord gekozen waarvoor het een hacker ongeveer ' . $check->time . ' zou duren om het te raden!'
+        ]);
 
         return redirect('/users/' . $user->id . '/profile');
     }
@@ -160,10 +174,14 @@ class UserController extends Controller
             'password' => 'nullable|confirmed'
         ]);
 
-        if($request->password != null) {
-            $check = $this->check_password($request->password, $user);
-            if(!$check->passes) {
-                return redirect()->route('users.edit', $user)->withInput($request->input())->withErrors(['msg' => 'Je nieuwe wachtwoord is niet sterk genoeg.', 'msg2' =>  'Dit wachtwoord zou in ongeveer ' . $check->time . ' te kraken zijn!']);
+        if ($request->password != null) {
+            $check = $this->checkPassword($request->password, $user);
+
+            if (!$check->passes) {
+                return redirect()
+                    ->route('users.edit', $user)
+                    ->withInput($request->input())
+                    ->withErrors($check->feedback);
             }
             $user->password = bcrypt($request->password);
             $user->save();
@@ -190,11 +208,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
-        if(!is_array($request->delete)) {
+        if (!is_array($request->delete)) {
             return redirect()->back();
         }
 
-        foreach($request->delete as $id) {
+        foreach ($request->delete as $id) {
             $user = User::find($id);
             $user->groups()->detach();
             $user->delete();

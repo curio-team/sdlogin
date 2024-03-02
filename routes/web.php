@@ -40,7 +40,7 @@ Route::group($domainGroup, function () {
         Route::get('/me', [DashboardController::class, 'show'])->name('home');
 
         Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
-        Route::patch('/users/{user}/profile', [UserController::class, 'profile_update']);
+        Route::patch('/users/{user}/profile', [UserController::class, 'profileUpdate']);
 
         Route::group(['middleware' => 'admin'], function () {
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);

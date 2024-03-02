@@ -147,15 +147,25 @@ footer{
 
 .alert-primary {
     color: #d6e3df;
-    background-color: #004c35;    
+    background-color: #004c35;
 }
 
 .alert-primary a{
 	color: #d6e3df;
 }
 
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-danger ul{
+    padding-left: 18px;
+}
+
 @media only screen and (max-width: 768px) {
-	
+
 	html{
 		font-size: 16px;
 	}
@@ -163,14 +173,14 @@ footer{
 	.container{
 		display: block;
 	}
-	
+
 	.aside{
 		display: none;
 	}
 }
 
 @media only screen and (max-width: 480px) {
-	
+
 	html{
 		font-size: 14px;
 	}
@@ -182,7 +192,7 @@ footer{
 }
 
 @media only screen and (max-width: 340px) {
-	
+
 	.submit{
 		flex-direction: column;
 		align-items: flex-start;

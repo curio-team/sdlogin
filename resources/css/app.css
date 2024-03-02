@@ -37,6 +37,11 @@ body{
     min-width: fit-content;
 }
 
+.alert ul {
+    margin-bottom: 0;
+    padding-left: 1rem;
+}
+
 .btn-brand{
 	border-color: #004c35;
 	color: #004c35;

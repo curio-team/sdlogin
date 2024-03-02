@@ -1,10 +1,18 @@
 @extends('layouts.auth')
 
 @section('content')
-
     <div class="alert alert-primary">
         Lees ook onze <a href="/passwords" target="_blank">richtlijnen</a> voor een sterk wachtwoord.
     </div>
+	@if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
     <p>Reset je wachtwoord:</p>
     <form method="POST" action="{{ route('password.request') }}">
         @csrf
