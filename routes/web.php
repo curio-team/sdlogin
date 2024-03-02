@@ -32,7 +32,7 @@ $mainRoutes = function () {
     Route::get('/{link}', [RedirectController::class, 'go']);
 };
 
-$domainGroup = env('APP_ENV') == 'local' ? [] : ['domain' => 'login.curio.codes'];
+$domainGroup = env('APP_ENV') === 'local' ? [] : ['domain' => 'login.curio.codes'];
 
 Route::group($domainGroup, function () {
     Route::group(['middleware' => 'auth'], function () {

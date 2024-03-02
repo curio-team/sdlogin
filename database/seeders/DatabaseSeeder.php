@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Group;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,24 +15,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'id' => 'xy10',
-            'name' => 'Test Kees',
-            'email' => 'test@curio.codes',
-            'password' => bcrypt('password'),
-            'type' => 'teacher',
-        ]);
+        $teacherGroup = new Group();
+        $teacherGroup->name = 'docenten';
+        $teacherGroup->type = 'group';
+        $teacherGroup->date_start = '2017-08-01';
+        $teacherGroup->date_end = '9999-12-12';
+        $teacherGroup->save();
 
-        DB::table('groups')->insert([
-            'name' => 'docenten',
-            'type' => 'group',
-            'date_start' => '2017-08-01',
-            'date_end' => '9999-12-12'
-        ]);
+        $teacher = new User();
+        $teacher->id = 'xy10';
+        $teacher->name = 'Test Kees';
+        $teacher->email = 'kees@curio.codes';
+        $teacher->password = bcrypt('password');
+        $teacher->type = 'teacher';
+        $teacher->save();
 
-        DB::table('group_user')->insert([
-            'group_id' => 1,
-            'user_id' => 'xy10'
-        ]);
+        $teacherGroup->users()->attach($teacher);
+
+        $studentGroup = new Group();
+        $studentGroup->name = 'studenten';
+        $studentGroup->type = 'group';
+        $studentGroup->date_start = '2017-08-01';
+        $studentGroup->date_end = '9999-12-12';
+        $studentGroup->save();
+
+        $student = new User();
+        $student->id = 'i123456';
+        $student->name = 'Test Piet';
+        $student->email = 'piet@curio.codes';
+        $student->password = bcrypt('password');
+        $student->type = 'student';
+        $student->save();
+
+        $studentGroup->users()->attach($student);
     }
 }

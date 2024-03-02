@@ -28,15 +28,19 @@ $apiRoutes = function () {
         // All responses (except index) will include the group's members (only for teachers)
 
         //Return all currently active groups (index)
-        Route::get('/groups', [App\Http\Controllers\Api\GroupApiController::class, 'index']);
+        Route::get('/groups', [App\Http\Controllers\Api\GroupApiController::class, 'index'])->name('api.groups');
 
         //Find group by name (eg.: RIO4-AMO1A). Returns only currently active groups!
-        Route::get('/groups/find/{name}', [App\Http\Controllers\Api\GroupApiController::class, 'find']);
+        Route::get('/groups/find/{name}', [App\Http\Controllers\Api\GroupApiController::class, 'find'])->name('api.groups.find');
 
         //Find group by id
-        Route::get('/groups/{group}', [App\Http\Controllers\Api\GroupApiController::class, 'group']);
+        Route::get('/groups/{group}', [App\Http\Controllers\Api\GroupApiController::class, 'group'])->name('api.groups.group');
     });
 };
 
-Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
-Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
+if (env('APP_ENV') === 'local') {
+    Route::group([], $apiRoutes);
+} else {
+    Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
+    Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
+}

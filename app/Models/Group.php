@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
+    use HasFactory;
+
     protected $casts = [
         'date_start' => 'datetime:Y-m-d',
         'date_end' => 'datetime:Y-m-d',
