@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ImportEolController;
 use App\Models\Group;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
@@ -79,7 +79,7 @@ class EolUsersImport implements ToModel, SkipsEmptyRows, WithHeadingRow
 
         $user = new User();
         $user->id = 'i' . $id;
-        $user->name = ImportController::stripAccents($name);
+        $user->name = ImportEolController::stripAccents($name);
         $user->email = 'D' . $id . '@edu.rocwb.nl';
         $user->type = 'student';
         $user->password = bcrypt(bin2hex(random_bytes(10)));

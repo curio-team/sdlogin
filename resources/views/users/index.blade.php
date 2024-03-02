@@ -24,7 +24,6 @@
 						<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Verwijderen</button>
 						<a class="btn btn-success" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
 						<a class="btn btn-primary" href="{{ route('users.import_eol') }}"><i class="fa fa-upload"></i> Import EOL</a>
-						<a class="btn btn-secondary" href="{{ route('users.import') }}"><i class="fa fa-upload"></i> Import Edictis</a>
 						<a class="btn btn-warning" href="{{ route('users.cleanup') }}"><i class="fa fa-eraser"></i> Opruimen</a>
 					</div>
 				</div>
