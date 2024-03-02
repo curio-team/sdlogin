@@ -34,6 +34,10 @@ jobs:
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      - name: Prepare Laravel Application
+        run: |
+          php artisan passport:keys
+
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
