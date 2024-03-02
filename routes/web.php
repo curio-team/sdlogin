@@ -7,6 +7,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ImportEolController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\GroupLoginController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -67,15 +68,15 @@ Route::group($domainGroup, function () {
             Route::delete('/links', [LinkController::class, 'destroy']);
             Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);
 
-            Route::get('grouplogin', [GroupController::class, 'index']);
-            Route::get('grouplogin/{group}', [GroupController::class, 'show']);
-            Route::post('grouplogin/{group}', [GroupController::class, 'do']);
+            Route::get('grouplogin', [GroupLoginController::class, 'index']);
+            Route::get('grouplogin/{group}', [GroupLoginController::class, 'show']);
+            Route::post('grouplogin/{group}', [GroupLoginController::class, 'do']);
         });
     });
 
     Route::view('passwords', 'auth.passwords');
     Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login.submit');
     Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     // Password Reset Routes...
