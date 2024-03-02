@@ -22,7 +22,7 @@
         <div class="col-lg-7 pr-5">
             <div class="links-container">
                 <a target="_blank"
-                   class="btn btn-brand"
+                   class="btn btn-brand min-w-fit"
                    href="http://student.curio.nl/">
                     Naar mijn edu-account
                     <i class="fa fa-fw fa-external-link"></i>
@@ -30,7 +30,7 @@
                 @foreach($apps as $app)
                 <?php $url = parse_url($app->redirect); ?>
                 <a target="_blank"
-                   class="btn btn-brand"
+                   class="btn btn-brand min-w-fit"
                    href="{{ $url['scheme'].'://'.$url['host'] }}">
                     {{ $app->name }}
                     <i class="fa fa-fw fa-cube"></i>
@@ -38,7 +38,7 @@
                 @endforeach
                 @foreach($links as $link)
                 <a target="_blank"
-                   class="btn btn-brand"
+                   class="btn btn-brand min-w-fit"
                    href="http://curio.codes/{{ $link->short }}">
                     {{ $link->title ?? ucfirst($link->short) }}
                     <i class="fa fa-fw fa-external-link"></i>

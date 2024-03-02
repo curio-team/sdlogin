@@ -33,6 +33,10 @@ body{
 	border-color: #004c35;
 }
 
+.min-w-fit {
+    min-width: fit-content;
+}
+
 .btn-brand{
 	border-color: #004c35;
 	color: #004c35;
@@ -196,7 +200,7 @@ button{
 }
 
 .my-group-list ul{
-	padding-left: 18px; 
+	padding-left: 18px;
 }
 
 .my-group .title{
