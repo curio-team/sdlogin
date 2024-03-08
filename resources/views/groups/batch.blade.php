@@ -42,19 +42,10 @@
 		    	<label for="names" class="col-sm-3 col-form-label">Namen *</label>
 		     	<div class="col-sm-6">
 		     		<textarea name="names" id="mames" cols="30" rows="15" class="form-control">
-RIO4-AMO1A
-RIO4-AMO1B
-RIO4-AMO1C
-RIO4-AMO1D
-RIO4-AMO1E
-RIO4-AMO1F
-RIO4-AMO2A
-RIO4-AMO2B
-RIO4-AMO2C
-RIO4-AMO2D
-RIO4-AMO3A
-RIO4-AMO3B
-RIO4-AMO3C</textarea>
+<?php $letters = array('a', 'b', 'c', 'd', 'n'); ?>
+@foreach ($letters as $letter)
+TTSDB-sd4o{{ date('y') . $letter }}
+@endforeach</textarea>
 		      	</div>
 		    </div>
 
