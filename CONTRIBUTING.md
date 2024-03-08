@@ -25,7 +25,7 @@
 5. Run the tests:
 
     ```bash
-    composer test
+    php artisan test
     ```
 
 6. You can start the project like any other Laravel project:
@@ -63,7 +63,7 @@
 9. Run the tests to ensure your changes are working:
 
     ```bash
-    composer test
+    php artisan test
     ```
 
 10. Commit your changes
