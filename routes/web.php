@@ -8,6 +8,7 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GroupLoginController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\UserCleanupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,8 +56,8 @@ Route::group($domainGroup, function () {
             Route::get('/users/import/eol', [ImportEolController::class, 'show'])->name('users.import_eol');
             Route::post('/users/import/eol', [ImportEolController::class, 'upload'])->name('users.import_eol_upload');
 
-            Route::get('/users/cleanup', [UserController::class, 'cleanup'])->name('users.cleanup');
-            Route::post('/users/cleanup', [UserController::class, 'clean'])->name('users.cleanup_do');
+            Route::get('/users/cleanup', [UserCleanupController::class, 'show'])->name('users.cleanup');
+            Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');
 
             Route::delete('/users', [UserController::class, 'destroy']);
 
