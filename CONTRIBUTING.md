@@ -16,19 +16,7 @@
     npm install
     ```
 
-4. Create a new branch for your feature:
-
-    ```bash
-    git checkout -b feature/my-feature
-    ```
-
-5. Run the tests:
-
-    ```bash
-    php artisan test
-    ```
-
-6. You can start the project like any other Laravel project:
+4. You can start the project like any other Laravel project:
 
     - Copy the `.env.example` file to `.env`:
 
@@ -53,28 +41,48 @@
         npm run dev
         ```
 
-7. For testing you can login with the following credentials:
+5. Additionally you will have to install the Laravel Passport keys:
+
+    ```bash
+    php artisan passport:keys
+    ```
+
+6. For testing you can login with the following credentials:
 
     - **Username:** `xy10`
     - **Password:** `password`
 
-8. Make your changes
+Now then, time for you to start contributing!
 
-9. Run the tests to ensure your changes are working:
+7. Create a new branch for your feature:
+
+    ```bash
+    git checkout -b feature/my-feature
+    ```
+
+8. Run the tests:
 
     ```bash
     php artisan test
     ```
 
-10. Commit your changes
+9. Make your changes
 
-11. Push your branch to your fork:
+10. Run the tests to ensure your changes are working:
+
+    ```bash
+    php artisan test
+    ```
+
+11. Commit your changes
+
+12. Push your branch to your fork:
 
     ```bash
     git push origin feature/my-feature
     ```
 
-12. Create a pull request
+13. Create a pull request
 
 ## ✨ Testing a client application
 
