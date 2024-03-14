@@ -36,8 +36,8 @@ $domainGroup = (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') ? []
 
 Route::group($domainGroup, function () {
     Route::group(['middleware' => 'auth'], function () {
-        Route::redirect('/', '/me', 301);
-        Route::redirect('/home', '/me', 301);
+        Route::redirect('/', '/me');
+        Route::redirect('/home', '/me');
         Route::get('/me', [DashboardController::class, 'show'])->name('home');
 
         Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
