@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -33,15 +38,47 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function sendPasswordResetNotification($token)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $this->notify(new \App\Notifications\ResetPasswordNotification($token, $this));
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_start', '<', Carbon::now())
+            ->whereDate('date_end', '>=', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
+    }
+
+    public function groupsWithFuture()
+    {
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_end', '>=', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
+    }
+
+    public function groupHistory()
+    {
+        return $this->belongsToMany(Group::class)
+            ->whereDate('date_end', '<', Carbon::now())
+            ->orderBy('type')
+            ->orderBy('date_start');
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

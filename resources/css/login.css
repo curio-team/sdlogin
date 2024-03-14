@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Chivo|Open+Sans');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 18px;
+	font-family: "Open Sans", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: "Chivo", Arial, sans-serif;
+}
+
+.text-muted{
+	font-size: 0.9em;
+    color: #80a79b;
+}
+
+.container{
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 100%;
+	grid-template-columns: 1fr 600px;
+}
+
+.container > div{
+	padding: 2rem;
+}
+
+img{
+	max-width: 200px;
+}
+
+.form{
+	order: 1;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+.form > *{
+	width: 400px;
+	margin-bottom: 1rem;
+}
+.form > *:last-child{
+	margin-bottom: 0;
+}
+
+.form > h1{
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+}
+
+.form-group{
+	margin: .5rem 0;
+}
+
+.submit{
+	display: flex;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+input[type="submit"], input[type="text"], input[type="password"], input[type="email"]{
+	height: 2rem;
+    border: solid 1px #BABABA;
+    padding: 2px 5px;
+    font-size: 1.0rem;
+    width: 100%;
+}
+
+input[type="submit"]{
+    background: #d6e3df;
+    min-width: 80px;
+    width: auto;
+    padding: 4px 20px 6px 20px;
+    transition: all .15s ease-in-out;
+    color: #004c35;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover{
+	background: #004c35;
+	color: white;
+}
+
+form a{
+	color: #004c35;
+}
+
+label{
+	cursor: pointer;
+}
+
+label span{
+	font-size: .9rem;
+}
+
+.help-block{
+	font-size: .9em;
+	font-weight: bold;
+	color: red;
+}
+.success-block{
+	font-weight: bold;
+	color: green;
+}
+
+.submit a{
+	display: inline-block;
+	margin-left: .9rem;
+	font-size: .9rem;
+	text-decoration: none;
+}
+
+.submit a:hover{
+	text-decoration: underline;
+}
+
+footer{
+	margin-top: auto;
+	font-size: .9rem;
+	color: #80a79b;
+	text-align: center;
+}
+
+.aside{
+	order: 0;
+	background-size: cover;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.alert{
+	padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-primary {
+    color: #d6e3df;
+    background-color: #004c35;
+}
+
+.alert-primary a{
+	color: #d6e3df;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-danger ul{
+    padding-left: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+
+	html{
+		font-size: 16px;
+	}
+
+	.container{
+		display: block;
+	}
+
+	.aside{
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+
+	html{
+		font-size: 14px;
+	}
+
+	.form > *, img{
+		width: 90vw;
+	}
+
+}
+
+@media only screen and (max-width: 340px) {
+
+	.submit{
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.submit a{
+		margin-left: 0;
+		margin-top: .5rem;
+	}
+
+}
+
+@supports not (display:  grid){
+	.aside{
+		display: none;
+	}
+}
