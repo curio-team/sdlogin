@@ -55,7 +55,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $request->validate([
             'name' => 'required|string',
             'redirect' => 'required|url',
             'for_development' => 'required|boolean'

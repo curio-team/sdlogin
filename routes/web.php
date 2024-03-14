@@ -43,7 +43,7 @@ Route::group($domainGroup, function () {
         Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
         Route::patch('/users/{user}/profile', [UserController::class, 'profileUpdate']);
 
-        Route::group(['middleware' => 'admin'], function () {
+        Route::group(['middleware' => \App\Http\Middleware\Admin::class], function () {
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
             Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
             Route::get('clients/{client}/toggle', [ClientController::class, 'toggle_dev'])->name('clients.toggle_dev');

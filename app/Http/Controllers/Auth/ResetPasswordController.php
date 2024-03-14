@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
 
 class ResetPasswordController extends Controller
 {
@@ -30,13 +31,13 @@ class ResetPasswordController extends Controller
     protected $redirectTo = '/me';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Get the middleware that should be assigned to the controller.
      */
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('guest');
+        return [
+            new Middleware('guest'),
+        ];
     }
 
     public function reset(Request $request)
