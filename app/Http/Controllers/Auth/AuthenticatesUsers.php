@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -11,7 +10,6 @@ trait AuthenticatesUsers
 {
     use RedirectsUsers;
     use ThrottlesLogins;
-    use ValidatesRequests;
 
     /**
      * Show the application's login form.
@@ -62,7 +60,7 @@ trait AuthenticatesUsers
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);

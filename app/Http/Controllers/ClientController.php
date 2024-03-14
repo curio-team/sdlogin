@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Http\Rules\RedirectRule;
 
 class ClientController extends Controller
 {
-    use ValidatesRequests;
-
     private $clients;
 
     private $clientController;
@@ -58,7 +55,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $request->validate([
             'name' => 'required|string',
             'redirect' => 'required|url',
             'for_development' => 'required|boolean'
