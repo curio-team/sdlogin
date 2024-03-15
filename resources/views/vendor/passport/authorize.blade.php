@@ -86,18 +86,17 @@
 @section('content')
 <div class="card card-default">
     <div class="card-header">
-        Login Verzoek
+        Inlogverzoek
     </div>
     <div class="card-body">
         <!-- Introduction -->
-        <p><strong>{{ $client->name }}</strong> vraagt toestemming om toegang te krijgen met je account.</p>
-        <p class="mt"><em>Met jouw toestemming kan deze applicatie jouw naam en school e-mailadres bekijken.</em></p>
+        <p><strong>{{ $client->name }}</strong> vraagt toestemming om in te loggen met jouw i-account.</p>
+        <p class="mt"><em>De applicatie kan alleen jouw naam, klas en Curio-mailadres bekijken.</em></p>
 
         <!-- Scope List -->
         @if (count($scopes) > 0)
         <div class="scopes">
             <p><strong>Deze applicatie kan vervolgens:</strong></p>
-
             <ul>
                 @foreach ($scopes as $scope)
                 <li>{{ $scope->description }}</li>
@@ -107,38 +106,23 @@
         @endif
 
         <div class="btn-group mt">
-            <form method="post"
-                  action="{{ route('passport.authorizations.deny') }}">
+            <form method="post" action="{{ route('passport.authorizations.deny') }}">
                 @csrf
                 @method('DELETE')
 
-                <input type="hidden"
-                       name="state"
-                       value="{{ $request->state }}">
-                <input type="hidden"
-                       name="client_id"
-                       value="{{ $client->getKey() }}">
-                <input type="hidden"
-                       name="auth_token"
-                       value="{{ $authToken }}">
+                <input type="hidden" name="state" value="{{ $request->state }}">
+                <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                <input type="hidden" name="auth_token" value="{{ $authToken }}">
                 <button class="btn btn-danger">Weigeren</button>
             </form>
 
-            <form method="post"
-                  action="{{ route('passport.authorizations.approve') }}">
+            <form method="post" action="{{ route('passport.authorizations.approve') }}">
                 @csrf
 
-                <input type="hidden"
-                       name="state"
-                       value="{{ $request->state }}">
-                <input type="hidden"
-                       name="client_id"
-                       value="{{ $client->getKey() }}">
-                <input type="hidden"
-                       name="auth_token"
-                       value="{{ $authToken }}">
-                <button type="submit"
-                        class="btn btn-brand">Toestaan en Inloggen</button>
+                <input type="hidden" name="state" value="{{ $request->state }}">
+                <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                <input type="hidden" name="auth_token" value="{{ $authToken }}">
+                <button type="submit" class="btn btn-brand">Toestaan en Inloggen</button>
             </form>
         </div>
     </div>
