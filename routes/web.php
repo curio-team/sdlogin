@@ -32,9 +32,7 @@ $mainRoutes = function () {
     Route::get('/{link}', [RedirectController::class, 'go']);
 };
 
-$domainGroup = (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') ? [] : ['domain' => 'login.curio.codes'];
-
-Route::group($domainGroup, function () {
+$loginRoutes = function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::redirect('/', '/me');
         Route::redirect('/home', '/me');
@@ -82,7 +80,17 @@ Route::group($domainGroup, function () {
     Route::post('password/email', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('password/reset/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'reset']);
-});
+};
+
+if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
+    Route::group([], $loginRoutes);
+} else {
+    $domains = ['login.curio.codes', 'login2.curio.codes'];
+
+    foreach ($domains as $domain) {
+        Route::group(['domain' => $domain], $loginRoutes);
+    }
+}
 
 Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
 Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
