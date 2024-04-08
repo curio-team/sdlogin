@@ -25,7 +25,7 @@
 	</div>
 	@endif
 
-	<form action="/users/{{ $user->id }}/profile" method="POST">
+	<form action="{{ route('users.profile_update', $user->id) }}" method="POST">
 		@method('PATCH')
 		@csrf
 

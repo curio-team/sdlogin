@@ -29,7 +29,7 @@
 		    </div>
 		@endif
 
-		<form action="/users/{{ $user->id }}" method="POST">
+		<form action="{{ route('users.update', $user->id) }}" method="POST">
 			@method('PATCH')
 			@csrf
 
@@ -55,7 +55,7 @@
 		    	<div class="form-group row">
 			    	<label for="password" class="col-sm-3 col-form-label">Wachtwoord</label>
 			     	<div class="col-sm-6">
-			        	<input type="password" class="form-control" id="password" name="password">
+			        	<input type="password" class="form-control" id="password" name="password" onkeyup="document.getElementById('password_force_change').checked = this.value != '';">
 			      	</div>
 			    </div>
 			    <div class="form-group row">
@@ -63,6 +63,14 @@
 			     	<div class="col-sm-6">
 			        	<input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
 			      	</div>
+			    </div>
+			    <div class="form-group row">
+			    	<div class="col-sm-3">Forceer dat gebruiker wachtwoord verandert na inloggen</div>
+                 	<div class="col-sm-6">
+                        <input type="checkbox" id="password_force_change" name="password_force_change" value="1"
+                            @if($user->password_force_change) checked @endif
+                        >
+                  	</div>
 			    </div>
 		    </fieldset>
 		    <fieldset>

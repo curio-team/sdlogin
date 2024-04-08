@@ -29,7 +29,7 @@
 		    </div>
 		@endif
 
-		<form action="/users" method="POST">
+		<form action="{{ route('users.store') }}" method="POST">
 			@csrf
 
 			<div class="form-group row">

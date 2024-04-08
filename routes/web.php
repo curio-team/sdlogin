@@ -33,13 +33,16 @@ $mainRoutes = function () {
 };
 
 $loginRoutes = function () {
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => [
+        'auth',
+        \App\Http\Middleware\CheckPasswordForceChange::class,
+    ]], function () {
         Route::redirect('/', '/me');
         Route::redirect('/home', '/me');
         Route::get('/me', [DashboardController::class, 'show'])->name('home');
 
         Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
-        Route::patch('/users/{user}/profile', [UserController::class, 'profileUpdate']);
+        Route::patch('/users/{user}/profile', [UserController::class, 'profileUpdate'])->name('users.profile_update');
 
         Route::group(['middleware' => \App\Http\Middleware\Admin::class], function () {
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);

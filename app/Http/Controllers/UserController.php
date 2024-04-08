@@ -67,20 +67,22 @@ class UserController extends Controller
         $user->id = $request->id;
         $user->name = $request->name;
         $user->type = $request->type;
+        $user->password_force_change = now();
 
         $user->email = $request->email;
         if ($user->email == null) {
             $user->email = $user->id . '@' . ($user->type == 'student' ? 'edu.' : '') . 'curio.nl';
         }
 
-        $check = $this->checkPassword($request->password, $user);
+        // Disabled so admins can easily set temporary passwords for users (they will be forced to change it on first login anyway)
+        // $check = $this->checkPassword($request->password, $user);
 
-        if (!$check->passes) {
-            return redirect()
-                ->route('users.create')
-                ->withInput($request->input())
-                ->withErrors($check->feedback);
-        }
+        // if (!$check->passes) {
+        //     return redirect()
+        //         ->route('users.create')
+        //         ->withInput($request->input())
+        //         ->withErrors($check->feedback);
+        // }
 
         $user->password = bcrypt($request->password);
         $user->save();
@@ -152,6 +154,7 @@ class UserController extends Controller
         }
 
         $user->password = bcrypt($request->password_new);
+        $user->password_force_change = null;
         $user->save();
         $request->session()->flash('notice', [
             'Je wachtwoord is opgeslagen.',
@@ -175,15 +178,18 @@ class UserController extends Controller
         ]);
 
         if ($request->password != null) {
-            $check = $this->checkPassword($request->password, $user);
+            // Disabled so admins can easily set temporary passwords for users (they will be forced to change it on first login anyway)
+            // $check = $this->checkPassword($request->password, $user);
 
-            if (!$check->passes) {
-                return redirect()
-                    ->route('users.edit', $user)
-                    ->withInput($request->input())
-                    ->withErrors($check->feedback);
-            }
+            // if (!$check->passes) {
+            //     return redirect()
+            //         ->route('users.edit', $user)
+            //         ->withInput($request->input())
+            //         ->withErrors($check->feedback);
+            // }
+
             $user->password = bcrypt($request->password);
+            $user->password_force_change = now();
             $user->save();
         }
 
