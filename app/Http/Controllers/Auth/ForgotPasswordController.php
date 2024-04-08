@@ -8,19 +8,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class ForgotPasswordController extends Controller implements HasMiddleware
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset emails and
-    | includes a trait which assists in sending these notifications from
-    | your application to your users. Feel free to explore this trait.
-    |
-    */
-
-    use SendsPasswordResetEmails;
-
     /**
      * Get the middleware that should be assigned to the controller.
      */
@@ -29,5 +16,15 @@ class ForgotPasswordController extends Controller implements HasMiddleware
         return [
             new Middleware('guest'),
         ];
+    }
+
+    /**
+     * Display the form to request a password reset.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLinkRequestForm()
+    {
+        return view('auth.password-reset');
     }
 }
