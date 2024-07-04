@@ -47,7 +47,8 @@ $loginRoutes = function () {
         Route::group(['middleware' => \App\Http\Middleware\Admin::class], function () {
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
             Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
-            Route::get('clients/{client}/toggle', [ClientController::class, 'toggle_dev'])->name('clients.toggle_dev');
+            Route::get('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
+            Route::post('clients/{client}/change-name', [ClientController::class, 'changeName'])->name('clients.change-name');
 
             Route::get('groups/create/batch', [BatchGroupController::class, 'create']);
             Route::post('groups/batch', [BatchGroupController::class, 'store']);

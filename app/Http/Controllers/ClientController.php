@@ -81,10 +81,18 @@ class ClientController extends Controller
             ->with('client', $client);
     }
 
-    public function toggle_dev($id)
+    public function toggleDev($id)
     {
         $client = $this->clients->find($id);
         $client->for_development = $client->for_development ? false : true;
+        $client->save();
+        return back();
+    }
+
+    public function changeName($id, Request $request)
+    {
+        $client = $this->clients->find($id);
+        $client->name = $request->name;
         $client->save();
         return back();
     }

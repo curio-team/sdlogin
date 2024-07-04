@@ -6,7 +6,13 @@
 
 		<a class="btn btn-primary" href="/clients"><i class="fa fa-chevron-left"></i> Terug</a>
 
-		<h5>{{ $client->name }}</h5>
+        <form action="{{ route('clients.change-name', $client) }}" method="post">
+            @csrf
+		    <h5><input type="text" value="{{ $client->name }}" readonly></h5>
+
+            <button type="submit" class="btn btn-primary">Wijzig naam</button>
+        </form>
+
 		<table>
 			<tr>
 				<th>Eigenaar:</th>
@@ -31,7 +37,7 @@
 			<tr>
 				<th>Dev/test-app:</th>
 				<td>&nbsp;</td>
-				<td><?php echo $client->for_development ? 'Ja' : 'Nee'; ?> <a href="{{ route('clients.toggle_dev', $client) }}">(toggle)</a></td>
+				<td><?php echo $client->for_development ? 'Ja' : 'Nee'; ?> <a href="{{ route('clients.toggle-dev', $client) }}">(toggle)</a></td>
 			</tr>
 		</table>
 	</div>
