@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 $apiRoutes = function () {
-    Route::redirect('/', 'https://apitest.amo.rocks/');
+    Route::redirect('/', 'https://apitest.curio.codes/');
 };
 
 $mainRoutes = function () {
@@ -84,7 +84,7 @@ $loginRoutes = function () {
 if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
     Route::group([], $loginRoutes);
 } else {
-    $domains = ['login.curio.codes', 'login2.curio.codes'];
+    $domains = ['login.curio.codes'];
 
     foreach ($domains as $domain) {
         Route::group(['domain' => $domain], $loginRoutes);
@@ -92,6 +92,4 @@ if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
 }
 
 Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
-Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
 Route::group(['domain' => 'curio.codes'], $mainRoutes);
-Route::group(['domain' => 'amo.rocks'], $mainRoutes);
