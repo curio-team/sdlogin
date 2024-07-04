@@ -8,9 +8,13 @@
 
         <form action="{{ route('clients.change-name', $client) }}" method="post">
             @csrf
-		    <h5><input type="text" value="{{ $client->name }}" readonly></h5>
+		    <div class="form-group row">
+		     	<div class="col-sm-12">
+                  <h5><input type="text" value="{{ $client->name }}" class="form-control" name="name"></h5>
+                </div>
+            </div>
 
-            <button type="submit" class="btn btn-primary">Wijzig naam</button>
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-save"></i>Wijzig naam</button>
         </form>
 
 		<table>
