@@ -29,7 +29,7 @@
 		    	<label for="redirect" class="col-sm-3 col-form-label">Redirect URL *</label>
 		     	<div class="col-sm-6">
 		        	<input type="text" class="form-control" id="redirect" name="redirect" value="{{ old('redirect') }}">
-		        	<small class="form-text text-muted">If you use SD-client, this should be: http://yoursite/sdclient/callback</small>
+		        	<small class="form-text text-muted">Als je <a href="https://github.com/curio-team/sdclient">de SD-client</a> gebruikt, is dit iets als: http://yoursite/sdclient/callback</small>
 		      	</div>
 		    </div>
 		    <div class="form-group row">
@@ -37,9 +37,9 @@
 		     	<div class="col-sm-6">
 		     		<select name="for_development" id="for_development">
 		     			<option value="0">Nee</option>
-		     			<option value="1">Ja</option>
+		     			<option value="1" selected>Ja (verborgen op dashboard)</option>
 		     		</select>
-		        	<small class="form-text text-muted">This will hide your app from the student's dashboard</small>
+		        	<small class="form-text text-muted">Selecteer &quot;Nee&quot; om een knop het dashboard te tonen naar deze app.</small>
 		      	</div>
 		    </div>
 

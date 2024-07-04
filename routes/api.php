@@ -41,6 +41,5 @@ $apiRoutes = function () {
 if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
     Route::group([], $apiRoutes);
 } else {
-    Route::group(['domain' => 'api.amo.rocks'], $apiRoutes);
     Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
 }
