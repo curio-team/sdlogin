@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// This API works under two domain api.curio.code and (legacy) api.amo.rocks
-
 $apiRoutes = function () {
     Route::group(['middleware' => 'auth:api'], function () {
         /**
