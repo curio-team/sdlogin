@@ -37,7 +37,7 @@ $apiRoutes = function () {
 };
 
 if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
-    Route::group([], $apiRoutes);
+    Route::group(['prefix' => '/api'], $apiRoutes);
 } else {
     Route::group(['domain' => 'api.curio.codes'], $apiRoutes);
 }
