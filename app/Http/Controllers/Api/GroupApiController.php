@@ -10,7 +10,7 @@ class GroupApiController extends Controller
 {
     public function index()
     {
-        return Group::get(false, true, false, array('name', 'asc'));
+        return Group::get(true, true, false, array('name', 'asc'));
     }
 
     public function group(Request $request, Group $group)
