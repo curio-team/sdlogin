@@ -2,4 +2,8 @@
 
 @section('title', 'Pagina niet gevonden')
 
-@section('message', 'Helaas... deze link bestaat niet (meer)!')
+@section('message')
+
+Helaas... deze link bestaat niet (meer)!
+
+@endsection
