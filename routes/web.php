@@ -61,6 +61,7 @@ $loginRoutes = function () {
             Route::get('/users/cleanup', [UserCleanupController::class, 'show'])->name('users.cleanup');
             Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');
 
+            Route::get('/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
             Route::delete('/users', [UserController::class, 'destroy']);
 
             Route::resource('users', UserController::class, ['except' => ['show', 'destroy']]);
