@@ -174,24 +174,18 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'name' => 'required|string',
             'password' => 'nullable|confirmed'
         ]);
 
+        $user->name = $request->name;
+
         if ($request->password != null) {
-            // Disabled so admins can easily set temporary passwords for users (they will be forced to change it on first login anyway)
-            // $check = $this->checkPassword($request->password, $user);
-
-            // if (!$check->passes) {
-            //     return redirect()
-            //         ->route('users.edit', $user)
-            //         ->withInput($request->input())
-            //         ->withErrors($check->feedback);
-            // }
-
             $user->password = bcrypt($request->password);
             $user->password_force_change = now();
-            $user->save();
         }
+
+        $user->save();
 
         $groups = request('groups', []);
         $groupsTotal = array_merge($groups, $user->groupHistory->pluck('id')->toArray());

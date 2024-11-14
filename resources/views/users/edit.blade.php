@@ -42,14 +42,19 @@
 		     	<div class="col-sm-6">{{ $user->id }}</div>
 		    </div>
 		    <div class="form-group row">
-		    	<div class="col-sm-3">Naam</div>
-		     	<div class="col-sm-6">{{ $user->name }}</div>
-		    </div>
-		    <div class="form-group row">
 		    	<div class="col-sm-3">E-mail</div>
 		     	<div class="col-sm-6">{{ $user->email }}</div>
 		    </div>
 
+		    <fieldset>
+		    	<legend>Naam aanpassen</legend>
+                <div class="form-group row">
+			    	<label for="name" class="col-sm-3 col-form-label">Naam</label>
+			     	<div class="col-sm-6">
+			        	<input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+			      	</div>
+                </div>
+		    </fieldset>
 		    <fieldset>
 		    	<legend>Wachtwoord aanpassen</legend>
 		    	<div class="form-group row">
