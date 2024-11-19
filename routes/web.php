@@ -28,7 +28,7 @@ $apiRoutes = function () {
 };
 
 $mainRoutes = function () {
-    Route::redirect('/', 'https://login.curio.codes/')->name('home');
+    Route::redirect('/', 'https://login.curio.codes/');
     Route::get('/{link}', [RedirectController::class, 'go']);
 };
 
