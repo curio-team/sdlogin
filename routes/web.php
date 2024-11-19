@@ -62,11 +62,13 @@ $loginRoutes = function () {
             Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');
 
             Route::get('/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
-            Route::delete('/users', [UserController::class, 'destroy']);
+            Route::delete('/users', [UserController::class, 'destroy'])->name('users.destroy');
 
             Route::resource('users', UserController::class, ['except' => ['show', 'destroy']]);
 
-            Route::delete('/links', [LinkController::class, 'destroy']);
+            Route::get('/links/{short}/delete', [LinkController::class, 'delete'])->name('links.delete');
+            Route::delete('/links', [LinkController::class, 'destroy'])->name('links.destroy');
+
             Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);
 
             Route::get('grouplogin', [GroupLoginController::class, 'index']);

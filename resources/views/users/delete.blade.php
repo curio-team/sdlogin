@@ -8,7 +8,7 @@
 
 		<h5>Je gaat <strong>{{ $user->id }}</strong> ({{ $user->name }}) verwijderen.</h5>
 
-		<form action="/users" method="POST">
+		<form action="{{ route('users.destroy') }}" method="POST">
 			@method('DELETE')
 			@csrf
 			<input type="hidden" name="delete[]" value="{{ $user->id }}">

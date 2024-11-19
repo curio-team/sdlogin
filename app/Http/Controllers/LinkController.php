@@ -78,19 +78,21 @@ class LinkController extends Controller
     public function update(Request $request, Link $link)
     {
         $request->validate([
-            'title' => 'nullable'
+            'title' => 'nullable',
+            'url' => 'required|url'
         ]);
 
         $link->on_frontpage = $request->has('on_frontpage');
         $link->title = $request->title;
+        $link->url = $request->url;
         $link->save();
 
         return redirect('/links')->with('updated', $link->short);
     }
 
-    public function delete(Link $link)
+    public function delete(Link $short)
     {
-        return view('links.delete')->with('link', $link);
+        return view('links.delete')->with('link', $short);
     }
 
     /**

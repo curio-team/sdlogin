@@ -19,7 +19,7 @@
 		</div>
 		@endif
 
-		<form action="/links" method="POST">
+		<form action="{{ route('links.destroy') }}" method="POST">
 			@method('DELETE')
 			@csrf
 			<div class="row">
@@ -53,7 +53,7 @@
 									<td>
 										<div class="btn-group">
 											<a class="btn btn-primary" href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
-											<a class="btn btn-danger" href="/links/{{ $link->short }}/delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-danger" href="{{ route('links.delete', $link->short) }}"><i class="fa fa-trash"></i></a>
 										</div>
 									</td>
 								</tr>

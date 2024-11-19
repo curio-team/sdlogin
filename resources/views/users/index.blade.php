@@ -15,7 +15,7 @@
 		</div>
 		@endif
 
-		<form action="/users" method="POST">
+		<form action="{{ route('users.destroy') }}" method="POST">
 			@method('DELETE')
 			@csrf
 			<div class="row">
@@ -85,7 +85,7 @@
 									<td>
 										<div class="btn-group">
 											<a class="btn btn-primary" href="/users/{{ $user->id }}/edit"><i class="fa fa-pencil"></i></a>
-											<a class="btn btn-danger" href="/users/{{ $user->id }}/delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}"><i class="fa fa-trash"></i></a>
 										</div>
 									</td>
 								</tr>

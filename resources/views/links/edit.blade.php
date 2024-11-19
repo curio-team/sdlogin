@@ -16,7 +16,7 @@
 		    </div>
 		@endif
 
-		<form action="/links/{{ $link->short }}" method="POST">
+		<form action="{{ route('links.update', $link->short) }}" method="POST">
 			@method('PATCH')
 			@csrf
 
@@ -24,6 +24,12 @@
 		     	<div class="col-sm-12">
 		        	<p style="font-size: 1.1rem;">curio.codes/{{ $link->short }} <strong><i class="fa fa-long-arrow-right"></i></strong> {{ $link->url }}</p>
 		      	</div>
+		    </div>
+			<div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label">URL (lang):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="url" name="url" value="{{ $link->url ?? old('url') }}">
+                </div>
 		    </div>
 		    <div class="form-group row">
 		    	<label for="on_frontpage" class="col-sm-3 col-form-label">Toon op dashboard:</label>
