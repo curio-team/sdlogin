@@ -72,6 +72,11 @@ class User extends Authenticatable
             ->orderBy('date_start');
     }
 
+    public function allGroups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function getPassword()
     {
         return $this->password;
