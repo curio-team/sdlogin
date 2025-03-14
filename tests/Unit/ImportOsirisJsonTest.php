@@ -159,11 +159,11 @@ class ImportOsirisJsonTest extends TestCase
         $prefix = 'D';
 
         [
-            $importCount,
+            $importAddedCount,
             $importAttachCount,
         ] = ImportController::import($importJson, $workingDate, $prefix);
 
-        $this->assertEquals(count($usersInImport), $importCount);
+        $this->assertEquals(count($usersInImport), $importAddedCount);
         $this->assertEquals(0, $importAttachCount);
 
         // Import should have added the users to the database
@@ -224,11 +224,11 @@ class ImportOsirisJsonTest extends TestCase
         $workingDate = '2021-09-01';
 
         [
-            $importCount,
+            $importAddedCount,
             $importAttachCount,
         ] = ImportController::import($importJson, $workingDate, 'D');
 
-        $this->assertEquals(count($usersInImport), $importCount);
+        $this->assertEquals(count($usersInImport), $importAddedCount);
         $this->assertEquals($totalGroupCount, $importAttachCount);
 
         // Import should have added the users to the database

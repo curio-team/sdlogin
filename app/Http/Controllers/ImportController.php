@@ -31,7 +31,7 @@ class ImportController extends Controller
         $prefix = request('find_user_prefix');
 
         [
-            $importCount,
+            $importAddedCount,
             $importAttachCount,
         ] = $this->import($importJson, $workingDate, $prefix);
 
@@ -39,11 +39,11 @@ class ImportController extends Controller
             ->route('users.import')
             ->with(
                 'notice',
-                'Import successful! '
-                    . $importCount
-                    . ' added, of which '
+                'Import successful: '
+                    . $importAddedCount
+                    . ' students added, '
                     . $importAttachCount
-                    . ' attached to a group. '
+                    . ' students attached to a group. '
             );
     }
 
@@ -124,14 +124,21 @@ class ImportController extends Controller
     {
         $import = json_decode($importJson, true);
 
-        $importCount = 0;
+        $importAddedCount = 0;
         $importAttachCount = 0;
 
-        foreach ($import as $importUser) {
-            $importCount++;
+        $groups = Group::all();
 
+        foreach ($import as $importUser) {
             $id = 'i' . $importUser['code'];
-            $user = User::firstOrNew(['id' => $id]);
+
+            $user = User::with('allGroups')
+                ->firstOrNew(['id' => $id]);
+
+            if (!$user->exists) {
+                $importAddedCount++;
+            }
+
             $user->id = $id;
             $user->name = self::stripAccents($importUser['name']);
             $user->email = $prefix . $importUser['code'] . '@edu.rocwb.nl';
@@ -140,11 +147,17 @@ class ImportController extends Controller
             $user->save();
 
             foreach ($importUser['groups'] as $group) {
+                // Commented because we don't automatically create groups since we
+                // don't know what start and end date to give them
                 // $group = Group::firstOrNew(['name' => $group['name']]);
-                // We don't automatically create groups
-                $group = Group::where('name', $group['name'])->first();
+                $group = $groups->firstWhere('name', $group['name']);
 
                 if (!$group) {
+                    continue;
+                }
+
+                // Check if the user is already in the group
+                if ($user->allGroups->contains($group->id)) {
                     continue;
                 }
 
@@ -155,7 +168,7 @@ class ImportController extends Controller
         }
 
         return [
-            $importCount,
+            $importAddedCount,
             $importAttachCount,
         ];
     }
