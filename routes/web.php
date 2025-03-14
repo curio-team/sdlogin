@@ -3,7 +3,7 @@
 use App\Http\Controllers\BatchGroupController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\ImportEolController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GroupLoginController;
@@ -55,8 +55,8 @@ $loginRoutes = function () {
             Route::get('groups/{group}/delete', [GroupController::class, 'delete'])->name('groups.delete');
             Route::resource('groups', GroupController::class, ['except' => ['show']]);
 
-            Route::get('/users/import/eol', [ImportEolController::class, 'show'])->name('users.import_eol');
-            Route::post('/users/import/eol', [ImportEolController::class, 'upload'])->name('users.import_eol_upload');
+            Route::get('/users/import/osiris', [ImportController::class, 'show'])->name('users.import');
+            Route::post('/users/import/osiris', [ImportController::class, 'upload'])->name('users.import_upload');
 
             Route::get('/users/cleanup', [UserCleanupController::class, 'show'])->name('users.cleanup');
             Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container spaced-container">
 
-        <h5>Klassenlijst uit EOL importeren</h5>
+        <h5>Klassenlijst uit Osiris importeren</h5>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -23,19 +23,19 @@
 
         <p><strong>Let op:</strong></p>
         <ul>
-            <li>Download een klassenlijst uit EOL onder Informatie &gt; Klassenlijst, klik op het icoon onder <em>XLS</em>.</li>
-            <li>Zet eerst de klassen klaar voor dit schooljaar (naam volgens RIO4-AMO1A).</li>
+            <li>TODO: Instructie hoe export in osiris te maken</li>
+            <li>Zet eerst de klassen klaar voor dit schooljaar (naam volgens TTSDB-SD4O{{ date('y') }}A).</li>
             <li>Gebruikers worden toegevoegd aan een klas als er nu een actieve klas met die naam is (klassen worden niet automatisch aangemaakt). Toevoegen aan klassen die in de toekomst actief worden kan met de <em>Fake date</em>, bijvoorbeeld alvast voor het volgende schooljaar.</li>
-            <li>Als een gebruiker al bestaat wordt hij aan de genoemde klas toegevoegd. Historische klassen worden niet verwijderd, actieve klassen wel.</li>
+            <li>Als een gebruiker al bestaat wordt die aan de genoemde klas toegevoegd. Historische klassen worden niet verwijderd, actieve klassen wel.</li>
         </ul>
 
-        <form action="{{ route('users.import_eol_upload') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('users.import_osiris_upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group row">
-                <label for="csv" class="col-sm-3 col-form-label">Upload Excel *</label>
+                <label for="import" class="col-sm-3 col-form-label">Osiris Export JSON *</label>
                 <div class="col-sm-6">
-                    <input type="file" class="form-control-file" name="file" id="file">
+                    <textarea class="form-control" name="import" id="import" rows="10" placeholder="Plak hier de JSON van de Osiris export"></textarea>
                 </div>
             </div>
             <div class="form-group row">
