@@ -50,7 +50,7 @@ $loginRoutes = function () {
             Route::get('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
             Route::post('clients/{client}/change-name', [ClientController::class, 'changeName'])->name('clients.change-name');
 
-            Route::get('groups/create/batch', [BatchGroupController::class, 'create']);
+            Route::get('groups/create/batch', [BatchGroupController::class, 'create'])->name('groups.batch');
             Route::post('groups/batch', [BatchGroupController::class, 'store']);
             Route::get('groups/{group}/delete', [GroupController::class, 'delete'])->name('groups.delete');
             Route::resource('groups', GroupController::class, ['except' => ['show']]);

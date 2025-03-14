@@ -11,7 +11,8 @@ class ImportController extends Controller
 {
     public function show()
     {
-        return view('users.import');
+        $exportScript = file_get_contents(resource_path('js/osiris-exporter.js'));
+        return view('users.import', compact('exportScript'));
     }
 
     public function upload(Request $request)
@@ -21,6 +22,11 @@ class ImportController extends Controller
         ]);
 
         $importJson = $request->import;
+
+        // The json might contain a leading and trailing " in some browsers, or `debugger eval code:61:13`
+        // Since we know to expect a JSON array, find the first [ and last ] and extract the JSON from there
+        $importJson = substr($importJson, strpos($importJson, '['));
+        $importJson = substr($importJson, 0, strrpos($importJson, ']') + 1);
 
         if (request('fake_date')) {
             $workingDate = new Carbon(request('fake_date'));
