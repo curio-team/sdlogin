@@ -25,16 +25,6 @@ h6 {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.container {
-    height: 100vh;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.container>div {
-    padding: 2rem;
-}
-
 img {
     max-width: 200px;
 }
@@ -71,10 +61,6 @@ img {
     margin-top: 1.5rem;
 }
 
-form a {
-    color: #FFCC00;
-}
-
 label {
     cursor: pointer;
 }
@@ -98,10 +84,6 @@ label span {
     display: inline-block;
     font-size: .9rem;
     text-decoration: none;
-}
-
-.submit a:hover {
-    text-decoration: underline;
 }
 
 footer {

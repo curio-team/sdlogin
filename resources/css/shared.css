@@ -1,6 +1,31 @@
+html, body{
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container > div {
+    padding: 2rem;
+}
+
+.full-height {
+    height: 100vh;
+}
+
 .cover-background {
     background-size: cover;
     background-position: center;
+}
+
+a {
+    color: #FFCC00;
+}
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .glassy {
@@ -31,19 +56,36 @@
     border-radius: 8px;
 }
 
+.glassy-inset {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 4px rgba(0, 0, 0, 0.2),
+        0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
 .button {
+    display: inline-flex;
+    align-items: center;
     background: rgba(255, 204, 0, 0.2);
     color: #FFCC00;
     border: 1px solid rgba(255, 204, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 8px;
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
@@ -56,6 +98,68 @@
     padding: 1rem 1.5rem;
     font-size: 1.25rem;
     line-height: 1.5;
+}
+
+.button i.fa{
+	position: absolute;
+	right: 10px;
+    transition: none;
+    top: calc(50% - 8px);
+    opacity: 0;
+}
+
+.button:hover i.fa{
+	opacity: 1;
+	transition: all .10s ease-in-out;
+	transition-delay: .05s;
+}
+
+.button-danger {
+  background: rgba(246, 48, 48, 0.2);
+  color: #F63030;
+  border: 1px solid rgba(246, 48, 48, 0.5);
+}
+
+.button-danger:hover {
+  background: rgba(246, 48, 48, 0.4);
+  border-color: #F63030;
+  color: #fff;
+}
+
+.button-success {
+  background: rgba(0, 150, 100, 0.2);
+  color: #00B67A;
+  border: 1px solid rgba(0, 150, 100, 0.5);
+}
+
+.button-success:hover {
+  background: rgba(0, 150, 100, 0.4);
+  border-color: #00B67A;
+  color: #fff;
+}
+
+.button-warning {
+  background: rgba(255, 204, 0, 0.2);
+  color: #FFCC00;
+  border: 1px solid rgba(255, 204, 0, 0.5);
+}
+
+.button-warning:hover {
+  background: rgba(255, 204, 0, 0.4);
+  border-color: #FFCC00;
+  color: #fff;
+}
+
+.button-secondary {
+  background: rgba(74, 67, 67, 0.2);
+  color: #D6CBCB;
+  border: 1px solid rgba(74, 67, 67, 0.5);
+}
+
+.button-secondary:hover {
+  background: rgba(74, 67, 67, 0.4);
+  border-color: #4A4343;
+  color: #fff;
 }
 
 .label {
@@ -139,4 +243,20 @@
     font-size: 14px;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+body .table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+body .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body .table thead th {
+    border: none;
+}
+
+body .table td, body .table th {
+    border: none;
 }

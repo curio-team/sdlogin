@@ -1,15 +1,9 @@
 
 <style>
-    .btn-group {
+    .button-group {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .btn.btn-brand {
-        border-color: rgba(0, 76, 53, 0.1);
-        color: #004c35;
-        overflow: hidden;
     }
 
     .btn.btn-danger {

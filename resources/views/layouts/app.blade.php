@@ -48,10 +48,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-brand-light">
+    <nav class="navbar navbar-expand glassy bottom-edge">
         <div class="container mt-0 flex-column flex-md-row">
-            <a class="navbar-brand color-brand mr-0"
-               href="{{ url('me') }}">curio.codes</a>
+            <a class="navbar-brand mr-0"
+               href="{{ url('me') }}">
+               <img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
+                    alt="Curio Software developers"
+                    class="navbar-logo">
+            </a>
             @auth
             <div class="justify-content-end">
                 <ul class="navbar-nav flex-column flex-md-row align-items-center">

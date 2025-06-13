@@ -11,26 +11,23 @@
 
 body{
 	font-family: Arial, sans-serif;
+    background-image: url('../img/backgrounds/codioful-formerly-gradienta-H5eYSjFGw5M-unsplash.jpg');
+    background-size: cover;
 }
 
 .container{
 	padding: 0;
 }
 
-.bg-brand-light{
-	background-color: #d6e3df;
+.navbar {
+    padding: 0.5em 1em;
+    max-height: calc(64px + 1em);
 }
 
-.navbar{
-	border-top: 3px solid #004c35;
-}
-
-.color-brand, .navbar-dark .navbar-nav .nav-link{
-	color: #004c35 !important;
-}
-
-.border-brand{
-	border-color: #004c35;
+.navbar-logo {
+    display: inline-block;
+    width: auto;
+    height: 64px;
 }
 
 .min-w-fit {
@@ -40,32 +37,6 @@ body{
 .alert ul {
     margin-bottom: 0;
     padding-left: 1rem;
-}
-
-.btn-brand{
-	border-color: #004c35;
-	color: #004c35;
-	overflow: hidden;
-}
-
-.btn-brand:hover{
-	background-color: #004c35;
-	color: white;
-}
-
-.btn-brand i.fa{
-	position: absolute;
-	right: 10px;
-    transition: none;
-    background-color: #004c35;
-    top: calc(50% - 8px);
-    opacity: 0;
-}
-
-.btn-brand:hover i.fa{
-	opacity: 1;
-	transition: all .10s ease-in-out;
-	transition-delay: .05s;
 }
 
 .navbar-brand{
@@ -107,7 +78,6 @@ button{
 
 .links-container > *{
 	margin-bottom: 1.4em;
-	padding: 1em .75em;
 }
 
 .links-container > *:nth-child(3n+2){

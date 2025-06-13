@@ -39,8 +39,8 @@
     @stack('styles')
 </head>
 
-<body>
-    <div class="container cover-background" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+<body class="cover-background" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+    <div class="container full-height">
         <div class="form glassy left-edge">
             <h1><img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
                      alt="Curio Software developers"></h1>

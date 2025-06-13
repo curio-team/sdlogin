@@ -44,7 +44,6 @@
 
             .center > div {
                 max-width: 960px;
-                padding: 2em 5em;
             }
 
             .inset {
@@ -82,8 +81,8 @@
         @include('partials.quick-styles')
     </head>
 
-    <body>
-        <div class="container center cover-background" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+    <body class="cover-background center" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+        <div class="container">
             <div class="stack glassy full-edge">
                 <h1 class="text-center"><img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
                             alt="Curio Software developers"></h1>
