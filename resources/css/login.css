@@ -1,145 +1,118 @@
 @import url('https://fonts.googleapis.com/css?family=Chivo|Open+Sans');
 
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-	font-size: 18px;
-	font-family: "Open Sans", Arial, sans-serif;
+html {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6{
-	font-family: "Chivo", Arial, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Arial, sans-serif;
 }
 
-.text-muted{
-	font-size: 0.9em;
-    color: #80a79b;
+.text-muted {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.container{
-	height: 100vh;
-	display: grid;
-	grid-template-rows: 100%;
-	grid-template-columns: 1fr 600px;
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.container > div{
-	padding: 2rem;
+.container>div {
+    padding: 2rem;
 }
 
-img{
-	max-width: 200px;
+img {
+    max-width: 200px;
 }
 
-.form{
-	order: 1;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-direction: column;
+.form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
-.form > *{
-	width: 400px;
-	margin-bottom: 1rem;
-}
-.form > *:last-child{
-	margin-bottom: 0;
+.form>* {
+    width: 400px;
+    margin-bottom: 1rem;
 }
 
-.form > h1{
-	margin-top: 1rem;
-	margin-bottom: 3rem;
+.form>*:last-child {
+    margin-bottom: 0;
 }
 
-.form-group{
-	margin: .5rem 0;
+.form>h1 {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
-.submit{
-	display: flex;
-	align-items: center;
-	margin-top: 1.5rem;
+.form-group {
+    margin: 1rem 0;
 }
 
-input[type="submit"], input[type="text"], input[type="password"], input[type="email"]{
-	height: 2rem;
-    border: solid 1px #BABABA;
-    padding: 2px 5px;
-    font-size: 1.0rem;
-    width: 100%;
+.submit {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
-input[type="submit"]{
-    background: #d6e3df;
-    min-width: 80px;
-    width: auto;
-    padding: 4px 20px 6px 20px;
-    transition: all .15s ease-in-out;
-    color: #004c35;
+form a {
+    color: #FFCC00;
+}
+
+label {
     cursor: pointer;
-    border: none;
 }
 
-input[type="submit"]:hover{
-	background: #004c35;
-	color: white;
+label span {
+    font-size: .9rem;
 }
 
-form a{
-	color: #004c35;
+.help-block {
+    font-size: .9em;
+    font-weight: bold;
+    color: red;
 }
 
-label{
-	cursor: pointer;
+.success-block {
+    font-weight: bold;
+    color: green;
 }
 
-label span{
-	font-size: .9rem;
+.submit a {
+    display: inline-block;
+    font-size: .9rem;
+    text-decoration: none;
 }
 
-.help-block{
-	font-size: .9em;
-	font-weight: bold;
-	color: red;
-}
-.success-block{
-	font-weight: bold;
-	color: green;
+.submit a:hover {
+    text-decoration: underline;
 }
 
-.submit a{
-	display: inline-block;
-	margin-left: .9rem;
-	font-size: .9rem;
-	text-decoration: none;
+footer {
+    margin-top: auto;
+    font-size: .9rem;
+    color: #80a79b;
+    text-align: center;
 }
 
-.submit a:hover{
-	text-decoration: underline;
-}
-
-footer{
-	margin-top: auto;
-	font-size: .9rem;
-	color: #80a79b;
-	text-align: center;
-}
-
-.aside{
-	order: 0;
-	background-size: cover;
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-end;
-}
-
-.alert{
-	padding: .75rem 1.25rem;
+.alert {
+    padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem;
@@ -147,11 +120,11 @@ footer{
 
 .alert-primary {
     color: #d6e3df;
-    background-color: #004c35;
+    background-color: #FFCC00;
 }
 
-.alert-primary a{
-	color: #d6e3df;
+.alert-primary a {
+    color: #d6e3df;
 }
 
 .alert-danger {
@@ -160,53 +133,49 @@ footer{
     border-color: #f5c6cb;
 }
 
-.alert-danger ul{
+.alert-danger ul {
     padding-left: 18px;
 }
 
 @media only screen and (max-width: 768px) {
 
-	html{
-		font-size: 16px;
-	}
+    html {
+        font-size: 16px;
+    }
 
-	.container{
-		display: block;
-	}
+    .container {
+        justify-content: stretch;
+    }
 
-	.aside{
-		display: none;
-	}
+    .form {
+        width: 100%;
+        border: none;
+    }
 }
 
 @media only screen and (max-width: 480px) {
 
-	html{
-		font-size: 14px;
-	}
+    html {
+        font-size: 14px;
+    }
 
-	.form > *, img{
-		width: 90vw;
-	}
+    .form>*,
+    img {
+        width: 90vw;
+    }
 
 }
 
 @media only screen and (max-width: 340px) {
 
-	.submit{
-		flex-direction: column;
-		align-items: flex-start;
-	}
+    .submit {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-	.submit a{
-		margin-left: 0;
-		margin-top: .5rem;
-	}
+    .submit a {
+        margin-left: 0;
+        margin-top: .5rem;
+    }
 
-}
-
-@supports not (display:  grid){
-	.aside{
-		display: none;
-	}
 }

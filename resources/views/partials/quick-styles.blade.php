@@ -43,12 +43,6 @@
         background-color: rgb(233, 233, 237);
     }
 
-    .btn-big {
-        padding: 1rem 1.5rem;
-        font-size: 1.25rem;
-        line-height: 1.5;
-    }
-
     .card {
         position: relative;
         display: -webkit-box;

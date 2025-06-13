@@ -40,7 +40,7 @@
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
           crossorigin="anonymous">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/shared.css', 'resources/css/app.css', 'resources/js/app.js'])
 
     <script src="https://use.fontawesome.com/30b7c2b05b.js"></script>
 

@@ -1,0 +1,142 @@
+.cover-background {
+    background-size: cover;
+    background-position: center;
+}
+
+.glassy {
+    /* Glassy effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.glassy.left-edge {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.glassy.right-edge {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.glassy.top-edge {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.glassy.bottom-edge {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.glassy.full-edge {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.button {
+    background: rgba(255, 204, 0, 0.2);
+    color: #FFCC00;
+    border: 1px solid rgba(255, 204, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: rgba(255, 204, 0, 0.4);
+    border-color: #FFCC00;
+    color: #fff;
+}
+
+.button-big {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.label {
+    display: block;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease, background 0.3s ease;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input:focus {
+    border-color: #FFCC00;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.checkbox:checked+.checkmark {
+    background: #FFCC00;
+    border-color: #FFCC00;
+}
+
+.checkbox:checked+.checkmark::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}

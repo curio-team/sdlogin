@@ -14,7 +14,7 @@
         </div>
         <div class="col-lg-5 mb-4 d-lg-flex justify-content-end align-items-start">
             <img style="max-width: 190px"
-                 src="{{ Vite::asset('resources/img/Curio-software-developers-klein.png') }}"
+                 src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
                  alt="sd login">
         </div>
     </div>

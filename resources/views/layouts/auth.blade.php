@@ -34,43 +34,19 @@
 
     <title>curio.codes</title>
 
-    @vite(['resources/css/login.css'])
+    @vite(['resources/css/shared.css', 'resources/css/login.css'])
 
     @stack('styles')
 </head>
 
 <body>
-    <div class="container">
-        <div class="form">
-            <h1><img src="{{ Vite::asset('resources/img/Curio-software-developers-klein.png') }}"
+    <div class="container cover-background" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+        <div class="form glassy left-edge">
+            <h1><img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
                      alt="Curio Software developers"></h1>
 
             @yield('content')
         </div>
-
-        @php
-            // Vite must get all asset paths, or it wont properly build the assets (so no looping here)
-            $backgrounds = [
-                Vite::asset('resources/img/backgrounds/bg1.jpg'),
-                Vite::asset('resources/img/backgrounds/bg2.jpg'),
-                Vite::asset('resources/img/backgrounds/bg3.jpg'),
-                Vite::asset('resources/img/backgrounds/bg4.jpg'),
-                Vite::asset('resources/img/backgrounds/bg5.jpg'),
-                Vite::asset('resources/img/backgrounds/bg6.jpg'),
-                Vite::asset('resources/img/backgrounds/bg7.jpg'),
-                Vite::asset('resources/img/backgrounds/bg8.jpg'),
-                Vite::asset('resources/img/backgrounds/bg9.jpg'),
-                Vite::asset('resources/img/backgrounds/bg10.jpg'),
-                Vite::asset('resources/img/backgrounds/bg11.jpg'),
-                Vite::asset('resources/img/backgrounds/bg12.jpg'),
-                Vite::asset('resources/img/backgrounds/bg13.jpg'),
-                Vite::asset('resources/img/backgrounds/bg14.jpg'),
-                Vite::asset('resources/img/backgrounds/bg15.jpg'),
-                Vite::asset('resources/img/backgrounds/bg16.jpg'),
-            ];
-        @endphp
-        <div class="aside"
-                style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})"></div>
     </div>
 </body>
 

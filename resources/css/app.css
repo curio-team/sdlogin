@@ -10,7 +10,7 @@
 }
 
 body{
-	font-family: "Open Sans", Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 .container{
@@ -69,7 +69,7 @@ body{
 }
 
 .navbar-brand{
-	font-family: "Franklin", Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	font-weight: 500;
 	font-size: 26px;
 	padding: 0;
