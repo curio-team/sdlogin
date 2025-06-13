@@ -56,7 +56,12 @@
                             <tbody>
                                 @foreach($groups as $group)
                                     <tr <?php echo $group->date_end < \Carbon\Carbon::now() ? 'class="historical"' : '';?>>
-                                        <td><input type="checkbox" name="delete[]" value="{{ $group->id }}"></td>
+                                        <td>
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" class="checkbox" name="delete[]" value="{{ $group->id }}">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
                                         <td>{{ $group->name }}</td>
                                         <td>{{ $group->date_start }}</td>
                                         <td>{{ $group->date_end }}</td>

@@ -42,7 +42,10 @@
                     <div class="col-sm-6 d-flex align-items-center">
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <input type="checkbox" name="on_frontpage" id="on_frontpage" value="1">
+                                <label class="checkbox-wrapper">
+                                    <input type="checkbox" class="checkbox" name="on_frontpage" id="on_frontpage" value="1">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="input-group-addon">
                                 <div class="input-group-text">met als titel:</div>

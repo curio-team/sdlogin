@@ -46,7 +46,12 @@
                             <tbody>
                                 @foreach($links as $link)
                                     <tr>
-                                        <td><input type="checkbox" name="delete[]" value="{{ $link->id }}"></td>
+                                        <td>
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" class="checkbox" name="delete[]" value="{{ $link->id }}">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
                                         <td><a target="_blank" href="http://curio.codes/{{ $link->short }}">{{ $link->short }}</a></td>
                                         <td>{{ $link->url }}</td>
                                         <td>{{ optional($link->creator())->name }}, {{ $link->created_at }}</td>

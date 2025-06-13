@@ -43,7 +43,12 @@
                             <tbody>
                                 @foreach($users as $user)
                                     <tr>
-                                        <td><input type="checkbox" name="delete[]" value="{{ $user->id }}" checked></td>
+                                        <td>
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" class="checkbox" name="delete[]" value="{{ $user->id }}" checked>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->created_at }}</td>

@@ -11,8 +11,8 @@
 
 body{
 	font-family: Arial, sans-serif;
-    background-image: url('../img/backgrounds/codioful-formerly-gradienta-H5eYSjFGw5M-unsplash.jpg');
-    background-size: cover;
+    background: #AA076B;
+    background: -webkit-linear-gradient(-60deg, #790677, #111777);
 }
 
 .navbar {

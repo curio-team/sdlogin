@@ -59,9 +59,12 @@
                     <div class="form-group row">
                         <div class="col-sm-3">Forceer dat gebruiker wachtwoord verandert na inloggen</div>
                         <div class="col-sm-6">
-                            <input type="checkbox" id="password_force_change" name="password_force_change" value="1"
-                                @if($user->password_force_change) checked @endif
-                            >
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="checkbox" id="password_force_change" name="password_force_change" value="1"
+                                    @if($user->password_force_change) checked @endif
+                                >
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
                     </div>
                 </fieldset>

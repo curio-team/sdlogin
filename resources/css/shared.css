@@ -214,9 +214,9 @@ a:hover {
 }
 
 .button-secondary {
-    background: rgba(214, 203, 203, 0.25);
-    color: rgba(214, 203, 203, 0.5);
-    border: 1px solid rgba(214, 203, 203, 0.5);
+    background: rgba(214, 203, 203, 0.5);
+    color: rgba(214, 203, 203, 1);
+    border: 1px solid rgba(214, 203, 203, 0.8);
 }
 
 .button-secondary:hover {
