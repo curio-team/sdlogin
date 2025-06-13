@@ -15,19 +15,14 @@ body{
     background-size: cover;
 }
 
-.container{
-	padding: 0;
-}
-
 .navbar {
-    padding: 0.5em 1em;
-    max-height: calc(64px + 1em);
+    padding: 1em 0;
 }
 
 .navbar-logo {
     display: inline-block;
     width: auto;
-    height: 64px;
+    height: 48px;
 }
 
 .min-w-fit {
@@ -44,15 +39,6 @@ body{
 	font-weight: 500;
 	font-size: 26px;
 	padding: 0;
-}
-
-.container{
-	margin-top: 2em;
-}
-
-.spaced-container > *, .spaced-container > form > *{
-	margin-top: 1em;
-	margin-bottom: 1em;
 }
 
 button{

@@ -6,7 +6,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             @if (session('success'))
             <div class="alert alert-success">
@@ -52,8 +52,8 @@
                                         <td>{{ optional($link->creator())->name }}, {{ $link->created_at }}</td>
                                         <td>
                                             <div class="button-group">
-                                                <a class="button button-primary" href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
-                                                <a class="button button-danger" href="{{ route('links.delete', $link->short) }}"><i class="fa fa-trash"></i></a>
+                                                <a class="button button-primary icon-only" href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
+                                                <a class="button button-danger icon-only" href="{{ route('links.delete', $link->short) }}"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

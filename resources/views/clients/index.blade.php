@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <div class="row">
                 <div class="col-lg-12">
@@ -33,8 +33,8 @@
                                     <td>{{ $client->user_id }}</td>
                                     <td>
                                         <div class="button-group">
-                                            <a class="button button-secondary" href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
-                                            <a class="button button-danger" href="{{ route('clients.delete', $client) }}"><i class="fa fa-trash"></i></a>
+                                            <a class="button button-secondary icon-only" href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
+                                            <a class="button button-danger icon-only" href="{{ route('clients.delete', $client) }}"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

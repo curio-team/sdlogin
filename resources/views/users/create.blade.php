@@ -1,21 +1,8 @@
 @extends('layouts.app')
 
-@push('styles')
-	<link rel="stylesheet" href="/chosen/chosen.min.css">
-	<link rel="stylesheet" href="/chosen/bootstrap-chosen.css">
-@endpush
-
-@push('scripts')
-	<script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
-	<script type="text/javascript">
-		jQuery("#type").chosen();
-		jQuery("#groups").chosen();
-	</script>
-@endpush
-
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <h5>Nieuwe gebruiker</h5>
 
@@ -35,7 +22,7 @@
                 <div class="form-group row">
                     <label for="type" class="col-sm-3 col-form-label">Type *</label>
                     <div class="col-sm-6">
-                        <select class="form-control" id="type" name="type">
+                        <select class="form-control form-control-chosen" id="type" name="type">
                             <option value="student" <?php echo old('type') == 'student' ? 'selected' : ''; ?>>
                                 Student
                             </option>
@@ -48,19 +35,19 @@
                 <div class="form-group row">
                     <label for="id" class="col-sm-3 col-form-label">D-nummer / afkorting *	</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="id" name="id" placeholder="D123456 / ab01" value="{{ old('id') }}">
+                        <input type="text" class="form-control input" id="id" name="id" placeholder="D123456 / ab01" value="{{ old('id') }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">Naam *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control input" id="name" name="name" value="{{ old('name') }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="(leeg laten om automatisch in te vullen)" value="{{ old('email') }}">
+                        <input type="email" class="form-control input" id="email" name="email" placeholder="(leeg laten om automatisch in te vullen)" value="{{ old('email') }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -82,13 +69,13 @@
                 <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label">Wachtwoord *</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control input" id="password" name="password">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password_confirmation" class="col-sm-3 col-form-label">Wachtwoord bevestigen *</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        <input type="password" class="form-control input" id="password_confirmation" name="password_confirmation">
                     </div>
                 </div>
 

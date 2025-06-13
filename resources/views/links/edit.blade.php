@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <h5>Link aanpassen</h5>
 
@@ -28,7 +28,7 @@
                 <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label">URL (lang):</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="url" name="url" value="{{ $link->url ?? old('url') }}">
+                        <input type="text" class="form-control input" id="url" name="url" value="{{ $link->url ?? old('url') }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -41,7 +41,7 @@
                             <div class="input-group-addon">
                                 <div class="input-group-text">met als titel:</div>
                             </div>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ $link->title ?? old('title') }}">
+                            <input type="text" class="form-control input" id="title" name="title" value="{{ $link->title ?? old('title') }}">
                         </div>
                     </div>
                 </div>

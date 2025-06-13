@@ -1,21 +1,8 @@
 @extends('layouts.app')
 
-@push('styles')
-	<link rel="stylesheet" href="/chosen/chosen.min.css">
-	<link rel="stylesheet" href="/chosen/bootstrap-chosen.css">
-@endpush
-
-@push('scripts')
-	<script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
-	<script type="text/javascript">
-		jQuery("#type").chosen();
-		jQuery("#groups").chosen();
-	</script>
-@endpush
-
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <h5>Gebruiker aanpassen</h5>
 
@@ -51,7 +38,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Naam</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control input" id="name" name="name" value="{{ $user->name }}">
                         </div>
                     </div>
                 </fieldset>
@@ -60,13 +47,13 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label">Wachtwoord</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" id="password" name="password" onkeyup="document.getElementById('password_force_change').checked = this.value != '';">
+                            <input type="password" class="form-control input" id="password" name="password" onkeyup="document.getElementById('password_force_change').checked = this.value != '';">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password_confirmation" class="col-sm-3 col-form-label">Wachtwoord bevestigen</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                            <input type="password" class="form-control input" id="password_confirmation" name="password_confirmation">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -129,7 +116,7 @@
                     </div>
                 </fieldset>
 
-            <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
+                <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
             </form>
         </div>
     </div>

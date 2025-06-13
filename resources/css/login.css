@@ -29,6 +29,10 @@ img {
     max-width: 200px;
 }
 
+.container.login {
+    flex-direction: row;
+}
+
 .form {
     display: flex;
     justify-content: flex-start;

@@ -113,7 +113,16 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
+	<script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+
     @stack('scripts')
+
+	<link rel="stylesheet" href="/chosen/chosen.min.css">
+	<link rel="stylesheet" href="/chosen/bootstrap-chosen.css">
+
+	<script type="text/javascript">
+		jQuery(".form-control-chosen").chosen();
+	</script>
 </body>
 
 </html>

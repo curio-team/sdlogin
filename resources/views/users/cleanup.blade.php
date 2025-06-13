@@ -6,7 +6,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             @if (session('notice'))
             <div class="alert alert-success">

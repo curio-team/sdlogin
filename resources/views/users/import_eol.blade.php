@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <h5>Klassenlijst uit EOL importeren</h5>
 
@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <label for="fake_date" class="col-sm-3 col-form-label">Fake date</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="fake_date" id="fake_date" placeholder="{{ date('d-m-Y') }}">
+                        <input type="text" class="form-control input" name="fake_date" id="fake_date" placeholder="{{ date('d-m-Y') }}">
                         <small class="form-text text-muted">Voeg gebruikers toe aan groepen die op bovenstaande datum actief zijn</small>
                     </div>
                 </div>

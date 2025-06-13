@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             @if (session('notice'))
             <div class="alert alert-success">
@@ -19,7 +19,7 @@
                 @method('DELETE')
                 @csrf
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="button-group">
                             <button type="submit" class="button button-danger"><i class="fa fa-trash"></i> Verwijderen</button>
                             <a class="button button-success" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
@@ -27,23 +27,25 @@
                             <a class="button button-warning" href="{{ route('users.cleanup') }}"><i class="fa fa-eraser"></i> Opruimen</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="mt-4 form-inline justify-content-end">
                             <div class="input-group mr-2">
                                 @if(request('q'))
-                                    <span class="input-group-btn">
-                                        <button type="button" id="search_clear" class="button button-secondary">
+                                    <span class="input-group-button">
+                                        <button type="button" id="search_clear" class="button button-secondary icon-only">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </span>
                                 @endif
-                                <input type="text" id="search_text" placeholder="Id, naam, groep" class="form-control" value="{{ request('q') }}">
-                                <span class="input-group-btn">
+                                <input type="text" id="search_text" placeholder="Id, naam, groep" class="form-control input" value="{{ request('q') }}">
+                                <span class="input-group-button">
                                     <button type="button" id="search_button" class="button button-secondary">Zoeken</button>
                                 </span>
                             </div>
 
-                            <select class="form-control" id="pagination">
+                            <select class="form-control form-control-chosen" id="pagination">
                                 <?php $n = request('n', 10); ?>
                                 @for($i = 10; $i <= 100; $i += 10)
                                     <option value="{{ $i }}" <?php echo $i == $n ? 'selected' : ''; ?>>
@@ -84,8 +86,8 @@
                                         </td>
                                         <td>
                                             <div class="button-group">
-                                                <a class="button button-primary" href="/users/{{ $user->id }}/edit"><i class="fa fa-pencil"></i></a>
-                                                <a class="button button-danger" href="{{ route('users.delete', $user->id) }}"><i class="fa fa-trash"></i></a>
+                                                <a class="button button-primary icon-only" href="/users/{{ $user->id }}/edit"><i class="fa fa-pencil"></i></a>
+                                                <a class="button button-danger icon-only" href="{{ route('users.delete', $user->id) }}"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

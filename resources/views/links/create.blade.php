@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <h5>Nieuwe link</h5>
 
@@ -22,7 +22,7 @@
                 <div class="form-group row">
                     <label for="type" class="col-sm-3 col-form-label">Lang *:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="url" name="url" value="{{ old('url') }}">
+                        <input type="text" class="form-control input" id="url" name="url" value="{{ old('url') }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -32,7 +32,7 @@
                             <div class="input-group-addon">
                                 <div class="input-group-text">http://curio.codes/</div>
                             </div>
-                            <input type="text" class="form-control" id="short" name="short" value="{{ old('short') }}">
+                            <input type="text" class="form-control input" id="short" name="short" value="{{ old('short') }}">
                         </div>
                         <small class="form-text text-muted">Laat leeg voor willekeurige link.</small>
                     </div>
@@ -47,7 +47,7 @@
                             <div class="input-group-addon">
                                 <div class="input-group-text">met als titel:</div>
                             </div>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control input" id="title" name="title" value="{{ old('title') }}">
                         </div>
                     </div>
                 </div>

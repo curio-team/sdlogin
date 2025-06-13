@@ -2,19 +2,21 @@
 
 @section('content')
 
-	<div class="container spaced-container glassy full-edge">
+	<div class="container mt-5 glassy full-edge">
         <div>
             <a class="button" href="/clients"><i class="fa fa-chevron-left"></i> Terug</a>
 
-            <form action="{{ route('clients.change-name', $client) }}" method="post">
+            <form action="{{ route('clients.change-name', $client) }}" method="post" class="mt-4">
                 @csrf
                 <div class="form-group row">
-                    <div class="col-sm-12">
-                    <h5><input type="text" value="{{ $client->name }}" class="form-control" name="name"></h5>
+                    <label for="name" class="col-sm-2 col-form-label">Naam:</label>
+                    <div class="col-sm-6">
+                        <h5><input type="text" value="{{ $client->name }}" class="form-control input" name="name" id="name"></h5>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="button button-secondary"><i class="fa fa-save"></i>Wijzig naam</button>
                     </div>
                 </div>
-
-                <button type="submit" class="button button-secondary"><i class="fa fa-save"></i>Wijzig naam</button>
             </form>
 
             <table>
