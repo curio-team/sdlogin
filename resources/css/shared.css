@@ -123,6 +123,33 @@ a:hover {
 }
 
 /*
+    Glassy Cards
+*/
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #FFCC00;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card .card-header {
+    background: rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card .btn-link {
+    color: #FFCC00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*
     Buttons
 */
 .button-group {

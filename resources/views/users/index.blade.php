@@ -23,7 +23,7 @@
                         <div class="button-group">
                             <button type="submit" class="button button-danger"><i class="fa fa-trash"></i> Verwijderen</button>
                             <a class="button button-success" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
-                            <a class="button button-primary" href="{{ route('users.import_eol') }}"><i class="fa fa-upload"></i> Import EOL</a>
+                            <a class="button button-primary" href="{{ route('users.import') }}"><i class="fa fa-upload"></i> Importeer</a>
                             <a class="button button-warning" href="{{ route('users.cleanup') }}"><i class="fa fa-eraser"></i> Opruimen</a>
                         </div>
                     </div>

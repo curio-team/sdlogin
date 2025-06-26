@@ -71,7 +71,7 @@ class AuthTest extends TestCase
         $response = $this->get(route('clients.show', 1));
         $response->assertDontSeeText($app->name);
 
-        $response = $this->get(route('users.import_eol'));
+        $response = $this->get(route('users.import'));
         $response->assertSessionHas('error', 'Geen toegang voor studenten.');
 
         $response = $this->get(route('users.cleanup'));
@@ -105,7 +105,7 @@ class AuthTest extends TestCase
         $response = $this->get(route('clients.show', 1));
         $response->assertSeeText($app->name);
 
-        $response = $this->get(route('users.import_eol'));
+        $response = $this->get(route('users.import'));
         $response->assertSessionDoesntHaveErrors();
 
         $response = $this->get(route('users.cleanup'));

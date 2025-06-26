@@ -10,6 +10,11 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'type',
+    ];
+
     protected $casts = [
         'date_start' => 'datetime:Y-m-d',
         'date_end' => 'datetime:Y-m-d',
