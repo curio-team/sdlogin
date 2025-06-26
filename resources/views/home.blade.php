@@ -4,7 +4,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-7 p-0">
             <div class="glassy full-edge">
                 <div>
                     <h2 style="font-family: 'Franklin', 'Open Sans', sans-serif;">Hallo {{ $firstname }},</h2>
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-5 pr-0">
             <div class="glassy full-edge">
                 <h5>Mijn gegevens</h5>
 

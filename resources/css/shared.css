@@ -33,6 +33,11 @@ a:hover {
     background-position: center;
 }
 
+.text-xs {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
 /*
     Alerts
 */

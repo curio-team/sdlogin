@@ -103,6 +103,12 @@
         @yield('content')
     </div>
 
+	<div class="container mt-5 glassy full-edge">
+        <div class="text-center text-xs">
+            &copy; {{ date('Y') }} <a href="https://curio.nl" target="_blank">Curio Software Developer</a> &bull; Dit project is open source en te vinden op <a href="https://github.com/curio-team/sdlogin" target="_blank">GitHub</a>.<br>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
