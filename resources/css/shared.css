@@ -1,0 +1,477 @@
+/*
+    Common styles
+*/
+html,
+body {
+    min-height: 100vh;
+}
+
+a {
+    color: #FFCC00;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/*
+    Common utilities
+*/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.cover-background {
+    background-size: cover;
+    background-position: center;
+}
+
+.text-xs {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+/*
+    Alerts
+*/
+.alert {
+    padding: 12px 20px;
+    border-radius: 6px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.alert.alert-success {
+    background: rgba(0, 182, 122, 0.2);
+    border: 1px solid rgba(0, 182, 122, 0.4);
+    color: #00B67A;
+}
+
+.alert.alert-danger {
+    background: rgba(246, 48, 48, 0.2);
+    border: 1px solid rgba(246, 48, 48, 0.4);
+    color: #F63030;
+}
+
+.alert.alert-warning {
+    background: rgba(255, 204, 0, 0.2);
+    border: 1px solid rgba(255, 204, 0, 0.4);
+    color: #FFCC00;
+}
+
+.alert.alert-secondary {
+    background: rgba(74, 67, 67, 0.2);
+    border: 1px solid rgba(74, 67, 67, 0.4);
+    color: #D6CBCB;
+}
+
+/*
+    Glass effect
+*/
+.glassy {
+    padding: 2rem;
+
+    /* Glassy effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.glassy.left-edge {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glassy.right-edge {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glassy.top-edge {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glassy.bottom-edge {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glassy.full-edge {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.glassy-inset {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 4px rgba(0, 0, 0, 0.2),
+        0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+/*
+    Glassy Cards
+*/
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #FFCC00;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card .card-header {
+    background: rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card .btn-link {
+    color: #FFCC00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*
+    Buttons
+*/
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 204, 0, 0.2);
+    color: #FFCC00;
+    border: 1px solid rgba(255, 204, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 10px 40px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background: rgba(255, 204, 0, 0.4);
+    border-color: #FFCC00;
+    color: #fff;
+}
+
+.button-big {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.button i.fa {
+    position: absolute;
+    right: 10px;
+    transition: none;
+    top: calc(50% - 8px);
+    opacity: 0.8;
+}
+
+.button:hover i.fa {
+    opacity: 1;
+    transition: all .10s ease-in-out;
+    transition-delay: .05s;
+}
+
+.button.icon-only {
+    padding: 0;
+    width: 36px;
+    min-height: 36px;
+}
+
+.button-danger {
+    background: rgba(246, 48, 48, 0.2);
+    color: #F63030;
+    border: 1px solid rgba(246, 48, 48, 0.5);
+}
+
+.button-danger:hover {
+    background: rgba(246, 48, 48, 0.4);
+    border-color: #F63030;
+    color: #fff;
+}
+
+.button-success {
+    background: rgba(0, 150, 100, 0.2);
+    color: #00B67A;
+    border: 1px solid rgba(0, 150, 100, 0.5);
+}
+
+.button-success:hover {
+    background: rgba(0, 150, 100, 0.4);
+    border-color: #00B67A;
+    color: #fff;
+}
+
+.button-warning {
+    background: rgba(255, 204, 0, 0.2);
+    color: #FFCC00;
+    border: 1px solid rgba(255, 204, 0, 0.5);
+}
+
+.button-warning:hover {
+    background: rgba(255, 204, 0, 0.4);
+    border-color: #FFCC00;
+    color: #fff;
+}
+
+.button-secondary {
+    background: rgba(214, 203, 203, 0.5);
+    color: rgba(214, 203, 203, 1);
+    border: 1px solid rgba(214, 203, 203, 0.8);
+}
+
+.button-secondary:hover {
+    background: rgba(214, 203, 203, 0.4);
+    border-color: #D6CBCB;
+}
+
+.input-group-button:first-child .button {
+    border-radius: 8px 0 0 8px;
+}
+
+.input-group-button:last-child .button {
+    border-radius: 0 8px 8px 0;
+}
+
+/*
+    Inputs
+*/
+.label {
+    display: block;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.input,
+body .chosen-container-single .chosen-search input[type="text"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease, background 0.3s ease;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input:focus {
+    border-color: #FFCC00;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+body .input-group .input-group-addon {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 8px 0 0 8px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.checkbox:checked+.checkmark {
+    background: #FFCC00;
+    border-color: #FFCC00;
+}
+
+.checkbox:checked+.checkmark::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+body .chosen-container-single .chosen-single, body .chosen-container-multi .chosen-choices {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 11px 12px;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    line-height: initial;
+    height: 42px;
+}
+
+body .chosen-container-multi .chosen-choices li.search-choice {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+body .chosen-container-single .chosen-single span {
+    padding-left: 0;
+}
+
+body .chosen-container-single .chosen-single div {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body .chosen-container-active.chosen-with-drop .chosen-single {
+    background: rgba(255, 204, 0, 0.2);
+    border-color: #FFCC00;
+}
+
+body .chosen-container .chosen-drop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid #FFCC00;
+    border-radius: 0 0 6px 6px;
+    margin-top: -1px;
+}
+
+body .chosen-container .chosen-results {
+    color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+body .chosen-container .chosen-results li {
+    padding: 8px 12px;
+    transition: background 0.2s ease;
+}
+
+body .chosen-container .chosen-results li.highlighted {
+    background: rgba(255, 204, 0, 0.3);
+    color: #fff;
+}
+
+body .chosen-container-single .chosen-single div b {
+    background: none;
+}
+
+/* Down arrow */
+body .chosen-container-single .chosen-single div b:after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+}
+
+/* Flip the down arrow */
+body .chosen-container-single.chosen-with-drop .chosen-single div b:after {
+    border-top: none;
+    border-bottom: 5px solid #fff;
+}
+
+/*
+    Bootstrap table modifications
+*/
+body .table-hover tbody tr {
+    border-radius: 8px;
+}
+
+body .table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+body .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body .table thead th {
+    border: none;
+}
+
+body .table td,
+body .table th {
+    border: none;
+}

@@ -10,27 +10,19 @@
 }
 
 body{
-	font-family: "Open Sans", Arial, sans-serif;
+	font-family: Arial, sans-serif;
+    background: #AA076B;
+    background: -webkit-linear-gradient(-60deg, #790677, #111777);
 }
 
-.container{
-	padding: 0;
+.navbar {
+    padding: 1em 0;
 }
 
-.bg-brand-light{
-	background-color: #d6e3df;
-}
-
-.navbar{
-	border-top: 3px solid #004c35;
-}
-
-.color-brand, .navbar-dark .navbar-nav .nav-link{
-	color: #004c35 !important;
-}
-
-.border-brand{
-	border-color: #004c35;
+.navbar-logo {
+    display: inline-block;
+    width: auto;
+    height: 48px;
 }
 
 .min-w-fit {
@@ -42,46 +34,11 @@ body{
     padding-left: 1rem;
 }
 
-.btn-brand{
-	border-color: #004c35;
-	color: #004c35;
-	overflow: hidden;
-}
-
-.btn-brand:hover{
-	background-color: #004c35;
-	color: white;
-}
-
-.btn-brand i.fa{
-	position: absolute;
-	right: 10px;
-    transition: none;
-    background-color: #004c35;
-    top: calc(50% - 8px);
-    opacity: 0;
-}
-
-.btn-brand:hover i.fa{
-	opacity: 1;
-	transition: all .10s ease-in-out;
-	transition-delay: .05s;
-}
-
 .navbar-brand{
-	font-family: "Franklin", Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	font-weight: 500;
 	font-size: 26px;
 	padding: 0;
-}
-
-.container{
-	margin-top: 2em;
-}
-
-.spaced-container > *, .spaced-container > form > *{
-	margin-top: 1em;
-	margin-bottom: 1em;
 }
 
 button{
@@ -107,7 +64,6 @@ button{
 
 .links-container > *{
 	margin-bottom: 1.4em;
-	padding: 1em .75em;
 }
 
 .links-container > *:nth-child(3n+2){

@@ -10,6 +10,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Vite;
 use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,5 +48,16 @@ class AppServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(Carbon::now()->addMinutes(10));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
+
+        // Vite must get all asset paths, or it wont properly build the assets (so no looping here)
+        $backgrounds = [
+            Vite::asset('resources/img/backgrounds/andras-vas-Bd7gNnWJBkU-unsplash.jpg'),
+            Vite::asset('resources/img/backgrounds/lorenzo-herrera-p0j-mE6mGo4-unsplash.jpg'),
+            Vite::asset('resources/img/backgrounds/lorenzo-herrera-yP89apz2TAA-unsplash.jpg'),
+            Vite::asset('resources/img/backgrounds/umberto-jXd2FSvcRr8-unsplash.jpg'),
+            Vite::asset('resources/img/backgrounds/codioful-formerly-gradienta-H5eYSjFGw5M-unsplash.jpg'),
+        ];
+
+        View::share('backgrounds', $backgrounds);
     }
 }

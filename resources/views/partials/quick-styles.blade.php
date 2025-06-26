@@ -1,15 +1,9 @@
 
 <style>
-    .btn-group {
+    .button-group {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .btn.btn-brand {
-        border-color: rgba(0, 76, 53, 0.1);
-        color: #004c35;
-        overflow: hidden;
     }
 
     .btn.btn-danger {
@@ -41,12 +35,6 @@
         transition: all .15s ease-in-out;
         cursor: pointer;
         background-color: rgb(233, 233, 237);
-    }
-
-    .btn-big {
-        padding: 1rem 1.5rem;
-        font-size: 1.25rem;
-        line-height: 1.5;
     }
 
     .card {
