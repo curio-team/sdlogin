@@ -40,7 +40,7 @@
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
           crossorigin="anonymous">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/shared.css', 'resources/css/app.css', 'resources/js/app.js'])
 
     <script src="https://use.fontawesome.com/30b7c2b05b.js"></script>
 
@@ -48,10 +48,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-brand-light">
+    <nav class="navbar navbar-expand glassy bottom-edge">
         <div class="container mt-0 flex-column flex-md-row">
-            <a class="navbar-brand color-brand mr-0"
-               href="{{ url('me') }}">curio.codes</a>
+            <a class="navbar-brand mr-0"
+               href="{{ url('me') }}">
+               <img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
+                    alt="Curio Software developers"
+                    class="navbar-logo">
+            </a>
             @auth
             <div class="justify-content-end">
                 <ul class="navbar-nav flex-column flex-md-row align-items-center">
@@ -99,6 +103,12 @@
         @yield('content')
     </div>
 
+	<div class="container mt-5 glassy full-edge">
+        <div class="text-center text-xs">
+            &copy; {{ date('Y') }} <a href="https://curio.nl" target="_blank">Curio Software Developer</a> &bull; Dit project is open source en te vinden op <a href="https://github.com/curio-team/sdlogin" target="_blank">GitHub</a>.<br>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -109,7 +119,16 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
+	<script type="text/javascript" src="/chosen/chosen.jquery.min.js"></script>
+
     @stack('scripts')
+
+	<link rel="stylesheet" href="/chosen/chosen.min.css">
+	<link rel="stylesheet" href="/chosen/bootstrap-chosen.css">
+
+	<script type="text/javascript">
+		jQuery(".form-control-chosen").chosen();
+	</script>
 </body>
 
 </html>

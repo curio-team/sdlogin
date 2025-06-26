@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container pwd-container spaced-container">
+    <div class="container pwd-container mt-5">
         <div id="pwd-text">
             <h3>Tips voor een sterk wachtwoord</h3>
             <p>Voor je wachtwoord op curio.codes gelden geen specifieke regels, het moet alleen sterk genoeg zijn. Dat bereik je vooral door een <em>lang</em> wachtwoord te kiezen. Een kort wachtwoord met vreemde tekens is minder veilig dan een lang wachtwoord.</p>

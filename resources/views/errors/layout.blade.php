@@ -33,7 +33,7 @@
 
         <title>curio.codes</title>
 
-        @vite(['resources/css/login.css'])
+        @vite(['resources/css/shared.css', 'resources/css/login.css'])
 
         <style>
             .center{
@@ -43,9 +43,7 @@
             }
 
             .center > div {
-                background: white;
                 max-width: 960px;
-                padding: 2em 5em;
             }
 
             .inset {
@@ -83,34 +81,10 @@
         @include('partials.quick-styles')
     </head>
 
-    <body>
-        @php
-            // Vite must get all asset paths, or it wont properly build the assets (so no looping here)
-            $backgrounds = [
-                Vite::asset('resources/img/backgrounds/bg1.jpg'),
-                Vite::asset('resources/img/backgrounds/bg2.jpg'),
-                Vite::asset('resources/img/backgrounds/bg3.jpg'),
-                Vite::asset('resources/img/backgrounds/bg4.jpg'),
-                Vite::asset('resources/img/backgrounds/bg5.jpg'),
-                Vite::asset('resources/img/backgrounds/bg6.jpg'),
-                Vite::asset('resources/img/backgrounds/bg7.jpg'),
-                Vite::asset('resources/img/backgrounds/bg8.jpg'),
-                Vite::asset('resources/img/backgrounds/bg9.jpg'),
-                Vite::asset('resources/img/backgrounds/bg10.jpg'),
-                Vite::asset('resources/img/backgrounds/bg11.jpg'),
-                Vite::asset('resources/img/backgrounds/bg12.jpg'),
-                Vite::asset('resources/img/backgrounds/bg13.jpg'),
-                Vite::asset('resources/img/backgrounds/bg14.jpg'),
-                Vite::asset('resources/img/backgrounds/bg15.jpg'),
-                Vite::asset('resources/img/backgrounds/bg16.jpg'),
-            ];
-        @endphp
-        <div class="inset"
-            style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})"></div>
-
-        <div class="center inset">
-            <div class="stack">
-                <h1 class="text-center"><img src="{{ Vite::asset('resources/img/Curio-software-developers-klein.png') }}"
+    <body class="cover-background center" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+        <div class="container">
+            <div class="stack glassy full-edge">
+                <h1 class="text-center"><img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
                             alt="Curio Software developers"></h1>
 
                 <div class="message">
@@ -120,8 +94,8 @@
                 </div>
 
                 <div class="stack mt">
-                    <a class="btn btn-brand btn-big" href="{{ url()->previous() }}">Terug naar de vorige pagina</a>
-                    <a class="btn btn-brand" href="{{ route('home') }}">Naar de homepagina</a>
+                    <a class="button button-big" href="{{ url()->previous() }}">Terug naar de vorige pagina</a>
+                    <a class="button" href="{{ route('home') }}">Naar de homepagina</a>
                 </div>
             </div>
         </div>

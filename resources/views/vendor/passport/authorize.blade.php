@@ -26,14 +26,14 @@
         </div>
         @endif
 
-        <div class="btn-group mt">
+        <div class="button-group mt">
             <form method="post" action="{{ route('passport.authorizations.approve') }}">
                 @csrf
 
                 <input type="hidden" name="state" value="{{ $request->state }}">
                 <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
                 <input type="hidden" name="auth_token" value="{{ $authToken }}">
-                <button type="submit" class="btn btn-big btn-danger">Toestaan en Inloggen</button>
+                <button type="submit" class="button button-big btn-danger">Toestaan en Inloggen</button>
             </form>
 
             <form method="post" action="{{ route('passport.authorizations.deny') }}">
@@ -43,7 +43,7 @@
                 <input type="hidden" name="state" value="{{ $request->state }}">
                 <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
                 <input type="hidden" name="auth_token" value="{{ $authToken }}">
-                <button class="btn btn-brand">Weigeren</button>
+                <button class="button">Weigeren</button>
             </form>
         </div>
     </div>
