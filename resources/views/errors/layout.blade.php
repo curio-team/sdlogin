@@ -77,8 +77,6 @@
         </style>
 
         @stack('styles')
-
-        @include('partials.quick-styles')
     </head>
 
     <body class="cover-background center" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">

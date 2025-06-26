@@ -74,6 +74,26 @@ $loginRoutes = function () {
             Route::get('grouplogin', [GroupLoginController::class, 'index']);
             Route::get('grouplogin/{group}', [GroupLoginController::class, 'show']);
             Route::post('grouplogin/{group}', [GroupLoginController::class, 'do']);
+
+            // This test route only exists for testing the view of the authorize page
+            Route::get('authorize-test', function () {
+                return view('passport::authorize', [
+                    'client' => new class {
+                        var $name = 'Test Client';
+                        public function getKey() {
+                            return 'test-client';
+                        }
+                    },
+                    'scopes' => [
+                        (object) ['id' => 'read', 'description' => 'Read access'],
+                        (object) ['id' => 'write', 'description' => 'Write access'],
+                    ],
+                    'request' => (object) [
+                        'state' => 'xyz123',
+                    ],
+                    'authToken' => 'test',
+                ]);
+            })->name('authorize-test');
         });
     });
 

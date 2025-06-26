@@ -1,9 +1,5 @@
 @extends('layouts.auth')
 
-@push('styles')
-@include('partials.quick-styles')
-@endpush
-
 @section('content')
 <div class="card card-default">
     <div class="card-header">
@@ -17,8 +13,8 @@
         <!-- Scope List -->
         @if (count($scopes) > 0)
         <div class="scopes">
-            <p><strong>Deze applicatie kan vervolgens:</strong></p>
-            <ul>
+            <p><strong>Deze applicatie krijgt vervolgens:</strong></p>
+            <ul class="pl-4">
                 @foreach ($scopes as $scope)
                 <li>{{ $scope->description }}</li>
                 @endforeach
