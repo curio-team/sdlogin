@@ -159,8 +159,6 @@ a:hover {
 
 .button {
     display: flex;
-    width: 100%;
-    height: 100%;
     justify-content: center;
     align-items: center;
     background: rgba(255, 204, 0, 0.2);
@@ -262,6 +260,10 @@ a:hover {
 
 .input-group-button:last-child .button {
     border-radius: 0 8px 8px 0;
+}
+
+.links-container .button {
+    margin-bottom: 1em;
 }
 
 /*
