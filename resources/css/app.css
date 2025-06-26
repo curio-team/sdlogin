@@ -139,6 +139,15 @@ button{
 	.row > div > *, .row > div > div > *{
 		margin-bottom: 1em;
 	}
+
+    .links-container{
+        grid-template-columns: 1fr;
+    }
+
+    .links-container > *:nth-child(3n+2){
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .bordered{

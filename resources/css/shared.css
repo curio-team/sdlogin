@@ -16,6 +16,69 @@ a:hover {
 }
 
 /*
+    Navbar
+*/
+
+.navbar-toggler {
+    border: none;
+    color: #FFCC00;
+    padding: 0.5rem;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background-color: currentColor;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: currentColor;
+    position: absolute;
+    left: 0;
+}
+
+.navbar-toggler-icon::before {
+    top: -8px;
+}
+
+.navbar-toggler-icon::after {
+    top: 8px;
+}
+
+.navbar-aside {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    flex: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-aside {
+        padding: 0 2rem;
+    }
+
+    .navbar-collapse {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+    }
+
+    .navbar-collapse.show {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+/*
     Common utilities
 */
 .container {
@@ -155,6 +218,7 @@ a:hover {
 .button-group {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .button {

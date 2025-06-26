@@ -15,6 +15,7 @@
                     </p>
                 </div>
             </div>
+
             <div class="mt-4">
                 <div class="links-container">
                     <a target="_blank"
@@ -44,7 +45,7 @@
             </div>
         </div>
 
-        <div class="col-lg-5 pr-0">
+        <div class="col-lg-5 pr-0 pl-0 pl-md-3">
             <div class="glassy full-edge">
                 <h5>Mijn gegevens</h5>
 

@@ -48,16 +48,22 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand glassy bottom-edge">
+    <nav class="navbar navbar-expand-md glassy bottom-edge">
         <div class="container mt-0 flex-column flex-md-row">
-            <a class="navbar-brand mr-0"
-               href="{{ url('me') }}">
-               <img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
-                    alt="Curio Software developers"
-                    class="navbar-logo">
-            </a>
+            <div class="navbar-aside">
+                <a class="navbar-brand mr-0"
+                href="{{ url('me') }}">
+                <img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
+                        alt="Curio Software developers"
+                        class="navbar-logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" onclick="document.getElementById('navbarSupportedContent').classList.toggle('show')" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             @auth
-            <div class="justify-content-end">
+            <div class="navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav flex-column flex-md-row align-items-center">
                     <li class="nav-item">
                         <a class="nav-link"
