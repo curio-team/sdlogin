@@ -92,7 +92,7 @@
                                target="_blank">Open Osiris</a>
                         </div>
                         <p>Zorg ervoor dat je de juiste filters gebruikt om de gewenste groepen te vinden:</p>
-                        <img src="https://private-user-images.githubusercontent.com/2738114/422734641-8d863b42-c4a6-496a-b9b1-8716afb5a7e6.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDE5NjQ1MDAsIm5iZiI6MTc0MTk2NDIwMCwicGF0aCI6Ii8yNzM4MTE0LzQyMjczNDY0MS04ZDg2M2I0Mi1jNGE2LTQ5NmEtYjliMS04NzE2YWZiNWE3ZTYucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDMxNCUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAzMTRUMTQ1NjQwWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9Nzg1ZTMyMGY1YmViMWUwZTZhNTBjOGRmZWI3OWJkNmExMGNkMzgyNmI5YmEwZGE0YWUyYjg5NDcyZmU1ZWIzNyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.gKuQSj4ZLZfdbzbBl4CoHwwpAVZSg-OhiVmDBfUet6w"
+                        <img src="https://github.com/user-attachments/assets/8d863b42-c4a6-496a-b9b1-8716afb5a7e6"
                              alt="Osiris groepen zoeken"
                              class="img-fluid">
                         <div class="mt-3">
