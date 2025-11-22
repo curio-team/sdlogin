@@ -46,8 +46,8 @@ class AppServiceProvider extends ServiceProvider
             Route::get('/oauth/authorize', [OidcAuthController::class, 'authorize']);
         });
 
-        Passport::tokensExpireIn(Carbon::now()->addMinutes(10));
-        Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
+        Passport::tokensExpireIn(Carbon::now()->addYear());
+        Passport::refreshTokensExpireIn(Carbon::now()->addYear()->addDays(60));
 
         // Vite must get all asset paths, or it wont properly build the assets (so no looping here)
         $backgrounds = [
