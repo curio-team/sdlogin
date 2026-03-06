@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#check-table tr').click(function(event) {
+  $('#check-table tbody tr').click(function(event) {
     if (event.target.type !== 'checkbox') {
       $(':checkbox', this).trigger('click');
     }

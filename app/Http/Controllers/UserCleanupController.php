@@ -19,7 +19,14 @@ class UserCleanupController extends Controller
         ->orderBy('name', 'asc')
         ->get();
 
-        return view('users.cleanup')->with(compact('users'));
+        $yearsOld = (int) ($_GET['years_old'] ?? 4);
+        $oldUsers = User::where('created_at', '<', Carbon::now()->subYears($yearsOld))
+        ->where('type', 'student')
+        ->orderBy('created_at', 'asc')
+        ->orderBy('name', 'asc')
+        ->get();
+
+        return view('users.cleanup')->with(compact('users', 'oldUsers', 'yearsOld'));
     }
 
     public function clean(Request $request)
