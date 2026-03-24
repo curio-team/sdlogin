@@ -77,10 +77,11 @@ $loginRoutes = function () {
 
             // This test route only exists for testing the view of the authorize page
             Route::get('authorize-test', function () {
-                return view('passport::authorize', [
+                return view('auth.oauth.authorize', [
                     'client' => new class {
                         var $name = 'Test Client';
-                        public function getKey() {
+                        public function getKey()
+                        {
                             return 'test-client';
                         }
                     },

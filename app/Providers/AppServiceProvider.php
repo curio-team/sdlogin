@@ -19,9 +19,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -48,6 +46,11 @@ class AppServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(Carbon::now()->addYear());
         Passport::refreshTokensExpireIn(Carbon::now()->addYear()->addDays(60));
+
+        // Keep integer client IDs for backward compatibility with existing database
+        Passport::$clientUuids = false;
+
+        Passport::authorizationView('auth.oauth.authorize');
 
         // Vite must get all asset paths, or it wont properly build the assets (so no looping here)
         $backgrounds = [

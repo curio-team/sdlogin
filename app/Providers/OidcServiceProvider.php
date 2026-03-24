@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Oidc\AuthorizationServer;
+use Laravel\Passport\Passport;
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Passport\Bridge\ClientRepository;
 use Laravel\Passport\Bridge\AccessTokenRepository;
@@ -22,12 +23,16 @@ class OidcServiceProvider extends PassportServiceProvider
      */
     protected function makeAuthorizationServer(?ResponseTypeInterface $responseType = null): AuthorizationServer
     {
-        return new AuthorizationServer(
+        return tap(new AuthorizationServer(
             $this->app->make(ClientRepository::class),
             $this->app->make(AccessTokenRepository::class),
             $this->app->make(ScopeRepository::class),
             $this->makeCryptKey('private'),
-            app('encrypter')->getKey()
-        );
+            Passport::tokenEncryptionKey($this->app->make('encrypter')),
+            $responseType ?? Passport::$authorizationServerResponseType
+        ), function (AuthorizationServer $server): void {
+            $server->setDefaultScope(Passport::$defaultScope);
+            $server->revokeRefreshTokens(Passport::$revokeRefreshTokenAfterUse);
+        });
     }
 }

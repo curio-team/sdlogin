@@ -12,7 +12,7 @@ use Lcobucci\JWT\Signer\Key\InMemory;
 
 class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
 {
-    protected function getExtraParams(AccessTokenEntityInterface $accessToken)
+    protected function getExtraParams(AccessTokenEntityInterface $accessToken): array
     {
         $user = User::find($accessToken->getUserIdentifier());
         $user->groups = $user->groups->toJson();
@@ -24,7 +24,7 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
             ->issue(
                 new Sha256(),
                 $signingKey,
-                static fn (
+                static fn(
                     Builder $builder,
                     DateTimeImmutable $issuedAt,
                 ): Builder => $builder

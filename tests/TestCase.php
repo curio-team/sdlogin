@@ -43,7 +43,7 @@ abstract class TestCase extends BaseTestCase
     {
         return Client::factory()->create([
             'name' => $name,
-            'redirect' => $redirect,
+            'redirect_uris' => [$redirect],
             'for_development' => $forDevelopment,
         ]);
     }
