@@ -3,15 +3,14 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function user_can_login_as_student(): void
     {
         $this->seed();
@@ -28,9 +27,7 @@ class AuthTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function user_can_login_as_teacher(): void
     {
         $this->seed();
@@ -47,9 +44,7 @@ class AuthTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function student_can_not_access_admin_dashboards(): void
     {
         $this->seed();
@@ -81,9 +76,7 @@ class AuthTest extends TestCase
         $response->assertSessionDoesntHaveErrors();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function teacher_can_access_admin_dashboards(): void
     {
         $this->seed();

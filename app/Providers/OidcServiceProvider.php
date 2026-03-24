@@ -7,6 +7,7 @@ use Laravel\Passport\PassportServiceProvider;
 use Laravel\Passport\Bridge\ClientRepository;
 use Laravel\Passport\Bridge\AccessTokenRepository;
 use Laravel\Passport\Bridge\ScopeRepository;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 
 /**
  * Extending Laravel Passport to support OpenID Connect.
@@ -19,7 +20,7 @@ class OidcServiceProvider extends PassportServiceProvider
      *
      * @return AuthorizationServer
      */
-    public function makeAuthorizationServer()
+    protected function makeAuthorizationServer(?ResponseTypeInterface $responseType = null): AuthorizationServer
     {
         return new AuthorizationServer(
             $this->app->make(ClientRepository::class),
