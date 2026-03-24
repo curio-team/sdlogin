@@ -14,7 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('oauth_clients', function (Blueprint $table) {
-            $table->nullableMorphs('owner', after: 'user_id');
+            $table->after('user_id', function (Blueprint $table) {
+                $table->string('owner_type')->nullable();
+                $table->string('owner_id')->nullable();
+                $table->index(['owner_type', 'owner_id']);
+            });
 
             $table->after('provider', function (Blueprint $table) {
                 $table->text('redirect_uris')->nullable();
@@ -46,10 +50,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        throw_if(true, 'This has not yet been tested. Do not run this migration down without testing it first.');
-
         Schema::table('oauth_clients', function (Blueprint $table) {
-            $table->dropMorphs('owner');
+            $table->dropIndex(['owner_type', 'owner_id']);
+            $table->dropColumn(['owner_type', 'owner_id']);
 
             $table->after('provider', function (Blueprint $table) {
                 $table->string('redirect')->nullable();
