@@ -8,9 +8,11 @@
             <div class="glassy full-edge">
                 <div>
                     <h2 style="font-family: 'Franklin', 'Open Sans', sans-serif;">Hallo {{ $firstname }},</h2>
-                    <p>Met je <strong>i-account</strong> van <strong>curio.codes</strong> kun je inloggen op alle apps van de
+                    <p>Met je <strong>i-account</strong> van <strong>curio.codes</strong> kun je inloggen op alle apps
+                        van de
                         curio software-opleidingen. Dat zijn websites die eindigen op <em>curio.codes</em> (of het oude
-                        <em>amo.rocks</em>). Dit account bestaat naast je <strong>edu-account</strong> account dat je van curio
+                        <em>amo.rocks</em>). Dit account bestaat naast je <strong>edu-account</strong> account dat je
+                        van curio
                         krijgt.
                     </p>
                 </div>
@@ -19,24 +21,24 @@
             <div class="mt-4">
                 <div class="links-container">
                     <a target="_blank"
-                    class="button min-w-fit"
-                    href="http://student.curio.nl/">
+                       class="button min-w-fit"
+                       href="http://student.curio.nl/">
                         Naar mijn edu-account
                         <i class="fa fa-fw fa-external-link"></i>
                     </a>
                     @foreach($apps as $app)
                     <?php $url = parse_url($app->redirect); ?>
                     <a target="_blank"
-                    class="button min-w-fit"
-                    href="{{ $url['scheme'].'://'.$url['host'] }}">
+                       class="button min-w-fit"
+                       href="{{ ($url['scheme'] ?? 'https').'://'.$url['host'] }}">
                         {{ $app->name }}
                         <i class="fa fa-fw fa-cube"></i>
                     </a>
                     @endforeach
                     @foreach($links as $link)
                     <a target="_blank"
-                    class="button min-w-fit"
-                    href="http://curio.codes/{{ $link->short }}">
+                       class="button min-w-fit"
+                       href="http://curio.codes/{{ $link->short }}">
                         {{ $link->title ?? ucfirst($link->short) }}
                         <i class="fa fa-fw fa-external-link"></i>
                     </a>
@@ -74,7 +76,7 @@
                 <div class="my-group">
                     <p class="title">Edu-account</p>
                     <p class="content"><a href="http://student.curio.nl/"
-                        target="_blank">naar mijn edu-account</a></p>
+                           target="_blank">naar mijn edu-account</a></p>
                 </div>
                 <div class="my-group my-group-list">
                     <p class="title">Groepen</p>
