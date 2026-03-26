@@ -11,7 +11,7 @@
                 <tr>
                     <th>Eigenaar:</th>
                     <td>&nbsp;</td>
-                    <td>{{ $client->user_id }}</td>
+                    <td>{{ $client->owner->name }}</td>
                 </tr>
                 <tr>
                     <th>Redirect URL:</th>

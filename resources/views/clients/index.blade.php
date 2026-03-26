@@ -30,7 +30,7 @@
                                     <td>{{ $client->id }}</td>
                                     <td>{{ $client->name }}</td>
                                     <td>{{ implode(', ', $client->redirect_uris) }}</td>
-                                    <td>{{ $client->user_id }}</td>
+                                    <td>{{ $client->owner->name }}</td>
                                     <td>
                                         <div class="button-group">
                                             <a class="button button-secondary icon-only" href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
