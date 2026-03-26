@@ -27,10 +27,10 @@
                         <i class="fa fa-fw fa-external-link"></i>
                     </a>
                     @foreach($apps as $app)
-                    <?php $url = parse_url($app->redirect); ?>
+                    <?php $url = parse_url($app->redirect_uris[0]); ?>
                     <a target="_blank"
                        class="button min-w-fit"
-                       href="{{ ($url['scheme'] ?? 'https').'://'.$url['host'] }}">
+                       href="{{ $url['scheme'].'://'.$url['host'] }}">
                         {{ $app->name }}
                         <i class="fa fa-fw fa-cube"></i>
                     </a>
