@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{{ $client->id }}</td>
                                     <td>{{ $client->name }}</td>
-                                    <td>{{ $client->redirect }}</td>
+                                    <td>{{ implode(', ', $client->redirect_uris) }}</td>
                                     <td>{{ $client->user_id }}</td>
                                     <td>
                                         <div class="button-group">

@@ -16,7 +16,7 @@
                 <tr>
                     <th>Redirect URL:</th>
                     <td>&nbsp;</td>
-                    <td>{{ $client->redirect }}</td>
+                    <td>{{ implode(', ', $client->redirect_uris) }}</td>
                 </tr>
                 <tr>
                     <th>Client ID:</th>
