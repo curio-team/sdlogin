@@ -47,6 +47,15 @@
     php artisan passport:keys
     ```
 
+    After generating the keys, set the correct ownership and file permissions to avoid OAuth errors:
+
+    ```bash
+    chown www-data:www-data storage/oauth-private.key storage/oauth-public.key
+    chmod 600 storage/oauth-private.key storage/oauth-public.key
+    ```
+
+    > If the keys were generated as root (e.g. via `sudo` or in a Docker container), the web server user (`www-data`) may not be able to read them. The `chown` command above transfers ownership so the web server can access them. If you cannot change ownership, use `chmod 640` instead so the group can read the files.
+
 6. For testing you can login with the following credentials:
 
     - **Username:** `xy10`
