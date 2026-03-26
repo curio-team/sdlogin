@@ -6,15 +6,14 @@ use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Passport\Passport;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_redirect_when_not_logged_in()
     {
         $this->seed();
@@ -24,9 +23,7 @@ class ApiTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_all_groups_when_logged_in()
     {
         $this->seed();
@@ -43,9 +40,9 @@ class ApiTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJson(
-            fn (AssertableJson $json) =>
+            fn(AssertableJson $json) =>
             $json->each(
-                fn (AssertableJson $jsonItem) =>
+                fn(AssertableJson $jsonItem) =>
                 $jsonItem->missing('users')
                     ->hasAll(['id', 'name', 'date_start', 'date_end'])
                     ->etc()
@@ -53,9 +50,7 @@ class ApiTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_a_group_with_users_for_teachers()
     {
         $this->seed();
@@ -76,13 +71,13 @@ class ApiTest extends TestCase
 
         // Ensure there's users, but not their (hashed) passwords
         $response->assertJson(
-            fn (AssertableJson $json) =>
+            fn(AssertableJson $json) =>
             $json->has(
                 'users',
-                fn (AssertableJson $jsonItem) =>
+                fn(AssertableJson $jsonItem) =>
                 $jsonItem->count($students->count())
                     ->each(
-                        fn (AssertableJson $jsonItem) =>
+                        fn(AssertableJson $jsonItem) =>
                         $jsonItem->hasAll(['id', 'name', 'email', 'type'])
                             ->missing('password')
                             ->etc()
@@ -92,9 +87,7 @@ class ApiTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_a_group_with_user_ids_only_for_students()
     {
         $this->seed();
@@ -115,13 +108,13 @@ class ApiTest extends TestCase
 
         // Ensure there's only id's of users
         $response->assertJson(
-            fn (AssertableJson $json) =>
+            fn(AssertableJson $json) =>
             $json->has(
                 'users',
-                fn (AssertableJson $jsonItem) =>
+                fn(AssertableJson $jsonItem) =>
                 $jsonItem->count($students->count())
                     ->each(
-                        fn (AssertableJson $jsonItem) =>
+                        fn(AssertableJson $jsonItem) =>
                         $jsonItem->has('id')
                             ->missingAll(['name', 'email', 'type', 'password'])
                             ->etc()

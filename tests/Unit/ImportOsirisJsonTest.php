@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Http\Controllers\ImportController;
 use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ImportOsirisJsonTest extends TestCase
@@ -137,9 +138,7 @@ class ImportOsirisJsonTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function user_can_import_users_without_groups(): void
     {
         $usersInImport = self::getUsersInImport();
@@ -177,9 +176,7 @@ class ImportOsirisJsonTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function user_can_import_users_with_groups(): void
     {
         $usersInImport = self::getUsersInImport();

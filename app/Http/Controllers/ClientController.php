@@ -4,25 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
-use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\ClientRepository;
-use Laravel\Passport\Http\Rules\RedirectRule;
 
 class ClientController extends Controller
 {
-    private $clients;
-
-    private $clientController;
-
-    public function __construct(
-        ClientRepository $clients,
-        ValidationFactory $validation,
-        RedirectRule $redirectRule
-    ) {
-        $this->clients = $clients;
-        $this->clientController = new \Laravel\Passport\Http\Controllers\ClientController($clients, $validation, $redirectRule);
-    }
+    public function __construct(private ClientRepository $clients) {}
 
     /**
      * Display a listing of the resource.
@@ -58,14 +45,18 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|string',
             'redirect' => 'required|url',
-            'for_development' => 'required|boolean'
+            'for_development' => 'required|boolean',
         ]);
 
-        $client = $this->clientController->store($request);
+        $client = $this->clients->createAuthorizationCodeGrantClient(
+            $request->name,
+            [$request->redirect],
+        );
         $client->for_development = $request->for_development;
         $client->save();
 
-        return redirect()->route('clients.show', $client);
+        return redirect()->route('clients.show', $client)
+            ->with('plain_secret', $client->plainSecret);
     }
 
     /**
@@ -76,7 +67,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = $this->clients->find($id)->makeVisible('secret');
+        $client = $this->clients->find($id);
         return view('clients.show')
             ->with('client', $client);
     }

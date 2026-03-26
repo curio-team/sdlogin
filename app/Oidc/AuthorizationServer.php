@@ -3,10 +3,11 @@
 namespace App\Oidc;
 
 use League\OAuth2\Server\AuthorizationServer as PassportAuthorizationServer;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 
 class AuthorizationServer extends PassportAuthorizationServer
 {
-    protected function getResponseType()
+    protected function getResponseType(): ResponseTypeInterface
     {
         $responseType = new OidcTokenResponse();
 

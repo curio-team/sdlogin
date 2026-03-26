@@ -22,13 +22,12 @@ class DatabaseSeeder extends Seeder
         $teacherGroup->date_end = '9999-12-12';
         $teacherGroup->save();
 
-        $teacher = new User();
-        $teacher->id = 'xy10';
-        $teacher->name = 'Test Kees';
-        $teacher->email = 'kees@curio.codes';
-        $teacher->password = bcrypt('password');
-        $teacher->type = 'teacher';
-        $teacher->save();
+        $teacher = User::factory()->create([
+            'id' => 'xy10',
+            'name' => 'Test Kees',
+            'email' => 'kees@curio.codes',
+            'type' => 'teacher',
+        ]);
 
         $teacherGroup->users()->attach($teacher);
 
@@ -39,13 +38,12 @@ class DatabaseSeeder extends Seeder
         $studentGroup->date_end = '9999-12-12';
         $studentGroup->save();
 
-        $student = new User();
-        $student->id = 'i123456';
-        $student->name = 'Test Piet';
-        $student->email = 'piet@curio.codes';
-        $student->password = bcrypt('password');
-        $student->type = 'student';
-        $student->save();
+        $student = User::factory()->create([
+            'id' => 'i123456',
+            'name' => 'Test Piet',
+            'email' => 'piet@curio.codes',
+            'type' => 'student',
+        ]);
 
         $studentGroup->users()->attach($student);
     }
