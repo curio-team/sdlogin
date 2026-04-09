@@ -48,11 +48,14 @@ class ClientController extends Controller
             'for_development' => 'required|boolean',
         ]);
 
+        $user = Auth::user();
         $client = $this->clients->createAuthorizationCodeGrantClient(
             $request->name,
             [$request->redirect],
         );
         $client->for_development = $request->for_development;
+        $client->owner_id = $user->id;
+        $client->owner_type = get_class($user);
         $client->save();
 
         return redirect()->route('clients.show', $client)
