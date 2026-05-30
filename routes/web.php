@@ -78,8 +78,9 @@ $loginRoutes = function () {
             // This test route only exists for testing the view of the authorize page
             Route::get('authorize-test', function () {
                 return view('auth.oauth.authorize', [
-                    'client' => new class {
-                        var $name = 'Test Client';
+                    'client' => new class () {
+                        public $name = 'Test Client';
+
                         public function getKey()
                         {
                             return 'test-client';
@@ -106,7 +107,7 @@ $loginRoutes = function () {
     Route::get('password/reset', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 };
 
-if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
+if (config('app.env') === 'local' || config('app.env') === 'testing') {
     Route::group([], $loginRoutes);
 } else {
     $domains = ['login.curio.codes'];

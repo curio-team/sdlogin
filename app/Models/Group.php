@@ -69,6 +69,7 @@ class Group extends Model
      * @param bool $futureNames Whether to append the start date to future group names
      * @param bool $grouped Whether to group the result by type
      * @return Collection<int, Group>|Collection<string, Collection<int, Group>> Depending on $grouped, either a flat collection of groups or a collection of collections of groups grouped by type
+     * @psalm-suppress InvalidReturnType
      */
     public static function get($withHistory = false, $withCurrent = true, $withFuture = false, $orderBy = array('date_end', 'desc'), $futureNames = false, $grouped = false): Collection
     {
@@ -111,6 +112,7 @@ class Group extends Model
             $groepen = $groepen->groupBy('type');
         }
 
+        /** @psalm-suppress InvalidReturnStatement */
         return $groepen;
     }
 }

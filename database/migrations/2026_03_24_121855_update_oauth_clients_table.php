@@ -27,6 +27,7 @@ return new class extends Migration
         });
 
         foreach (Passport::client()->cursor() as $client) {
+            /** @psalm-suppress UndefinedMagicPropertyFetch */
             Model::withoutTimestamps(fn() => $client->forceFill([
                 'owner_id' => $client->user_id,
                 'owner_type' => $client->user_id
