@@ -61,7 +61,7 @@
     - **Username:** `xy10`
     - **Password:** `password`
 
-Now then, time for you to start contributing!
+    **🚀 Now it's your time to start contributing!**
 
 7. Create a new branch for your feature:
 
@@ -102,7 +102,7 @@ SD_DEV_URL=http://localhost:8080
 ```
 
 Start this sdlogin project with:
-    
+
 ```bash
 php artisan serve --port=8080
 ```
