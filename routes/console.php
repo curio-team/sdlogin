@@ -4,6 +4,6 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('inspire', function () {
-    /** @psalm-suppress InvalidScope */
+    /** @var \Illuminate\Console\Command $this */
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
