@@ -9,4 +9,8 @@ use OwenIt\Auditing\Contracts\Auditable;
 class Client extends PassportClient implements Auditable
 {
     use AuditingTrait;
+
+    protected array $auditExclude = [
+        'secret',
+    ];
 }
