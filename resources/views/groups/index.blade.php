@@ -1,18 +1,17 @@
 @extends('layouts.app')
 
 @push('scripts')
-	<script type="text/javascript" src="/js/check.js"></script>
-	<script type="text/javascript" src="/js/filter.js"></script>
+    <script type="text/javascript" src="/js/check.js"></script>
+    <script type="text/javascript" src="/js/filter.js"></script>
 @endpush
 
 @section('content')
-
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 glassy full-edge">
         <div>
             @if (session('notice'))
-            <div class="alert alert-success">
-                {{ session('notice') }}
-            </div>
+                <div class="alert alert-success">
+                    {{ session('notice') }}
+                </div>
             @endif
 
             <form action="/groups" method="POST">
@@ -21,8 +20,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="button-group">
-                            <button type="submit" class="button button-danger"><i class="fa fa-trash"></i> Verwijderen</button>
-                            <a class="button button-primary" href="/groups/create/batch"><i class="fa fa-plus"></i> Batch</a>
+                            <button type="submit" class="button button-danger"><i class="fa fa-trash"></i>
+                                Verwijderen</button>
+                            <a class="button button-primary" href="/groups/create/batch"><i class="fa fa-plus"></i>
+                                Batch</a>
                             <a class="button button-success" href="/groups/create"><i class="fa fa-plus"></i> Nieuw</a>
                         </div>
                     </div>
@@ -31,11 +32,11 @@
                     <div class="col-lg-12">
                         <div class="mt-4 form-inline justify-content-end">
                             <select class="form-control form-control-chosen" id="filter">
-                                <?php $f = request('f', 'current'); ?>
-                                <option value="all" {{ ($f == 'all') ? 'selected' : '' }}>Alles</option>
-                                <option value="current" {{ ($f == 'current') ? 'selected' : '' }}>Huidig</option>
-                                <option value="history" {{ ($f == 'history') ? 'selected' : '' }}>Geschiedenis</option>
-                                <option value="future" {{ ($f == 'future') ? 'selected' : '' }}>Toekomstig</option>
+                                @php $f = request('f', 'current') @endphp
+                                <option value="all" {{ $f == 'all' ? 'selected' : '' }}>Alles</option>
+                                <option value="current" {{ $f == 'current' ? 'selected' : '' }}>Huidig</option>
+                                <option value="history" {{ $f == 'history' ? 'selected' : '' }}>Geschiedenis</option>
+                                <option value="future" {{ $f == 'future' ? 'selected' : '' }}>Toekomstig</option>
                             </select>
                         </div>
                     </div>
@@ -54,11 +55,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($groups as $group)
-                                    <tr <?php echo $group->date_end < \Carbon\Carbon::now() ? 'class="historical"' : '';?>>
+                                @foreach ($groups as $group)
+                                    <tr {{ $group->date_end < \Carbon\Carbon::now() ? 'class="historical"' : '' }}>
                                         <td>
                                             <label class="checkbox-wrapper">
-                                                <input type="checkbox" class="checkbox" name="delete[]" value="{{ $group->id }}">
+                                                <input type="checkbox" class="checkbox" name="delete[]"
+                                                    value="{{ $group->id }}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </td>
@@ -67,8 +69,12 @@
                                         <td>{{ $group->date_end }}</td>
                                         <td>
                                             <div class="button-group">
-                                                <a class="button button-primary icon-only" href="/groups/{{ $group->id }}/edit"><i class="fa fa-pencil"></i></a>
-                                                <a class="button button-danger icon-only" href="{{ route('groups.delete', $group) }}"><i class="fa fa-trash"></i></a>
+                                                <a class="button button-primary icon-only"
+                                                    href="/groups/{{ $group->id }}/edit"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a class="button button-danger icon-only"
+                                                    href="{{ route('groups.delete', $group) }}"><i
+                                                        class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -78,7 +84,6 @@
                     </div>
                 </div>
             </form>
-	    </div>
-	</div>
-
+        </div>
+    </div>
 @endsection

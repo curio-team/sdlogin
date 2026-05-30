@@ -4,6 +4,6 @@
 
 @section('message')
 
-Helaas... deze link bestaat niet (meer)!
+    Helaas... deze link bestaat niet (meer)!
 
 @endsection

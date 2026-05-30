@@ -67,17 +67,17 @@ class AuthTest extends TestCase
         $response->assertDontSeeText($app->name);
 
         $response = $this->get(route('users.import'));
-        $response->assertSessionHas('error', 'Geen toegang voor studenten.');
+        $response->assertStatus(403);
 
         $response = $this->get(route('users.cleanup'));
-        $response->assertSessionHas('error', 'Geen toegang voor studenten.');
+        $response->assertStatus(403);
 
         $response = $this->get(route('home'));
         $response->assertSessionDoesntHaveErrors();
     }
 
     #[Test]
-    public function teacher_can_access_admin_dashboards(): void
+    public function teacher_cannot_access_admin_dashboards(): void
     {
         $this->seed();
 
@@ -93,18 +93,18 @@ class AuthTest extends TestCase
         $app = $this->getTestClientApp();
 
         $response = $this->get(route('clients.index'));
-        $response->assertSeeText($app->name);
+        $response->assertStatus(403);
 
         $response = $this->get(route('clients.show', 1));
-        $response->assertSeeText($app->name);
+        $response->assertStatus(403);
 
         $response = $this->get(route('users.import'));
-        $response->assertSessionDoesntHaveErrors();
+        $response->assertStatus(403);
 
         $response = $this->get(route('users.cleanup'));
-        $response->assertSessionDoesntHaveErrors();
+        $response->assertStatus(403);
 
         $response = $this->get(route('home'));
-        $response->assertSessionDoesntHaveErrors();
+        $response->assertStatus(200);
     }
 }

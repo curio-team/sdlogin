@@ -77,4 +77,14 @@ class User extends Authenticatable implements OAuthenticatable
     {
         return $this->password;
     }
+
+    public function isTeacher(): bool
+    {
+        return $this->type === 'teacher' || $this->type === 'admin';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->type === 'admin';
+    }
 }

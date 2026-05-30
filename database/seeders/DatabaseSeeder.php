@@ -31,6 +31,15 @@ class DatabaseSeeder extends Seeder
 
         $teacherGroup->users()->attach($teacher);
 
+        $admin = User::factory()->create([
+            'id' => 'ab01',
+            'name' => 'Test Admin',
+            'email' => 'admin@curio.codes',
+            'type' => 'admin',
+        ]);
+
+        $teacherGroup->users()->attach($admin);
+
         $studentGroup = new Group();
         $studentGroup->name = 'studenten';
         $studentGroup->type = 'group';

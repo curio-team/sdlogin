@@ -49,7 +49,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|in:teacher,student',
+            'type' => 'required|in:student,teacher,admin',
             'id' => 'required|alpha_num',
             'name' => 'required|string',
             'email' => 'nullable|email',

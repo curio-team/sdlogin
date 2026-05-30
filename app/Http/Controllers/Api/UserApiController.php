@@ -15,7 +15,7 @@ class UserApiController extends Controller
 
     public function index(Request $request)
     {
-        if($request->user()->type != 'teacher') {
+        if (! $request->user()->isTeacher()) {
             abort(403, 'Only for teachers');
         }
 
@@ -24,7 +24,7 @@ class UserApiController extends Controller
 
     public function user(Request $request, User $user)
     {
-        if($request->user()->type != 'teacher') {
+        if (! $request->user()->isTeacher()) {
             abort(403, 'Only for teachers');
         }
 

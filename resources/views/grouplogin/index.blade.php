@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 glassy full-edge">
         <div>
             @if (session('notice'))
-            <div class="alert alert-success">
-                {{ session('notice') }}
-            </div>
+                <div class="alert alert-success">
+                    {{ session('notice') }}
+                </div>
             @endif
 
             <div class="row">
@@ -22,14 +21,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($groups as $group)
-                                <tr <?php echo $group->date_end < \Carbon\Carbon::now() ? 'class="historical"' : '';?>>
+                            @foreach ($groups as $group)
+                                <tr {{ $group->date_end < \Carbon\Carbon::now() ? 'class="historical"' : '' }}>
                                     <td>{{ $group->name }}</td>
                                     <td>{{ $group->date_start }}</td>
                                     <td>{{ $group->date_end }}</td>
                                     <td>
                                         <div class="button-group">
-                                            <a class="button button-warning" href="/grouplogin/{{ $group->id }}"><i class="fa fa-fw fa-key"></i> Groepslogin opvragen</a>
+                                            <a class="button button-warning" href="/grouplogin/{{ $group->id }}"><i
+                                                    class="fa fa-fw fa-key"></i> Groepslogin opvragen</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -40,5 +40,4 @@
             </div>
         </div>
     </div>
-
 @endsection

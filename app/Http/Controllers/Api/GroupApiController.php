@@ -15,10 +15,12 @@ class GroupApiController extends Controller
 
     public function group(Request $request, Group $group)
     {
-        if($request->user()->type == 'teacher') {
+        if ($request->user()->isTeacher()) {
             $group->load('users');
         } else {
-            $group['users'] = collect($group->users()->get()->map(function ($u) { return (object) ['id' => $u['id']]; }));
+            $group['users'] = collect($group->users()->get()->map(function ($u) {
+                return (object) ['id' => $u['id']];
+            }));
         }
         return $group;
     }
@@ -27,10 +29,11 @@ class GroupApiController extends Controller
     {
         $group = Group::findOnlyCurrent($name);
 
-        if($group == null) {
+        if ($group == null) {
             abort(404, 'Groep niet gevonden');
         }
-        if($request->user()->type == 'teacher') {
+
+        if ($request->user()->isTeacher()) {
             $group->load('users');
         }
 

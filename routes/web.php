@@ -44,36 +44,18 @@ $loginRoutes = function () {
         Route::get('/users/{user}/profile', [UserController::class, 'profile'])->name('users.profile');
         Route::patch('/users/{user}/profile', [UserController::class, 'profileUpdate'])->name('users.profile_update');
 
-        Route::group(['middleware' => \App\Http\Middleware\Admin::class], function () {
-            Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
-            Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
-            Route::get('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
-            Route::post('clients/{client}/change-name', [ClientController::class, 'changeName'])->name('clients.change-name');
+        Route::group(['middleware' => \App\Http\Middleware\IsTeacher::class], function () {
+            // User management (no delete — single and bulk user delete require admin)
+            Route::resource('users', UserController::class, ['except' => ['show', 'destroy']]);
 
+            // Group management (single-group delete is safe for teachers)
             Route::get('groups/create/batch', [BatchGroupController::class, 'create'])->name('groups.batch');
             Route::post('groups/batch', [BatchGroupController::class, 'store']);
             Route::get('groups/{group}/delete', [GroupController::class, 'delete'])->name('groups.delete');
             Route::resource('groups', GroupController::class, ['except' => ['show']]);
 
-            Route::get('/users/import/osiris', [ImportController::class, 'show'])->name('users.import');
-            Route::post('/users/import/osiris', [ImportController::class, 'upload'])->name('users.import_upload');
-
-            Route::get('/users/cleanup', [UserCleanupController::class, 'show'])->name('users.cleanup');
-            Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');
-
-            Route::get('/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
-            Route::delete('/users', [UserController::class, 'destroy'])->name('users.destroy');
-
-            Route::resource('users', UserController::class, ['except' => ['show', 'destroy']]);
-
-            Route::get('/links/{short}/delete', [LinkController::class, 'delete'])->name('links.delete');
-            Route::delete('/links', [LinkController::class, 'destroy'])->name('links.destroy');
-
+            // Link management (no delete — single and bulk link delete require admin)
             Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);
-
-            Route::get('grouplogin', [GroupLoginController::class, 'index']);
-            Route::get('grouplogin/{group}', [GroupLoginController::class, 'show']);
-            Route::post('grouplogin/{group}', [GroupLoginController::class, 'do']);
 
             // This test route only exists for testing the view of the authorize page
             Route::get('authorize-test', function () {
@@ -96,6 +78,31 @@ $loginRoutes = function () {
                     'authToken' => 'test',
                 ]);
             })->name('authorize-test');
+        });
+
+        Route::group(['middleware' => [\App\Http\Middleware\IsAdmin::class]], function () {
+            // OAuth client management
+            Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
+            Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
+            Route::get('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
+            Route::post('clients/{client}/change-name', [ClientController::class, 'changeName'])->name('clients.change-name');
+
+            // Bulk user operations
+            Route::get('/users/import/osiris', [ImportController::class, 'show'])->name('users.import');
+            Route::post('/users/import/osiris', [ImportController::class, 'upload'])->name('users.import_upload');
+            Route::get('/users/cleanup', [UserCleanupController::class, 'show'])->name('users.cleanup');
+            Route::post('/users/cleanup', [UserCleanupController::class, 'clean'])->name('users.cleanup_do');
+
+            // User and link delete (single-item confirmation pages + bulk delete endpoint)
+            Route::get('/users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
+            Route::delete('/users', [UserController::class, 'destroy'])->name('users.destroy');
+            Route::get('/links/{short}/delete', [LinkController::class, 'delete'])->name('links.delete');
+            Route::delete('/links', [LinkController::class, 'destroy'])->name('links.destroy');
+
+            // Group password reset
+            Route::get('grouplogin', [GroupLoginController::class, 'index']);
+            Route::get('grouplogin/{group}', [GroupLoginController::class, 'show']);
+            Route::post('grouplogin/{group}', [GroupLoginController::class, 'do']);
         });
     });
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 glassy full-edge">
         <div>
             <h5>Gebruiker aanpassen</h5>
 
@@ -22,7 +22,9 @@
 
                 <div class="form-group row">
                     <div class="col-sm-3">Type</div>
-                    <div class="col-sm-6"><?php echo $user->type == 'teacher' ? 'Docent' : 'Student'; ?></div>
+                    <div class="col-sm-6">
+                        {{ $user->type === 'admin' ? 'Admin' : ($user->type === 'teacher' ? 'Docent' : 'Student') }}
+                    </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-3">D-nummer / afkorting</div>
@@ -38,7 +40,8 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Naam</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control input" id="name" name="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control input" id="name" name="name"
+                                value="{{ $user->name }}">
                         </div>
                     </div>
                 </fieldset>
@@ -47,22 +50,24 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label">Wachtwoord</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control input" id="password" name="password" onkeyup="document.getElementById('password_force_change').checked = this.value != '';">
+                            <input type="password" class="form-control input" id="password" name="password"
+                                onkeyup="document.getElementById('password_force_change').checked = this.value != '';">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password_confirmation" class="col-sm-3 col-form-label">Wachtwoord bevestigen</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control input" id="password_confirmation" name="password_confirmation">
+                            <input type="password" class="form-control input" id="password_confirmation"
+                                name="password_confirmation">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-3">Forceer dat gebruiker wachtwoord verandert na inloggen</div>
                         <div class="col-sm-6">
                             <label class="checkbox-wrapper">
-                                <input type="checkbox" class="checkbox" id="password_force_change" name="password_force_change" value="1"
-                                    @if($user->password_force_change) checked @endif
-                                >
+                                <input type="checkbox" class="checkbox" id="password_force_change"
+                                    name="password_force_change" value="1"
+                                    @if ($user->password_force_change) checked @endif>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -74,7 +79,7 @@
                         <div class="col-sm-3">Overicht van groepen</div>
                         <div class="col-sm-6">
                             <table>
-                                @foreach($user_groups as $group)
+                                @foreach ($user_groups as $group)
                                     <tr>
                                         <td>{{ $group->name }}</td>
                                         <td>({{ $group->date_start }} t/m {{ $group->date_end }})</td>
@@ -86,13 +91,13 @@
                     <div class="form-group row">
                         <label for="groups" class="col-sm-3 col-form-label">Groepen toevoegen/verwijderen</label>
                         <div class="col-sm-6">
-                            <select multiple class="form-control form-control-chosen" id="groups" name="groups[]" data-placeholder="Kies groep(en)">
-                                @foreach($groups as $name => $list)
+                            <select multiple class="form-control form-control-chosen" id="groups" name="groups[]"
+                                data-placeholder="Kies groep(en)">
+                                @foreach ($groups as $name => $list)
                                     <optgroup label="{{ ucfirst($name) }}">
-                                        @foreach($list as $group)
+                                        @foreach ($list as $group)
                                             <option value="{{ $group->id }}"
-                                                @if($user_group_ids->contains($group->id)) selected @endif
-                                                >
+                                                @if ($user_group_ids->contains($group->id)) selected @endif>
                                                 {{ $group->name }}
                                             </option>
                                         @endforeach
@@ -108,7 +113,7 @@
                         <div class="col-sm-3">Historische groepen</div>
                         <div class="col-sm-6">
                             <table>
-                                @foreach($user_groups_history as $group)
+                                @foreach ($user_groups_history as $group)
                                     <tr>
                                         <td>{{ $group->name }}</td>
                                         <td>({{ $group->date_start }} t/m {{ $group->date_end }})</td>

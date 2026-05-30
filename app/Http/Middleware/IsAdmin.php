@@ -4,16 +4,17 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->type != 'teacher') {
-            return back()->with('error', 'Geen toegang voor studenten.');
+        if (! $request->user()->isAdmin()) {
+            return abort(403, 'Geen toegang. Adminrechten vereist.');
         }
+
         return $next($request);
     }
 }

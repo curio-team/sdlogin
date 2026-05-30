@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 glassy full-edge">
         <div>
             <h5>Groep aanpassen</h5>
 
@@ -23,32 +23,35 @@
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">Naam *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="name" name="name" value="{{ old('name', $group->name) }}" placeholder="RIO4-AMO1A">
+                        <input type="text" class="form-control input" id="name" name="name"
+                            value="{{ old('name', $group->name) }}" placeholder="RIO4-AMO1A">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="type" class="col-sm-3 col-form-label">Type *</label>
                     <div class="col-sm-6">
                         <select class="form-control form-control-chosen" name="type" id="type">
-                            <option value="class" <?php echo $group->type == 'class' ? 'selected' : ''; ?>>Klas</option>
-                            <option value="group" <?php echo $group->type == 'group' ? 'selected' : ''; ?>>Overig</option>
+                            <option value="class" {{ $group->type == 'class' ? 'selected' : '' }}>Klas</option>
+                            <option value="group" {{ $group->type == 'group' ? 'selected' : '' }}>Overig</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="date_start" class="col-sm-3 col-form-label">Startdatum *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="date_start" name="date_start" value="{{ old('date_start', $group->date_start->toDateString()) }}">
+                        <input type="text" class="form-control input" id="date_start" name="date_start"
+                            value="{{ old('date_start', $group->date_start->toDateString()) }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="date_end" class="col-sm-3 col-form-label">Einddatum *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="date_end" name="date_end" value="{{ old('date_end', $group->date_end->toDateString()) }}">
+                        <input type="text" class="form-control input" id="date_end" name="date_end"
+                            value="{{ old('date_end', $group->date_end->toDateString()) }}">
                     </div>
                 </div>
 
-            <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
+                <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
             </form>
         </div>
     </div>
