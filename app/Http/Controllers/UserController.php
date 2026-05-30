@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $request->validate([
             'type' => 'required|in:student,teacher,admin',
-            'id' => 'required|alpha_num',
+            'id' => 'required|alpha_num|unique:users,id',
             'name' => 'required|string',
             'email' => 'nullable|email',
             'password' => 'required|confirmed|string',
