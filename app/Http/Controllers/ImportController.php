@@ -156,7 +156,7 @@ class ImportController extends Controller
                 // Commented because we don't automatically create groups since we
                 // don't know what start and end date to give them
                 // $group = Group::firstOrNew(['name' => $group['name']]);
-                $group = $groups->firstWhere('name', $group['name']);
+                $group = $groups->first(fn ($g) => strcasecmp($g->name, $group['name']) === 0);
 
                 if (!$group) {
                     continue;

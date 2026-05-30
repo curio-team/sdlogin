@@ -176,21 +176,20 @@ class ImportOsirisJsonTest extends TestCase
         }
     }
 
-    #[Test]
-    public function user_can_import_users_with_groups(): void
+    public function runTest($caseInsensitiveTest = false): void
     {
         $usersInImport = self::getUsersInImport();
         $importJson = json_encode($usersInImport, JSON_PRETTY_PRINT);
 
         $allUserGroups = collect($usersInImport)
-            ->map(fn($user) => $user['groups'])
+            ->map(fn ($user) => $user['groups'])
             ->flatten(1)
             ->unique('name')
             ->values()
             ->toArray();
 
         foreach ($allUserGroups as $group) {
-            $group = Group::firstOrNew(['name' => $group['name']]);
+            $group = Group::firstOrNew(['name' => $caseInsensitiveTest ? strtolower($group['name']) : $group['name']]);
             $group->name = $group['name'];
 
             if (strtolower($group['type']) == 'klasgroep') {
@@ -245,5 +244,17 @@ class ImportOsirisJsonTest extends TestCase
                 ]);
             }
         }
+    }
+
+    #[Test]
+    public function user_can_import_users_with_groups(): void
+    {
+        $this->runTest();
+    }
+
+    #[Test]
+    public function user_can_import_users_with_groups_case_insensitive(): void
+    {
+        $this->runTest(true);
     }
 }
