@@ -40,7 +40,7 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create')
-            ->with('groups', Group::getWithFuture(true));
+            ->with('groups', Group::getWithFuture()->groupBy('type'));
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
     {
         $user_groups = $user->groupsWithFuture();
         return view('users.edit')
-            ->with('groups', Group::getWithFuture(true))
+            ->with('groups', Group::getWithFuture()->groupBy('type'))
             ->with('user_groups', $user_groups->get())
             ->with('user_group_ids', $user_groups->pluck('id'))
             ->with('user_groups_history', $user->groupHistory()->get())

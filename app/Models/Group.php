@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
 
 class Group extends Model
 {
@@ -27,19 +27,19 @@ class Group extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public static function getWithHistory($grouped = false)
+    /** @return Collection<int, Group> */
+    public static function getWithHistory(): Collection
     {
-        return Group::get(true, true, false, array('date_end', 'desc'), false, $grouped);
+        return Group::get(true, true, false, ['date_end', 'desc'], false);
     }
 
-    public static function getWithFuture($grouped = false)
+    /** @return Collection<int, Group> */
+    public static function getWithFuture(): Collection
     {
-        return Group::get(false, true, true, array('date_end', 'desc'), true, $grouped);
+        return Group::get(false, true, true, ['date_end', 'desc'], true);
     }
 
-    /**
-     * @return Collection<int, Group>
-     */
+    /** @return Collection<int, Group> */
     public static function getAll(): Collection
     {
         return Group::where('type', 'class')
@@ -60,59 +60,41 @@ class Group extends Model
     }
 
     /**
-     * Returns groups optionally grouped by type, optionally with history and/or future groups, optionally with future group names.
-     *
-     * @param bool $withHistory Whether to include history groups (date_end < now)
-     * @param bool $withCurrent Whether to include current groups (date_start <= now and date_end >= now)
-     * @param bool $withFuture Whether to include future groups (date_start > now)
-     * @param array $orderBy Array with column and direction to order by
-     * @param bool $futureNames Whether to append the start date to future group names
-     * @param bool $grouped Whether to group the result by type
-     * @return Collection<int, Group>|Collection<string, Collection<int, Group>> Depending on $grouped, either a flat collection of groups or a collection of collections of groups grouped by type
-     * @psalm-suppress InvalidReturnType
+     * @param array{0: string, 1: string} $orderBy
+     * @return Collection<int, Group>
      */
-    public static function get($withHistory = false, $withCurrent = true, $withFuture = false, $orderBy = array('date_end', 'desc'), $futureNames = false, $grouped = false): Collection
+    public static function get(bool $withHistory = false, bool $withCurrent = true, bool $withFuture = false, array $orderBy = ['date_end', 'desc'], bool $futureNames = false): Collection
     {
-        $groepen = Group::orderBy($orderBy[0], $orderBy[1]);
+        $query = Group::orderBy($orderBy[0], $orderBy[1]);
         $now = Carbon::now();
 
         if ($withHistory) {
             if (!$withCurrent) {
-                //only history, no current, no future
-                $groepen = $groepen->whereDate('date_end', '<', $now);
-            } elseif ($withCurrent && !$withFuture) {
-                //history and current, no future
-                $groepen = $groepen->whereDate('date_start', '<=', $now);
+                $query = $query->whereDate('date_end', '<', $now);
+            } elseif (!$withFuture) {
+                $query = $query->whereDate('date_start', '<=', $now);
             }
         } else {
             if ($withCurrent && !$withFuture) {
-                //only current, no history or future
-                $groepen = $groepen->whereDate('date_start', '<=', $now);
-                $groepen = $groepen->whereDate('date_end', '>=', $now);
+                $query = $query->whereDate('date_start', '<=', $now)
+                               ->whereDate('date_end', '>=', $now);
             } elseif (!$withCurrent && $withFuture) {
-                //only future, no current or history
-                $groepen = $groepen->whereDate('date_start', '>', $now);
+                $query = $query->whereDate('date_start', '>', $now);
             } else {
-                //current and future, no history
-                $groepen = $groepen->whereDate('date_end', '>=', $now);
+                $query = $query->whereDate('date_end', '>=', $now);
             }
         }
 
-        $groepen = $groepen->get();
+        $groups = $query->get();
 
         if ($withFuture && $futureNames) {
-            foreach ($groepen as $g) {
-                if ($g->date_start > $now) {
-                    $g->name = $g->name . ' (vanaf ' . $g->date_start . ')';
+            foreach ($groups as $group) {
+                if ($group->date_start > $now) {
+                    $group->name = $group->name . ' (vanaf ' . $group->date_start . ')';
                 }
             }
         }
 
-        if ($grouped) {
-            $groepen = $groepen->groupBy('type');
-        }
-
-        /** @psalm-suppress InvalidReturnStatement */
-        return $groepen;
+        return $groups;
     }
 }
