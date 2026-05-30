@@ -2,6 +2,57 @@
 
 This project is the login service for Curio SD. It is open-source for educational purposes.
 
+## 📦 Getting Started
+
+This is a Laravel application. To get started, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/curio-team/sdlogin.git
+cd sdlogin
+```
+
+```bash
+composer install
+```
+
+> [!TIP]
+> If you get errors during the `composer install`, make sure you have the correct PHP version and extensions installed (like `sodium`). [&raquo; Read how to install PHP extensions on Windows](https://www.php.net/manual/en/install.pecl.windows.php)
+
+```bash
+npm install
+```
+
+Then, copy the `.env.example` file to `.env` and configure your environment variables:
+
+```bash
+cp .env.example .env
+```
+
+Generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+Ensure the OAuth keys are generated:
+
+```bash
+php artisan passport:install
+```
+
+Finally, run the migrations:
+
+```bash
+php artisan migrate
+```
+
+You can now start the Vue development server and the Laravel application:
+
+```bash
+npm run dev
+php artisan serve
+```
+
 ## 🚀 Adding SD Login to your project
 
 1. Ask a teacher to create a new client application for you.
