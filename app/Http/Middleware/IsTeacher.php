@@ -12,7 +12,7 @@ class IsTeacher
     public function handle($request, Closure $next)
     {
         if (! $request->user()->isTeacher()) {
-            return abort(403, 'Geen toegang voor studenten.');
+            abort(403, 'Geen toegang voor studenten.');
         }
 
         return $next($request);

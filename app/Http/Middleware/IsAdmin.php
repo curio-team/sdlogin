@@ -12,7 +12,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if (! $request->user()->isAdmin()) {
-            return abort(403, 'Geen toegang. Adminrechten vereist.');
+            abort(403, 'Geen toegang. Adminrechten vereist.');
         }
 
         return $next($request);
