@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\Contracts\OAuthenticatable;
@@ -19,8 +20,6 @@ class User extends Authenticatable implements OAuthenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
         'name',
@@ -30,8 +29,6 @@ class User extends Authenticatable implements OAuthenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -40,15 +37,13 @@ class User extends Authenticatable implements OAuthenticatable
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
-    public function groups()
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class)
             ->whereDate('date_start', '<', Carbon::now())
@@ -57,7 +52,7 @@ class User extends Authenticatable implements OAuthenticatable
             ->orderBy('date_start');
     }
 
-    public function groupsWithFuture()
+    public function groupsWithFuture(): BelongsToMany
     {
         return $this->belongsToMany(Group::class)
             ->whereDate('date_end', '>=', Carbon::now())
@@ -65,7 +60,7 @@ class User extends Authenticatable implements OAuthenticatable
             ->orderBy('date_start');
     }
 
-    public function groupHistory()
+    public function groupHistory(): BelongsToMany
     {
         return $this->belongsToMany(Group::class)
             ->whereDate('date_end', '<', Carbon::now())
@@ -73,12 +68,12 @@ class User extends Authenticatable implements OAuthenticatable
             ->orderBy('date_start');
     }
 
-    public function allGroups()
+    public function allGroups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class);
     }
 
-    public function getPassword()
+    public function getPassword(): mixed
     {
         return $this->password;
     }

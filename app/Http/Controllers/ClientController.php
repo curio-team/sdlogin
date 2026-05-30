@@ -9,12 +9,12 @@ use Laravel\Passport\ClientRepository;
 
 class ClientController extends Controller
 {
-    public function __construct(private ClientRepository $clients) {}
+    public function __construct(private ClientRepository $clients)
+    {
+    }
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -25,8 +25,6 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -36,9 +34,6 @@ class ClientController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -64,9 +59,6 @@ class ClientController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Group  $group
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -100,9 +92,6 @@ class ClientController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Group  $group
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

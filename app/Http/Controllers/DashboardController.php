@@ -10,12 +10,12 @@ class DashboardController extends Controller
 {
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $user = Auth::user()->load('groups', 'groupHistory');
+        /** @var \App\Models\User */
+        $user = Auth::user();
+        $user->load('groups', 'groupHistory');
         $name = explode(' ', $user->name);
         $apps = Client::where('revoked', 0)->where('for_development', 0)->get();
         $links = Link::where('on_frontpage', true)->get();

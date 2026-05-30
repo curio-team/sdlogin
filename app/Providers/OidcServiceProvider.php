@@ -28,13 +28,11 @@ class OidcServiceProvider extends PassportServiceProvider
 
         $this->app->when(OidcAuthController::class)
             ->needs(StatefulGuard::class)
-            ->give(fn() => Auth::guard(config('passport.guard', null)));
+            ->give(fn () => Auth::guard(config('passport.guard', null)));
     }
 
     /**
      * Make the authorization service instance.
-     *
-     * @return AuthorizationServer
      */
     protected function makeAuthorizationServer(?ResponseTypeInterface $responseType = null): AuthorizationServer
     {

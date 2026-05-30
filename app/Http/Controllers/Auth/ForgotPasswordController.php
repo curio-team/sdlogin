@@ -20,8 +20,6 @@ class ForgotPasswordController extends Controller implements HasMiddleware
 
     /**
      * Display the form to request a password reset.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function showLinkRequestForm()
     {

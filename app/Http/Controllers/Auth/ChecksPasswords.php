@@ -21,7 +21,7 @@ trait ChecksPasswords
         $seconds = (int)(time() + (int)($strength['crack_times_seconds']['online_no_throttling_10_per_second']));
         try {
             $seconds = Carbon::createFromTimestamp($seconds);
-            $strength['time_display'] = $seconds->diffForHumans(null, true);
+            $strength['time_display'] = $seconds->diffForHumans();
         } catch (\Exception $e) {
             $strength['time_display'] = '3 miljoen jaar';
         }

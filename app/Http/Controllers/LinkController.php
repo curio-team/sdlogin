@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Link;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class LinkController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,8 +18,6 @@ class LinkController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -30,9 +26,6 @@ class LinkController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,7 +35,7 @@ class LinkController extends Controller
             'title' => 'nullable'
         ]);
 
-        if($request->short != null && Link::where('short', $request->short)->count()) {
+        if ($request->short != null && Link::where('short', $request->short)->count()) {
             return back()->withErrors('Korte link moet uniek zijn!');
         }
 
@@ -51,7 +44,7 @@ class LinkController extends Controller
         $link->url = $request->url;
         $link->on_frontpage = $request->has('on_frontpage');
         $link->title = $request->title;
-        $link->creator = Auth::user()->id;
+        $link->creator = FacadesAuth::user()->id;
 
         $link->save();
 
@@ -63,7 +56,7 @@ class LinkController extends Controller
         $base = '0123456789abcdefghijklmnopqrstuvwxyz';
         $code = substr(str_shuffle($base), 0, $length);
 
-        while(Link::where('short', $code)->count()) {
+        while (Link::where('short', $code)->count()) {
             $code = substr(str_shuffle($base), 0, $length);
         }
 
@@ -97,17 +90,14 @@ class LinkController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Link  $link
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        if(!is_array($request->delete)) {
+        if (!is_array($request->delete)) {
             return redirect()->back();
         }
 
-        foreach($request->delete as $id) {
+        foreach ($request->delete as $id) {
             $link = Link::find($id);
             $link->delete();
         }

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @mixin LoginController
+ */
 trait AuthenticatesUsers
 {
     use RedirectsUsers;
@@ -13,8 +16,6 @@ trait AuthenticatesUsers
 
     /**
      * Show the application's login form.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function showLoginForm()
     {
@@ -23,9 +24,6 @@ trait AuthenticatesUsers
 
     /**
      * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
     {
@@ -54,9 +52,6 @@ trait AuthenticatesUsers
 
     /**
      * Validate the user login request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
      */
     protected function validateLogin(Request $request)
     {
@@ -68,9 +63,6 @@ trait AuthenticatesUsers
 
     /**
      * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
      */
     protected function attemptLogin(Request $request)
     {
@@ -82,9 +74,6 @@ trait AuthenticatesUsers
 
     /**
      * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
      */
     protected function credentials(Request $request)
     {
@@ -93,9 +82,6 @@ trait AuthenticatesUsers
 
     /**
      * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     protected function sendLoginResponse(Request $request)
     {
@@ -109,10 +95,6 @@ trait AuthenticatesUsers
 
     /**
      * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
      */
     protected function authenticated(Request $request, $user)
     {
@@ -121,9 +103,6 @@ trait AuthenticatesUsers
 
     /**
      * Get the failed login response instance.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws ValidationException
      */
@@ -136,8 +115,6 @@ trait AuthenticatesUsers
 
     /**
      * Get the login username to be used by the controller.
-     *
-     * @return string
      */
     public function username()
     {
@@ -146,9 +123,6 @@ trait AuthenticatesUsers
 
     /**
      * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
     {
@@ -161,8 +135,6 @@ trait AuthenticatesUsers
 
     /**
      * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
     protected function guard()
     {

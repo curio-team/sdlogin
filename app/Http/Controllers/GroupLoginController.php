@@ -24,7 +24,10 @@ class GroupLoginController extends Controller
         $data = '1234567890abcefghijklmnopqrstuvwxyz';
         $userprint = [];
 
-        foreach($group->users as $user) {
+        /**
+         * @var \App\Models\User $user
+         */
+        foreach ($group->users as $user) {
             $pass = substr(str_shuffle($data), 0, 6);
             $user->password = password_hash($pass, PASSWORD_DEFAULT);
             $user->save();

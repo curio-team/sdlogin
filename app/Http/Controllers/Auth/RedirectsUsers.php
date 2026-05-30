@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+/**
+ * @mixin \App\Http\Controllers\Auth\LoginController
+ * @property string $redirectTo     Exists in LoginController
+ */
 trait RedirectsUsers
 {
     /**
@@ -11,10 +15,6 @@ trait RedirectsUsers
      */
     public function redirectPath()
     {
-        if (method_exists($this, 'redirectTo')) {
-            return $this->redirectTo();
-        }
-
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        return $this->redirectTo;
     }
 }
