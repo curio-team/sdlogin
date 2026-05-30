@@ -2,9 +2,9 @@
 
 namespace Tests;
 
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Laravel\Passport\Client;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -36,6 +36,16 @@ abstract class TestCase extends BaseTestCase
             'email' => "$id@curio.codes",
             'password' => bcrypt($password),
             'type' => 'teacher',
+        ]);
+    }
+
+    protected function getTestAdmin($id = 'aa01', $password = 'password'): User
+    {
+        return User::factory()->create([
+            'id' => "i$id",
+            'email' => "$id@curio.codes",
+            'password' => bcrypt($password),
+            'type' => 'admin',
         ]);
     }
 

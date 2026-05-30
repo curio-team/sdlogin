@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Builder;
+use OwenIt\Auditing\Auditable as AuditingTrait;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Group extends Model
+class Group extends Model implements Auditable
 {
     use HasFactory;
+    use AuditingTrait;
 
     protected $fillable = [
         'name',

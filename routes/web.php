@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\BatchGroupController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
@@ -103,6 +104,10 @@ $loginRoutes = function () {
             Route::get('grouplogin', [GroupLoginController::class, 'index']);
             Route::get('grouplogin/{group}', [GroupLoginController::class, 'show']);
             Route::post('grouplogin/{group}', [GroupLoginController::class, 'do']);
+
+            // Audit log
+            Route::get('audits', [AuditController::class, 'index'])->name('audits.index');
+            Route::get('audits/{audit}', [AuditController::class, 'show'])->name('audits.show');
         });
     });
 

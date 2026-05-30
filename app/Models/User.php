@@ -9,14 +9,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
+use OwenIt\Auditing\Auditable as AuditingTrait;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable implements OAuthenticatable
+class User extends Authenticatable implements OAuthenticatable, Auditable
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use AuditingTrait;
 
     public $incrementing = false;
+
+    protected array $auditExclude = [
+        'password_force_change',
+    ];
 
     /**
      * The attributes that are mass assignable.

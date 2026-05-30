@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Passport\Client;
 use App\Models\Link;
 
 class DashboardController extends Controller
