@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
+use App\Models\Client;
 use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void {}
+    public function register(): void
+    {
+    }
 
     /**
      * Bootstrap any application services.
@@ -49,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Keep integer client IDs for backward compatibility with existing database
         Passport::$clientUuids = false;
+        Passport::useClientModel(Client::class);
 
         Passport::authorizationView('auth.oauth.authorize');
 
