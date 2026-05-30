@@ -53,7 +53,8 @@ $loginRoutes = function () {
             Route::get('groups/create/batch', [BatchGroupController::class, 'create'])->name('groups.batch');
             Route::post('groups/batch', [BatchGroupController::class, 'store']);
             Route::get('groups/{group}/delete', [GroupController::class, 'delete'])->name('groups.delete');
-            Route::resource('groups', GroupController::class, ['except' => ['show']]);
+            Route::delete('/groups', [GroupController::class, 'destroy'])->name('groups.destroy');
+            Route::resource('groups', GroupController::class, ['except' => ['show', 'destroy']]);
 
             // Link management (no delete — single and bulk link delete require admin)
             Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);

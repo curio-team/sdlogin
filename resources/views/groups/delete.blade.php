@@ -8,7 +8,7 @@
 
             <h5>Je gaat <strong>{{ $group->name }}</strong> ({{ $group->date_start }} - {{ $group->date_end }}) verwijderen.</h5>
 
-            <form action="{{ route('groups.destroy', $group) }}" method="POST">
+            <form action="{{ route('groups.destroy') }}" method="POST">
                 @method('DELETE')
                 @csrf
                 <input type="hidden" name="delete[]" value="{{ $group->id }}">
