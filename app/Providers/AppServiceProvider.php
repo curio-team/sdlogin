@@ -44,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
             Route::get('/oauth/authorize', [OidcAuthController::class, 'authorize']);
         });
 
-        Passport::tokensExpireIn(Carbon::now()->addYear());
-        Passport::refreshTokensExpireIn(Carbon::now()->addYear()->addDays(60));
+        Passport::tokensExpireIn(Carbon::now()->addHours(8));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
 
         // Keep integer client IDs for backward compatibility with existing database
         Passport::$clientUuids = false;

@@ -20,13 +20,21 @@ class OidcAuthController extends PassportAuthController
         AuthorizationViewResponse $viewResponse,
     ): Response|AuthorizationViewResponse {
         $authRequest = $this->withErrorHandling(
-            fn(): AuthorizationRequestInterface => $this->server->validateAuthorizationRequest($psrRequest),
+            fn (): AuthorizationRequestInterface => $this->server->validateAuthorizationRequest($psrRequest),
             ($psrRequest->getQueryParams()['response_type'] ?? null) === 'token'
         );
 
         $user = $request->user();
         $authRequest->setUser(new BridgeUser($user->getAuthIdentifier()));
 
-        return $this->approveRequest($authRequest, $psrResponse);
+        // Includes expired/revoked tokens — this is a permanent "has consented" check.
+        $clientId = $authRequest->getClient()->getIdentifier();
+        $hasEverAuthorized = $user->tokens()->where('client_id', $clientId)->exists();
+
+        if ($hasEverAuthorized) {
+            return $this->approveRequest($authRequest, $psrResponse);
+        }
+
+        return $viewResponse;
     }
 }
