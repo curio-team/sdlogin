@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use Carbon\Carbon;
 
 class GroupLoginController extends Controller
 {
     public function index()
     {
-        $groups = Group::get(false, true, false, ['name', 'asc'])->where('type', 'class');
+        $groups = Group::getQuery(Carbon::now(), false, true, false, ['name', 'asc'])
+            ->where('type', 'class')
+            ->get();
+
         return view('grouplogin.index')
                 ->with(compact('groups'));
     }

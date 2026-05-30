@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Group extends Model
 {
@@ -61,12 +62,11 @@ class Group extends Model
 
     /**
      * @param array{0: string, 1: string} $orderBy
-     * @return Collection<int, Group>
+     * @return Builder<Group>
      */
-    public static function get(bool $withHistory = false, bool $withCurrent = true, bool $withFuture = false, array $orderBy = ['date_end', 'desc'], bool $futureNames = false): Collection
+    public static function getQuery(Carbon $now, bool $withHistory = false, bool $withCurrent = true, bool $withFuture = false, array $orderBy = ['date_end', 'desc']): Builder
     {
         $query = Group::orderBy($orderBy[0], $orderBy[1]);
-        $now = Carbon::now();
 
         if ($withHistory) {
             if (!$withCurrent) {
@@ -85,7 +85,18 @@ class Group extends Model
             }
         }
 
-        $groups = $query->get();
+        return $query;
+    }
+
+    /**
+     * @param array{0: string, 1: string} $orderBy
+     * @return Collection<int, Group>
+     */
+    public static function get(bool $withHistory = false, bool $withCurrent = true, bool $withFuture = false, array $orderBy = ['date_end', 'desc'], bool $futureNames = false): Collection
+    {
+        $now = Carbon::now();
+        $groups = static::getQuery($now, $withHistory, $withCurrent, $withFuture, $orderBy)
+            ->get();
 
         if ($withFuture && $futureNames) {
             foreach ($groups as $group) {
