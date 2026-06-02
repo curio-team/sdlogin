@@ -54,11 +54,6 @@ class LoginController extends Controller
     {
         $user = $this->guard()->user();
 
-        User::withoutAuditing(function () use ($request) {
-            $this->guard()->logout();
-            $request->session()->invalidate();
-        });
-
         if ($user instanceof User) {
             $user->auditEvent = 'logout';
             $user->isCustomEvent = true;
@@ -66,6 +61,11 @@ class LoginController extends Controller
             $user->auditCustomNew = ['ip' => $request->ip()];
             Event::dispatch(new AuditCustom($user));
         }
+
+        User::withoutAuditing(function () use ($request) {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+        });
 
         return redirect('/');
     }
