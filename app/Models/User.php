@@ -23,6 +23,7 @@ class User extends Authenticatable implements OAuthenticatable, Auditable
 
     protected array $auditExclude = [
         'password_force_change',
+        'remember_token',
     ];
 
     /**
