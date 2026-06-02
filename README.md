@@ -11,6 +11,9 @@ git clone https://github.com/curio-team/sdlogin.git
 cd sdlogin
 ```
 
+> [!TIP]
+> On production you may want to use `composer install --no-dev` to avoid installing development dependencies.
+
 ```bash
 composer install
 ```
