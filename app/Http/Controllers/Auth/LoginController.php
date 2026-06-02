@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Event;
+use OwenIt\Auditing\Events\AuditCustom;
 
 class LoginController extends Controller
 {
@@ -35,6 +39,35 @@ class LoginController extends Controller
         return [
             new Middleware('guest', except: ['logout']),
         ];
+    }
+
+    protected function authenticated(Request $request, \App\Models\User $user)
+    {
+        $user->auditEvent = 'login';
+        $user->isCustomEvent = true;
+        $user->auditCustomOld = [];
+        $user->auditCustomNew = ['ip' => $request->ip()];
+        Event::dispatch(new AuditCustom($user));
+    }
+
+    public function logout(Request $request)
+    {
+        $user = $this->guard()->user();
+
+        User::withoutAuditing(function () use ($request) {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+        });
+
+        if ($user instanceof User) {
+            $user->auditEvent = 'logout';
+            $user->isCustomEvent = true;
+            $user->auditCustomOld = [];
+            $user->auditCustomNew = ['ip' => $request->ip()];
+            Event::dispatch(new AuditCustom($user));
+        }
+
+        return redirect('/');
     }
 
     public function username()
