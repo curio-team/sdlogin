@@ -3,6 +3,7 @@
 namespace App\Oidc;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Passport\Bridge\User as BridgeUser;
 use Laravel\Passport\Contracts\AuthorizationViewResponse;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthController;
@@ -35,6 +36,18 @@ class OidcAuthController extends PassportAuthController
             return $this->approveRequest($authRequest, $psrResponse);
         }
 
-        return $viewResponse;
+        $scopes = $this->parseScopes($authRequest);
+        $client = $this->clients->find($authRequest->getClient()->getIdentifier());
+
+        $request->session()->put('authToken', $authToken = Str::random());
+        $request->session()->put('authRequest', serialize($authRequest));
+
+        return $viewResponse->withParameters([
+            'client' => $client,
+            'user' => $user,
+            'scopes' => $scopes,
+            'request' => $request,
+            'authToken' => $authToken,
+        ]);
     }
 }
