@@ -2,10 +2,10 @@ name: Tests
 on:
   pull_request:
     branches:
-      - main
+    - main
   push:
     branches:
-      - main
+    - main
 
 jobs:
   tests:
@@ -20,53 +20,52 @@ jobs:
           MYSQL_USER: tester
           MYSQL_PASSWORD: testerpass
         ports:
-          - 3306:3306
+        - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: Setup PHP Action
-        uses: shivammathur/setup-php@2.37.1
-        with:
-          php-version: 8.3
+    - name: Setup PHP Action
+      uses: shivammathur/setup-php@2.37.1
+      with:
+        php-version: 8.4
 
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
 
-      - name: Install NPM dependencies
-        run: npm install
+    - name: Install NPM dependencies
+      run: npm install
 
-      - name: Compile assets
-        run: npm run build
+    - name: Compile assets
+      run: npm run build
 
-      - name: Prepare Laravel Application
-        run: |
-          php artisan passport:keys
+    - name: Prepare Laravel Application
+      run: |
+        php artisan passport:keys
 
-      - name: Run Test suites
-        run: php artisan test --env=ci
+    - name: Run Test suites
+      run: php artisan test --env=ci
 
-      - name: Upload Laravel Logs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: logs
-          path: storage/logs
+    - name: Upload Laravel Logs
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs
+        path: storage/logs
+    # - name: Upload Browser Test Screenshots
+    #   if: failure()
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: screenshots
+    #     path: tests/Browser/screenshots
 
-      # - name: Upload Browser Test Screenshots
-      #   if: failure()
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: screenshots
-      #     path: tests/Browser/screenshots
-
-      # - name: Upload Browser Test Console Logs
-      #   if: failure()
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: console
-      #     path: tests/Browser/console
+    # - name: Upload Browser Test Console Logs
+    #   if: failure()
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: console
+    #     path: tests/Browser/console
