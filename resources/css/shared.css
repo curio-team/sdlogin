@@ -500,6 +500,26 @@ body .chosen-container-single.chosen-with-drop .chosen-single div b:after {
 }
 
 /*
+    Pagination
+*/
+.page-link {
+    color: var(--color-primary);
+}
+
+.page-link:hover {
+    color: var(--color-primary-dark);
+}
+
+.page-item.active .page-link {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 109, 109, 0.25);
+}
+
+/*
     Bootstrap table modifications
 */
 body .table-hover tbody tr {
