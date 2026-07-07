@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h5>Groepslogins opvragen <strong>{{ $group->name }}</strong></h5>
 
@@ -17,11 +17,13 @@
             @endif
 
             <p><strong>Let op:</strong> je gaat van <em>alle</em> studenten in deze klas het wachtwoord resetten.
-                <br />Hierna krijg je een afdrukbare pagina met alle accounts en wachtwoorden.</p>
+                <br />Hierna krijg je een afdrukbare pagina met alle accounts en wachtwoorden.
+            </p>
 
             <form action="/grouplogin/{{ $group->id }}" method="POST">
                 @csrf
-                <button type="submit" class="button button-warning button-big"><i class="fa fa-refresh"></i> Wachtwoorden resetten</button>
+                <button type="submit" class="button button-warning button-big"><i class="fa fa-refresh"></i> Wachtwoorden
+                    resetten</button>
             </form>
         </div>
     </div>

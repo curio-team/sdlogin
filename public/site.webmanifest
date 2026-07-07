@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "SD Login",
+    "short_name": "SD",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ebf2f0",
-    "background_color": "#ebf2f0",
+    "theme_color": "#0A0A11",
+    "background_color": "#0A0A11",
     "display": "standalone"
 }

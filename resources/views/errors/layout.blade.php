@@ -1,101 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible"
-              content="IE=edge">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon"
-              sizes="180x180"
-              href="/apple-touch-icon.png">
-        <link rel="icon"
-              type="image/png"
-              sizes="32x32"
-              href="/favicon-32x32.png">
-        <link rel="icon"
-              type="image/png"
-              sizes="16x16"
-              href="/favicon-16x16.png">
-        <link rel="manifest"
-              href="/site.webmanifest">
-        <link rel="mask-icon"
-              href="/safari-pinned-tab.svg"
-              color="#004c35">
-        <meta name="msapplication-TileColor"
-              content="#ebf2f0">
-        <meta name="theme-color"
-              content="#ebf2f0">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token"
-              content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0A0A11">
+    <meta name="msapplication-TileColor" content="#0A0A11">
+    <meta name="theme-color" content="#0A0A11">
 
-        <title>curio.codes</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @vite(['resources/css/shared.css', 'resources/css/login.css'])
+    <title>curio.codes</title>
 
-        <style>
-            .center{
-                display: grid;
-                place-content: center;
-                z-index: 1;
-            }
+    @vite(['resources/css/shared.css', 'resources/css/login.css'])
 
-            .center > div {
-                max-width: 960px;
-            }
+    <style>
+        .center {
+            display: grid;
+            place-content: center;
+            z-index: 1;
+        }
 
-            .inset {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1;
-            }
+        .center>div {
+            max-width: 960px;
+        }
 
-            .stack {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 1em;
-            }
+        .inset {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-            .text-center {
-                text-align: center;
-            }
+        .stack {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1em;
+        }
 
-            .message {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: .5em;
-                font-size: 1.5em;
-                margin-top: 1em;
-            }
-        </style>
+        .text-center {
+            text-align: center;
+        }
 
-        @stack('styles')
-    </head>
+        .message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: .5em;
+            font-size: 1.5em;
+            margin-top: 1em;
+        }
+    </style>
 
-    <body class="cover-background center" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
-        <div class="container">
-            <div class="stack glassy full-edge">
-                <h1 class="text-center"><img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}"
-                            alt="Curio Software developers"></h1>
+    @stack('styles')
+</head>
 
-                <div class="message">
-                    <h2 class="text-center">@yield('title')</h2>
+<body class="cover-background center" style="background-image: url({{ $backgrounds[array_rand($backgrounds)] }})">
+    <div class="container">
+        <div class="stack inked full-edge">
+            <h1 class="text-center"><img src="{{ Vite::asset('resources/img/logo.png') }}" alt="SD Login"></h1>
 
-                    @yield('message')
-                </div>
+            <div class="message">
+                <h2 class="text-center">@yield('title')</h2>
 
-                <div class="stack mt">
-                    <a class="button button-big" href="{{ url()->previous() }}">Terug naar de vorige pagina</a>
-                    <a class="button" href="{{ route('home') }}">Naar de homepagina</a>
-                </div>
+                @yield('message')
+            </div>
+
+            <div class="stack mt">
+                <a class="button button-big" href="{{ url()->previous() }}">Terug naar de vorige pagina</a>
+                <a class="button" href="{{ route('home') }}">Naar de homepagina</a>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h3>Weet je het zeker?</h3>
 
@@ -36,5 +35,4 @@
 
         </div>
     </div>
-
 @endsection

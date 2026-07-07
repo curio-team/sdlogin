@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h5>Nieuwe app</h5>
 
@@ -22,14 +22,17 @@
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">App naam *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control input" id="name" name="name"
+                            value="{{ old('name') }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="redirect" class="col-sm-3 col-form-label">Redirect URL *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="redirect" name="redirect" value="{{ old('redirect') }}">
-                        <small class="form-text text-muted">Als je <a href="https://github.com/curio-team/sdclient">de SD-client</a> gebruikt, is dit iets als: http://yoursite/sdclient/callback</small>
+                        <input type="text" class="form-control input" id="redirect" name="redirect"
+                            value="{{ old('redirect') }}">
+                        <small class="form-text text-muted">Als je <a href="https://github.com/curio-team/sdclient">de
+                                SD-client</a> gebruikt, is dit iets als: http://yoursite/sdclient/callback</small>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -39,11 +42,12 @@
                             <option value="0">Nee</option>
                             <option value="1" selected>Ja (verborgen op dashboard)</option>
                         </select>
-                        <small class="form-text text-muted">Selecteer &quot;Nee&quot; om een knop het dashboard te tonen naar deze app.</small>
+                        <small class="form-text text-muted">Selecteer &quot;Nee&quot; om een knop het dashboard te tonen
+                            naar deze app.</small>
                     </div>
                 </div>
 
-            <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
+                <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
             </form>
         </div>
     </div>

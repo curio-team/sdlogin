@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             @if (session('notice'))
-            <div class="alert alert-success">
-                {{ session('notice') }}
-            </div>
+                <div class="alert alert-success">
+                    {{ session('notice') }}
+                </div>
             @endif
 
             <div class="d-flex justify-content-between">
                 <h5><strong>{{ $group->name }}</strong></h5>
-                <p class="d-print-none"><i class="fa fa-print"></i> Gebruik <strong>ctrl+p</strong> om deze lijst af te drukken.</p>
+                <p class="d-print-none"><i class="fa fa-print"></i> Gebruik <strong>ctrl+p</strong> om deze lijst af te
+                    drukken.</p>
             </div>
 
 
@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($userprint as $user)
+                            @foreach ($userprint as $user)
                                 <tr>
                                     <td>{{ $user['name'] }}</td>
                                     <td>{{ $user['id'] }}</td>
@@ -40,5 +40,4 @@
             </div>
         </div>
     </div>
-
 @endsection

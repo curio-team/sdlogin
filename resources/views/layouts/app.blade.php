@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#004c35">
-    <meta name="msapplication-TileColor" content="#ebf2f0">
-    <meta name="theme-color" content="#ebf2f0">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0A0A11">
+    <meta name="msapplication-TileColor" content="#0A0A11">
+    <meta name="theme-color" content="#0A0A11">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -30,12 +29,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md glassy bottom-edge">
+    <nav class="navbar navbar-expand-md inked bottom-edge">
         <div class="container mt-0 flex-column flex-md-row">
             <div class="navbar-aside">
                 <a class="navbar-brand mr-0" href="{{ url('me') }}">
-                    <img src="{{ Vite::asset('resources/img/curio-sd-logo.png') }}" alt="Curio Software developers"
-                        class="navbar-logo">
+                    <img src="{{ Vite::asset('resources/img/logo.png') }}" alt="SD Login" class="navbar-logo">
                 </a>
 
                 <button class="navbar-toggler" type="button"
@@ -88,7 +86,7 @@
         @yield('content')
     </div>
 
-    <div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div class="text-center text-xs">
             &copy; {{ date('Y') }} <a href="https://curio.nl" target="_blank">Curio Software Developer</a> &bull;
             Dit project is open source en te vinden op <a href="https://github.com/curio-team/sdlogin"

@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h5>Link aanpassen</h5>
 
@@ -22,13 +22,15 @@
 
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <p style="font-size: 1.1rem;">curio.codes/{{ $link->short }} <strong><i class="fa fa-long-arrow-right"></i></strong> {{ $link->url }}</p>
+                        <p style="font-size: 1.1rem;">curio.codes/{{ $link->short }} <strong><i
+                                    class="fa fa-long-arrow-right"></i></strong> {{ $link->url }}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label">URL (lang):</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="url" name="url" value="{{ $link->url ?? old('url') }}">
+                        <input type="text" class="form-control input" id="url" name="url"
+                            value="{{ $link->url ?? old('url') }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -37,19 +39,21 @@
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <label class="checkbox-wrapper">
-                                    <input type="checkbox" class="checkbox" name="on_frontpage" id="on_frontpage" value="1" @if($link->on_frontpage) checked @endif>
+                                    <input type="checkbox" class="checkbox" name="on_frontpage" id="on_frontpage"
+                                        value="1" @if ($link->on_frontpage) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="input-group-addon">
                                 <div class="input-group-text">met als titel:</div>
                             </div>
-                            <input type="text" class="form-control input" id="title" name="title" value="{{ $link->title ?? old('title') }}">
+                            <input type="text" class="form-control input" id="title" name="title"
+                                value="{{ $link->title ?? old('title') }}">
                         </div>
                     </div>
                 </div>
 
-            <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
+                <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
             </form>
         </div>
     </div>

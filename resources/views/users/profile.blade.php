@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h5>Mijn profiel</h5>
 

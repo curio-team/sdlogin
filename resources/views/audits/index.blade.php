@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <div class="row mb-3">
                 <div class="col-lg-12">
@@ -54,7 +54,8 @@
                             @endif
 
                             <div class="input-group ml-auto mb-2">
-                                <select class="form-control form-control-chosen" id="pagination" name="n" onchange="this.form.submit()">
+                                <select class="form-control form-control-chosen" id="pagination" name="n"
+                                    onchange="this.form.submit()">
                                     @php $n = request('n', 25); @endphp
                                     @foreach ([25, 50, 100] as $size)
                                         <option value="{{ $size }}" {{ $size == $n ? 'selected' : '' }}>

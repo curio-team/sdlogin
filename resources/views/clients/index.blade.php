@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="button-group">
-                        <a class="button button-success" href="{{ route('clients.create') }}"><i class="fa fa-plus"></i> Nieuw</a>
+                        <a class="button button-success" href="{{ route('clients.create') }}"><i class="fa fa-plus"></i>
+                            Nieuw</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($clients as $client)
+                            @foreach ($clients as $client)
                                 <tr>
                                     <td>{{ $client->id }}</td>
                                     <td>{{ $client->name }}</td>
@@ -33,8 +33,11 @@
                                     <td>{{ $client->owner?->name ?? '' }}</td>
                                     <td>
                                         <div class="button-group">
-                                            <a class="button button-secondary icon-only" href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
-                                            <a class="button button-danger icon-only" href="{{ route('clients.delete', $client) }}"><i class="fa fa-trash"></i></a>
+                                            <a class="button button-secondary icon-only"
+                                                href="{{ route('clients.show', $client) }}"><i class="fa fa-eye"></i></a>
+                                            <a class="button button-danger icon-only"
+                                                href="{{ route('clients.delete', $client) }}"><i
+                                                    class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -45,5 +48,4 @@
             </div>
         </div>
     </div>
-
 @endsection

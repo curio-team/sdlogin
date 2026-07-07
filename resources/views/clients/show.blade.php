@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <a class="button" href="/clients"><i class="fa fa-chevron-left"></i> Terug</a>
 

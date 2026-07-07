@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container mt-5 glassy full-edge">
+    <div class="container mt-5 inked full-edge">
         <div>
             <h5>Nieuwe klassen</h5>
 
@@ -28,13 +28,15 @@
                 <div class="form-group row">
                     <label for="date_start" class="col-sm-3 col-form-label">Startdatum *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="date_start" name="date_start" value="{{ old('date_start', date('Y') . '-08-01') }}">
+                        <input type="text" class="form-control input" id="date_start" name="date_start"
+                            value="{{ old('date_start', date('Y') . '-08-01') }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="date_end" class="col-sm-3 col-form-label">Einddatum *</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control input" id="date_end" name="date_end" value="{{ old('date_end', date('Y')+1 . '-07-31') }}">
+                        <input type="text" class="form-control input" id="date_end" name="date_end"
+                            value="{{ old('date_end', date('Y') + 1 . '-07-31') }}">
                     </div>
                 </div>
 
@@ -45,11 +47,12 @@
 @php $letters = array('a', 'b', 'c', 'd', 'n'); @endphp
 @foreach ($letters as $letter)
 TTSDB-sd4o{{ date('y') . $letter }}
-@endforeach</textarea>
+@endforeach
+</textarea>
                     </div>
                 </div>
 
-            <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
+                <button type="submit" class="button button-success"><i class="fa fa-save"></i> Opslaan</button>
             </form>
         </div>
     </div>
