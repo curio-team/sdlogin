@@ -210,6 +210,7 @@ a:hover {
 }
 
 .button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,6 +256,12 @@ a:hover {
     padding: 0;
     width: 36px;
     min-height: 36px;
+}
+
+.button.icon-only i.fa {
+    position: static;
+    top: auto;
+    right: auto;
 }
 
 .button-danger {
