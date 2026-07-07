@@ -55,5 +55,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $studentGroup->users()->attach($student);
+
+        // Add 50 more test students to test pagination on the user page
+        User::factory(50)->create([
+            'type' => 'student',
+        ])->each(function ($user) use ($studentGroup) {
+            $studentGroup->users()->attach($user);
+        });
     }
 }
