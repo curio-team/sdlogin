@@ -26,8 +26,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="button-group">
-                            <button type="submit" class="button button-danger"><i class="fa fa-trash"></i>
-                                Verwijderen</button>
+                            @if (Auth::user()->isAdmin())
+                                <button type="submit" class="button button-danger"><i class="fa fa-trash"></i>
+                                    Verwijderen</button>
+                            @endif
                             <a class="button button-success" href="/links/create"><i class="fa fa-plus"></i> Nieuw</a>
                         </div>
                     </div>
@@ -49,11 +51,13 @@
                                 @foreach ($links as $link)
                                     <tr>
                                         <td>
-                                            <label class="checkbox-wrapper">
-                                                <input type="checkbox" class="checkbox" name="delete[]"
-                                                    value="{{ $link->id }}">
-                                                <span class="checkmark"></span>
-                                            </label>
+                                            @if (Auth::user()->isAdmin())
+                                                <label class="checkbox-wrapper">
+                                                    <input type="checkbox" class="checkbox" name="delete[]"
+                                                        value="{{ $link->id }}">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            @endif
                                         </td>
                                         <td><a target="_blank"
                                                 href="http://curio.codes/{{ $link->short }}">{{ $link->short }}</a></td>
@@ -63,9 +67,11 @@
                                             <div class="button-group">
                                                 <a class="button button-primary icon-only"
                                                     href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
-                                                <a class="button button-danger icon-only"
-                                                    href="{{ route('links.delete', $link->short) }}"><i
-                                                        class="fa fa-trash"></i></a>
+                                                @if (Auth::user()->isAdmin())
+                                                    <a class="button button-danger icon-only"
+                                                        href="{{ route('links.delete', $link->short) }}"><i
+                                                            class="fa fa-trash"></i></a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
