@@ -59,12 +59,14 @@
                                                 </label>
                                             @endif
                                         </td>
-                                        <td><a target="_blank"
-                                                href="http://curio.codes/{{ $link->short }}">{{ $link->short }}</a></td>
+                                        <td><a target="_blank" href="{{ $link->shortUrl() }}">{{ $link->short }}</a></td>
                                         <td>{{ $link->url }}</td>
                                         <td>{{ optional($link->creator())->name }}, {{ $link->created_at }}</td>
                                         <td>
                                             <div class="button-group">
+                                                <a class="button button-primary icon-only" target="_blank"
+                                                    href="{{ route('links.qr', $link->short) }}"><i
+                                                        class="fa fa-qrcode"></i></a>
                                                 <a class="button button-primary icon-only"
                                                     href="/links/{{ $link->short }}/edit"><i class="fa fa-pencil"></i></a>
                                                 @if (Auth::user()->isAdmin())

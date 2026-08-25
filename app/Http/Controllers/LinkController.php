@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Writer\SvgWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -30,17 +33,22 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'short' => 'nullable|alpha_dash',
+            // Restricted to the QR "alphanumeric mode" character set (digits,
+            // uppercase letters and hyphen) so short links always produce the
+            // smallest possible QR code.
+            'short' => 'nullable|regex:/^[A-Za-z0-9-]+$/',
             'url' => 'required|url',
             'title' => 'nullable'
         ]);
 
-        if ($request->short != null && Link::where('short', $request->short)->count()) {
+        $short = $request->short ? strtoupper($request->short) : null;
+
+        if ($short != null && Link::whereRaw('LOWER(short) = ?', [strtolower($short)])->count()) {
             return back()->withErrors('Korte link moet uniek zijn!');
         }
 
         $link = new Link();
-        $link->short = $request->short ?? $this->getRandomCode();
+        $link->short = $short ?? $this->getRandomCode();
         $link->url = $request->url;
         $link->on_frontpage = $request->has('on_frontpage');
         $link->title = $request->title;
@@ -53,10 +61,10 @@ class LinkController extends Controller
 
     private function getRandomCode($length = 3)
     {
-        $base = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $base = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code = substr(str_shuffle($base), 0, $length);
 
-        while (Link::where('short', $code)->count()) {
+        while (Link::whereRaw('LOWER(short) = ?', [strtolower($code)])->count()) {
             $code = substr(str_shuffle($base), 0, $length);
         }
 
@@ -81,6 +89,34 @@ class LinkController extends Controller
         $link->save();
 
         return redirect('/links')->with('updated', $link->short);
+    }
+
+    /**
+     * Generate a QR code for the given link's short URL.
+     */
+    public function qr(Link $link, Request $request)
+    {
+        // Uppercased so the QR encoder can use the compact alphanumeric
+        // mode for the whole URL (scheme, host and short code are all
+        // case-insensitive to resolve).
+        $data = strtoupper($link->shortUrl());
+
+        $result = (new Builder(
+            writer: new SvgWriter(),
+            data: $data,
+            errorCorrectionLevel: ErrorCorrectionLevel::Medium,
+            size: 300,
+            margin: 10,
+        ))->build();
+
+        $response = response($result->getString(), 200)
+            ->header('Content-Type', $result->getMimeType());
+
+        if ($request->boolean('download')) {
+            $response->header('Content-Disposition', 'attachment; filename="' . $link->short . '-qr.svg"');
+        }
+
+        return $response;
     }
 
     public function delete(Link $short)

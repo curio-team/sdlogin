@@ -58,6 +58,7 @@ $loginRoutes = function () {
 
             // Link management (no delete — single and bulk link delete require admin)
             Route::resource('links', LinkController::class, ['except' => ['show', 'destroy']]);
+            Route::get('links/{link}/qr', [LinkController::class, 'qr'])->name('links.qr');
 
             // This test route only exists for testing the view of the authorize page
             Route::get('authorize-test', function () {

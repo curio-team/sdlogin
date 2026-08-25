@@ -27,6 +27,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <div class="col-sm-12">
+                        <img src="{{ route('links.qr', $link->short) }}" alt="QR-code voor {{ $link->shortUrl() }}"
+                            width="200" height="200">
+                        <p>
+                            <a href="{{ route('links.qr', ['link' => $link->short, 'download' => 1]) }}"><i
+                                    class="fa fa-download"></i> QR-code downloaden</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label">URL (lang):</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control input" id="url" name="url"

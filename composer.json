@@ -12,6 +12,7 @@
     "require": {
         "php": "^8.4",
         "bjeavons/zxcvbn-php": "^1.4",
+        "endroid/qr-code": "^6.1",
         "laravel/framework": "^13.0",
         "laravel/passport": "^13.0",
         "laravel/sanctum": "^4.3",
