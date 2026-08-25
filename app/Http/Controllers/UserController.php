@@ -151,7 +151,12 @@ class UserController extends Controller
             'Voor jouw informatie, je hebt een wachtwoord gekozen waarvoor het een hacker ongeveer ' . $check->time . ' zou duren om het te raden!'
         ]);
 
-        return redirect('/users/' . $user->id . '/profile');
+        // User::$id is validated `alpha_num` on creation (see store()) and immutable
+        // afterwards, not passed through from the current request.
+        /** @psalm-taint-escape header */
+        $userId = strval($user->id);
+
+        return redirect('/users/' . $userId . '/profile');
     }
 
     /**
