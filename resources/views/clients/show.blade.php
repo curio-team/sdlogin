@@ -47,8 +47,11 @@
                     <th>Dev/test-app:</th>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $client->for_development ? 'Ja' : 'Nee' }} <a
-                            href="{{ route('clients.toggle-dev', $client) }}">(toggle)</a>
+                        <form action="{{ route('clients.toggle-dev', $client) }}" method="post" class="d-inline">
+                            @csrf
+                            {{ $client->for_development ? 'Ja' : 'Nee' }}
+                            <button type="submit" class="btn btn-link p-0 align-baseline">(toggle)</button>
+                        </form>
                     </td>
                 </tr>
             </table>

@@ -29,9 +29,11 @@
                             <option value="teacher" {{ old('type') == 'teacher' ? 'selected' : '' }}>
                                 Docent
                             </option>
-                            <option value="admin" {{ old('type') == 'admin' ? 'selected' : '' }}>
-                                Admin
-                            </option>
+                            @if (in_array('admin', $types))
+                                <option value="admin" {{ old('type') == 'admin' ? 'selected' : '' }}>
+                                    Admin
+                                </option>
+                            @endif
                         </select>
                     </div>
                 </div>

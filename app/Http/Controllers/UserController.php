@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Group;
 
@@ -29,7 +30,8 @@ class UserController extends Controller
             $users = $users->orWhere('name', 'LIKE', "%$search%");
         }
 
-        $users = $users->paginate(request('n', 10));
+        $perPage = max(1, min(100, (int) request('n', 10)));
+        $users = $users->paginate($perPage);
         return view('users.index')
             ->with('users', $users);
     }
@@ -40,7 +42,8 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create')
-            ->with('groups', Group::getWithFuture()->groupBy('type'));
+            ->with('groups', Group::getWithFuture()->groupBy('type'))
+            ->with('types', request()->user()->creatableUserTypes());
     }
 
     /**
@@ -49,7 +52,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|in:student,teacher,admin',
+            'type' => ['required', Rule::in($request->user()->creatableUserTypes())],
             'id' => 'required|alpha_num|unique:users,id',
             'name' => 'required|string',
             'email' => 'nullable|email',
@@ -90,8 +93,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Request $request, User $user)
     {
+        $this->authorizeManage($request, $user);
+
         $user_groups = $user->groupsWithFuture();
         return view('users.edit')
             ->with('groups', Group::getWithFuture()->groupBy('type'))
@@ -156,7 +161,7 @@ class UserController extends Controller
         /** @psalm-taint-escape header */
         $userId = strval($user->id);
 
-        return redirect('/users/' . $userId . '/profile');
+        return redirect()->intended('/users/' . $userId . '/profile');
     }
 
     /**
@@ -164,6 +169,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorizeManage($request, $user);
+
         $request->validate([
             'name' => 'required|string',
             'password' => 'nullable|confirmed'
@@ -183,6 +190,13 @@ class UserController extends Controller
         $user->groups()->sync($groupsTotal);
 
         return redirect('/users');
+    }
+
+    private function authorizeManage(Request $request, User $user): void
+    {
+        if (! $request->user()->canManage($user)) {
+            abort(403, 'Geen toegang. Alleen admins mogen docenten en admins beheren.');
+        }
     }
 
     public function delete(User $user)

@@ -87,7 +87,7 @@ $loginRoutes = function () {
             // OAuth client management
             Route::resource('clients', ClientController::class, ['except' => ['edit', 'update']]);
             Route::get('clients/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
-            Route::get('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
+            Route::post('clients/{client}/toggle', [ClientController::class, 'toggleDev'])->name('clients.toggle-dev');
             Route::post('clients/{client}/change-name', [ClientController::class, 'changeName'])->name('clients.change-name');
 
             // Bulk user operations

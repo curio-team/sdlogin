@@ -37,7 +37,7 @@ class LinkController extends Controller
             // uppercase letters and hyphen) so short links always produce the
             // smallest possible QR code.
             'short' => 'nullable|regex:/^[A-Za-z0-9-]+$/',
-            'url' => 'required|url',
+            'url' => 'required|url:http,https',
             'title' => 'nullable'
         ]);
 
@@ -80,7 +80,7 @@ class LinkController extends Controller
     {
         $request->validate([
             'title' => 'nullable',
-            'url' => 'required|url'
+            'url' => 'required|url:http,https'
         ]);
 
         $link->on_frontpage = $request->has('on_frontpage');

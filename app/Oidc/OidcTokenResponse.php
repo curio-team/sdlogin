@@ -18,7 +18,8 @@ class OidcTokenResponse extends \League\OAuth2\Server\ResponseTypes\BearerTokenR
         $user->groups = $user->groups->toJson();
         $user = $user->toJson();
 
-        $signingKey = InMemory::plainText($_POST['client_secret']);
+        // The client secret was already verified by the grant before this response is built
+        $signingKey = InMemory::plainText((string) request()->input('client_secret'));
 
         $token = (new JwtFacade())
             ->issue(

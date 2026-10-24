@@ -95,4 +95,30 @@ class User extends Authenticatable implements OAuthenticatable, Auditable
     {
         return $this->type === 'admin';
     }
+
+    /**
+     * Admins may manage everyone, teachers may only manage students. This prevents
+     * a teacher from taking over a colleague's or admin's account by resetting
+     * their password.
+     */
+    public function canManage(User $user): bool
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        return $this->isTeacher() && ! $user->isTeacher();
+    }
+
+    /**
+     * The account types this user may create.
+     *
+     * @return list<string>
+     */
+    public function creatableUserTypes(): array
+    {
+        return $this->isAdmin()
+            ? ['student', 'teacher', 'admin']
+            : ['student', 'teacher'];
+    }
 }

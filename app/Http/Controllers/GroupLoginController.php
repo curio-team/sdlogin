@@ -32,8 +32,15 @@ class GroupLoginController extends Controller
          * @var \App\Models\User $user
          */
         foreach ($group->users as $user) {
-            $pass = substr(str_shuffle($data), 0, 6);
-            $user->password = password_hash($pass, PASSWORD_DEFAULT);
+            // random_int is cryptographically secure, unlike str_shuffle
+            $pass = '';
+            for ($i = 0; $i < 6; $i++) {
+                $pass .= $data[random_int(0, strlen($data) - 1)];
+            }
+
+            $user->password = bcrypt($pass);
+            // These passwords are printed and handed out, so they must be replaced on first login
+            $user->password_force_change = now();
             $user->save();
 
             $userprint[] = [

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\CheckPasswordForceChange;
 use App\Oidc\OidcAuthController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
@@ -39,11 +40,14 @@ class AppServiceProvider extends ServiceProvider
             return $currentuser->id == $user->id;
         });
 
-        Route::group(['domain' => 'login.amo.rocks', 'middleware' => ['web', 'auth']], function () {
+        // Users with a temporary password must change it before signing in to other apps
+        $authorizeMiddleware = ['web', 'auth', CheckPasswordForceChange::class];
+
+        Route::group(['domain' => 'login.amo.rocks', 'middleware' => $authorizeMiddleware], function () {
             Route::get('/oauth/authorize', [OidcAuthController::class, 'authorize']);
         });
 
-        Route::group(['domain' => 'login.curio.codes', 'middleware' => ['web', 'auth']], function () {
+        Route::group(['domain' => 'login.curio.codes', 'middleware' => $authorizeMiddleware], function () {
             Route::get('/oauth/authorize', [OidcAuthController::class, 'authorize']);
         });
 

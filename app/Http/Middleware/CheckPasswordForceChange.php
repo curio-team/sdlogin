@@ -18,6 +18,11 @@ class CheckPasswordForceChange
     {
         if ($request->user()->password_force_change) {
             if (!in_array($request->route()->getName(), self::EXCLUDED_ROUTES)) {
+                // Return the user to the app they were signing in to once they've changed their password
+                if ($request->isMethod('GET') && $request->is('oauth/authorize')) {
+                    $request->session()->put('url.intended', $request->fullUrl());
+                }
+
                 return redirect()->route('users.profile', $request->user())
                     ->withErrors('Je wachtwoord is verlopen. Wijzig je wachtwoord voordat je verder gaat.');
             }
