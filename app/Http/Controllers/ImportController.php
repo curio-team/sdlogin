@@ -143,13 +143,15 @@ class ImportController extends Controller
 
             if (!$user->exists) {
                 $importAddedCount++;
+
+                // Only new users get a random password, existing users keep theirs
+                $user->password = bcrypt(bin2hex(random_bytes(10)));
             }
 
             $user->id = $id;
             $user->name = self::stripAccents($importUser['name']);
             $user->email = $prefix . $importUser['code'] . '@edu.rocwb.nl';
             $user->type = 'student';
-            $user->password = bcrypt(bin2hex(random_bytes(10)));
             $user->save();
 
             foreach ($importUser['groups'] as $group) {

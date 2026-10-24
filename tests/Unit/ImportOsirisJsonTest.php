@@ -4,7 +4,9 @@ namespace Tests\Unit;
 
 use App\Http\Controllers\ImportController;
 use App\Models\Group;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -244,6 +246,23 @@ class ImportOsirisJsonTest extends TestCase
                 ]);
             }
         }
+    }
+
+    #[Test]
+    public function reimporting_keeps_existing_passwords(): void
+    {
+        $importJson = json_encode(self::getUsersInImport());
+
+        ImportController::import($importJson, '2021-09-01', 'D');
+
+        $student = User::find('i123456');
+        $student->password = bcrypt('chosen-by-student');
+        $student->save();
+
+        [$importAddedCount] = ImportController::import($importJson, '2021-09-01', 'D');
+
+        $this->assertEquals(0, $importAddedCount);
+        $this->assertTrue(Hash::check('chosen-by-student', $student->refresh()->password));
     }
 
     #[Test]
