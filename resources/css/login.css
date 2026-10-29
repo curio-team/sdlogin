@@ -48,7 +48,8 @@ img {
     color: #fff;
 }
 
-.container.login .form.inked .label {
+.container.login .form.inked .label,
+.container.login .form.inked .checkbox-wrapper {
     color: #fff;
 }
 
